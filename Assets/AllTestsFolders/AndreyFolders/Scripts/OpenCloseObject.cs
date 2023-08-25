@@ -58,8 +58,7 @@ public class OpenCloseObject : MonoBehaviour
                 {
                     switch (currentChannel)
                     {
-                        case 1:
-                            currentInteractible.GetComponent<MeshRenderer>().material = 
+    
                     }
                 }
 				break;
