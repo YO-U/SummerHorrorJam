@@ -16,7 +16,8 @@ public class MovingCar : MonoBehaviour
 
     private void Start()
     {
-        gm = Instantiate(array[Random.Range(0,2)],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
+        gm = Instantiate(array[Random.Range(0,5)],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
+        gm.transform.Rotate(0, -90, 0);
     }
 
     private void Update()
