@@ -9,8 +9,8 @@ public class CameraMove : MonoBehaviour
 	public GameObject camera;
 	private Quaternion initialRotation;
 	private Quaternion targetRotation;
-	public float initialRotationSpeed = 5.0f; // Начальная скорость поворота
-	public float endingRotationSpeed = 1.0f;  // Замедление скорости поворота
+	public float initialRotationSpeed = 5.0f; // РќР°С‡Р°Р»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ РїРѕРІРѕСЂРѕС‚Р°
+	public float endingRotationSpeed = 1.0f;  // Р—Р°РјРµРґР»РµРЅРёРµ СЃРєРѕСЂРѕСЃС‚Рё РїРѕРІРѕСЂРѕС‚Р°
 
 	private void Start()
 	{

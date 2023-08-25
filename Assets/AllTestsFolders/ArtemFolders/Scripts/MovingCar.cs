@@ -12,11 +12,11 @@ public class MovingCar : MonoBehaviour
     public float _carSpeed = 0.1f;
     private bool _cheker = true;
     public GameObject[] array = new GameObject[1];
-    private GameObject gm;
+    public GameObject gm;
 
     private void Start()
     {
-        gm = Instantiate(array[Random.Range(0,5)],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
+        gm = Instantiate(array[0],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
         gm.transform.Rotate(0, -90, 0);
     }
 
