@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.2
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.039248854, g: 0.043415565, b: 0.05660379, a: 1}
+  m_AmbientSkyColor: {r: 0.07956566, g: 0.08629403, b: 0.11320752, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: f73cdad3ef90f6c478a207bd0b7c77ff, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -16518,6 +16518,7 @@ GameObject:
   - component: {fileID: 1156071073}
   - component: {fileID: 1156071072}
   - component: {fileID: 1156071074}
+  - component: {fileID: 1156071075}
   m_Layer: 0
   m_Name: SceneScripts
   m_TagString: Untagged
@@ -16537,6 +16538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb3c6643ff374044b4ddb1a7a98d012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 
   camera: {fileID: 1957362836}
   initialRotationSpeed: 0.2
   endingRotationSpeed: 0.6
@@ -16576,6 +16578,22 @@ MonoBehaviour:
   - {fileID: 3203362299474011571, guid: 2cac5cd04edec924abc74cd363479faa, type: 3}
   - {fileID: 2932251657729672640, guid: 77cc64ec570b7cf4a8de6a0bbb8d4142, type: 3}
   - {fileID: 7546971576278313893, guid: 2d504ca4824e2fe4daa116230e42f102, type: 3}
+--- !u!114 &1156071075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156071071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3a5ce374307924190d68b3be79e8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentInteractible: {fileID: 1184694936}
+  moveDistance: 0.16
+  cameraMove: {fileID: 1156071072}
+  interact: 101
 --- !u!1001 &1181972619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16662,7 +16680,7 @@ GameObject:
   - component: {fileID: 1184694939}
   - component: {fileID: 1184694938}
   m_Layer: 0
-  m_Name: V.004
+  m_Name: MainWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23148,8 +23166,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.7122642, g: 0.8023738, b: 1, a: 1}
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -23589,7 +23607,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
