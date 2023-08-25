@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
 	private bool down, mid, left, right, isRotating = false;
+	public string currentState;
 	public GameObject camera;
 	private Quaternion initialRotation;
 	private Quaternion targetRotation;
@@ -24,6 +25,7 @@ public class CameraMove : MonoBehaviour
 			StartCoroutine(RotateCamera(Vector3.right * 55));
 			mid = false;
 			down = true;
+			currentState = "down";
 		}
 
 		if (Input.GetKeyDown(KeyCode.W) && down == true && !isRotating)
@@ -31,6 +33,7 @@ public class CameraMove : MonoBehaviour
 			StartCoroutine(RotateCamera(Vector3.right * -55));
 			down = false;
 			mid = true;
+			currentState = "mid";
 		}
 
 		if (Input.GetKeyDown(KeyCode.A) && mid == true && !isRotating)
@@ -38,6 +41,7 @@ public class CameraMove : MonoBehaviour
 			StartCoroutine(RotateCamera(Vector3.up * -70));
 			mid = false;
 			left = true;
+			currentState = "left";
 		}
 
 		if (Input.GetKeyDown(KeyCode.D) && mid == true && !isRotating)
@@ -45,6 +49,7 @@ public class CameraMove : MonoBehaviour
 			StartCoroutine(RotateCamera(Vector3.up * 70));
 			mid = false;
 			right = true;
+			currentState = "right";
 		}
 
 		if (Input.GetKeyDown(KeyCode.A) && right == true && !isRotating)
@@ -52,12 +57,14 @@ public class CameraMove : MonoBehaviour
 			StartCoroutine(RotateCamera(Vector3.up * -70));
 			right = false;
 			mid = true;
+			currentState = "mid";
 		}
 		if (Input.GetKeyDown(KeyCode.D) && left == true && !isRotating)
 		{
 			StartCoroutine(RotateCamera(Vector3.up * 70));
 			left = false;
 			mid = true;
+			currentState = "mid";
 		}
 	}
 
