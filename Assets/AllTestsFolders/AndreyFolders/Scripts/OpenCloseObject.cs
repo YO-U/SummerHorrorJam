@@ -14,6 +14,7 @@ public class OpenCloseObject : MonoBehaviour
     private int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;
+	[SerializeField] private Light tvLight;
 	[SerializeField] private GameObject objectPlaceHolder;
 	[SerializeField] private string[] pageContents = new string[8] 
 	{"Your job is to oversee the gate", "The button is used to open it", "Don't let any weirdos inside", "You can watch TV on the left", 
@@ -180,12 +181,14 @@ public class OpenCloseObject : MonoBehaviour
                 {
 					videoPlayer.Play();
 					CurrentChannelCheck();
+					tvLight.enabled = true;
 					tvScreen.GetComponent<Renderer>().material = activated;
 					tvAvtivated = true;
                 }
                 else
                 {
 					videoPlayer.Stop();
+					tvLight.enabled = false;
 					tvScreen.GetComponent<Renderer>().material = deactivated;
 					tvAvtivated = false;
 				}
