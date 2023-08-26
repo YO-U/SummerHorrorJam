@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ public class MovingCar : MonoBehaviour
     public float _carSpeed = 0.1f;
     private bool _cheker = true;
     public GameObject[] array = new GameObject[1];
-    public GameObject gm;
+    private GameObject gm;
 
     private void Start()
     {
-        gm = Instantiate(array[0],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
+        gm = Instantiate(array[Random.Range(0,5)],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
         gm.transform.Rotate(0, -90, 0);
     }
 
@@ -26,7 +27,8 @@ public class MovingCar : MonoBehaviour
         {
             if (gm.transform.position != _endPoint.position)
             {
-                gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
+                gm.transform.DOLocalMoveX(2.2f, 5f);
+                //gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
             }
             else
             {
