@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -7,9 +8,16 @@ using UnityEngine.Video;
 public class OpenCloseObject : MonoBehaviour
 {
     public GameObject currentInteractible;
-	private bool windowOpened = false;
-    private bool tvAvtivated = false;
+	public bool windowOpened = false;
+	public bool bookOpened = false;
+    public bool tvAvtivated = false;
     private int currentChannel = 1;
+	private int currentPage = 1;
+	private TMP_Text textTemp;
+	[SerializeField] private GameObject objectPlaceHolder;
+	[SerializeField] private string[] pageContents = new string[8] 
+	{"Your job is to oversee the gate", "The button is used to open it", "Don't let any weirdos inside", "You can watch TV on the left", 
+		"There is a phone on the right", "You can use it to call the police", "Window is openable, open it to talk", "If it is closed, no one can hear you"};
 	[SerializeField] private GameObject tvScreen;
 	[SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private VideoClip news;
@@ -35,12 +43,17 @@ public class OpenCloseObject : MonoBehaviour
     {
         InteractibleActivete();
 		TvChannelSwitch();
+		BookPageChange();
     }
+
+	//Меняет видос.
 
 	private void MaterialChange(VideoClip clip)
 	{
 		videoPlayer.clip = clip;
 	}
+
+	//Меняет текущий видос в зависимости от переменной.
 
 	private void CurrentChannelCheck()
 	{
@@ -64,6 +77,8 @@ public class OpenCloseObject : MonoBehaviour
 		}
 	}
 
+	//Меняет канал телевизора.
+
     private void TvChannelSwitch()
     {
         if (Input.GetKeyDown(interactSecondary) && (cameraMove.currentState == "left") && tvAvtivated)
@@ -80,11 +95,69 @@ public class OpenCloseObject : MonoBehaviour
 		}
     }
 
-    private void GetAndActivateCurrentInteractable()
+	//Меняет страницу книги.
+
+	private void BookPageChange()
+	{
+		if (Input.GetKeyDown(interactSecondary) && (cameraMove.currentState == "down") && bookOpened)
+		{
+			if (currentPage != 7)
+			{
+				currentPage += 2;
+			}
+			else
+				currentPage = 1;
+			PageContentChange();
+		}
+	}
+
+	//Визуал не дает мне редачить объекты без инициализации, поэтому мне пришлось придумать этот костыль. 
+	//Он просто берет объект и меняет его статус на противоположный.
+
+	private void placeHolderGameObjectActivation(string gameobjectTitle)
+	{
+		objectPlaceHolder = currentInteractible.transform.Find(gameobjectTitle).gameObject;
+		if (objectPlaceHolder.activeInHierarchy)
+		objectPlaceHolder.SetActive(false);
+		else
+		objectPlaceHolder.SetActive(true);
+	}
+
+	//Тоже самое, что сверху, но отдельно для текста страниц.
+
+	private void PageContentChange()
+	{
+		objectPlaceHolder = GameObject.Find("Page1");
+		textTemp = objectPlaceHolder.GetComponent<TMP_Text>();
+		textTemp.text = pageContents[currentPage - 1];
+		objectPlaceHolder = GameObject.Find("Page2");
+		textTemp = objectPlaceHolder.GetComponent<TMP_Text>();
+		textTemp.text = pageContents[currentPage];
+	}
+
+	//Отвечает за все взаимодействия с предметами.
+
+	private void GetAndActivateCurrentInteractable()
     {
         switch (cameraMove.currentState)
         {
             case "down":
+				currentInteractible = GameObject.Find("Book");
+				if (!bookOpened)
+				{
+					placeHolderGameObjectActivation("Pages");
+					PageContentChange();
+					placeHolderGameObjectActivation("PieceOfPaper2");
+					placeHolderGameObjectActivation("Title");
+					bookOpened = true;
+				}
+				else
+				{
+					placeHolderGameObjectActivation("Pages");
+					placeHolderGameObjectActivation("PieceOfPaper2");
+					placeHolderGameObjectActivation("Title");
+					bookOpened = false;
+				}
                 break;
 
             case "mid":
@@ -123,6 +196,8 @@ public class OpenCloseObject : MonoBehaviour
 				break;
         }
     }
+
+	//Активирует предмет при нажатии клавиши.
 
 	public void InteractibleActivete()
 	{
