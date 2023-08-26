@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ public class MovingCar : MonoBehaviour
         {
             if (gm.transform.position != _endPoint.position)
             {
-                gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
+                gm.transform.DOLocalMoveX(2.2f, 5f);
+                //gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
             }
             else
             {

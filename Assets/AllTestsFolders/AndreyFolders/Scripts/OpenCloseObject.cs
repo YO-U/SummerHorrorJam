@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using DG.Tweening;
 
 public class OpenCloseObject : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class OpenCloseObject : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		tvLight.enabled = false;
     }
 
     // Update is called once per frame
@@ -165,13 +166,13 @@ public class OpenCloseObject : MonoBehaviour
                 currentInteractible = GameObject.Find("MainWindow");
                 if (!windowOpened)
                 {
-					currentInteractible.transform.Translate(new Vector3(0, 0, -moveDistance));
+					currentInteractible.transform.DOLocalMoveZ(0.001f, 0.7f);
 					windowOpened = true;
 				}
                 else
                 {
-					currentInteractible.transform.Translate(new Vector3(0, 0, moveDistance));
-                    windowOpened = false;
+					currentInteractible.transform.DOLocalMoveZ(0.01f, 0.7f);
+					windowOpened = false;
 				}
 				break;
 
