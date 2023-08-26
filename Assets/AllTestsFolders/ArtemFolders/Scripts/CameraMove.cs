@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-	private bool down, mid, left, right, isRotating = false;
+	public bool down, mid, left, right, isRotating = false;
 	public string currentState;
 	public GameObject camera;
 	private Quaternion initialRotation;

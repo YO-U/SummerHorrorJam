@@ -11,6 +11,7 @@ public class OpenCloseObject : MonoBehaviour
 	public bool windowOpened = false;
 	public bool bookOpened = false;
     public bool tvAvtivated = false;
+
     private int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;

@@ -6,13 +6,14 @@ using Random = UnityEngine.Random;
 
 public class HumanWalkToWindow : MonoBehaviour
 {
-    public Transform[] pointsArray = new Transform[4];
+    public Transform[] pointsArray = new Transform[3];
     public GameObject[] humansArray = new GameObject[2];
     private MovingCar car;
     private bool humanChecker = true;
-    private GameObject human;
+    public GameObject human;
     private int currentPointIndex = 0;
     public float humanSpeed = 0.01f;
+    public bool hCreatedCh = false;
 
     private void Start()
     {
@@ -43,6 +44,8 @@ public class HumanWalkToWindow : MonoBehaviour
             }
             currentPointIndex = i + 1; // Переходим к следующей точке
         }
+
+        hCreatedCh = true;
     } 
     private IEnumerator ExecuteWithDelay()
     {
