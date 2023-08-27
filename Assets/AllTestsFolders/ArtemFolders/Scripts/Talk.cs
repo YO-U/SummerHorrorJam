@@ -71,8 +71,11 @@ public class Talk : MonoBehaviour
                     textQuest.text = "Qwuest";
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                            
-                    }
+						switcher = true;
+						human.beenRejected = true;
+						human.leavingSequence = true;
+						StartCoroutine(human.HumanNahuiPoshel());
+					}
                 }
                 else
                 {

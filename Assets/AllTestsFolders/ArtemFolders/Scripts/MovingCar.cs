@@ -97,6 +97,7 @@ public class MovingCar : MonoBehaviour
 			readyToDepart = false;
 			yield return new WaitForSeconds(20);
 			Destroy(gm);
+            humanWalk.beenRejected = false;
 			currentDestination = 4.4f;
 			isNextCarReady = true;
 			isBoostReady = true;
