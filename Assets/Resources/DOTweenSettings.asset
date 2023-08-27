@@ -41,11 +41,7 @@ MonoBehaviour:
     showPanel: 0
     audioEnabled: 1
     physicsEnabled: 1
-<<<<<<< HEAD
     physics2DEnabled: 1
-=======
-    physics2DEnabled: 0
->>>>>>> 907681788ffb957fecdc315cb077a9d4264ea33f
     spriteEnabled: 1
     uiEnabled: 1
     textMeshProEnabled: 0
