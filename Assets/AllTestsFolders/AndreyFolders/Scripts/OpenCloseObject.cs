@@ -16,6 +16,8 @@ public class OpenCloseObject : MonoBehaviour
     private int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;
+	[SerializeField] private bool windowReady;
+	[SerializeField] private AudioSource windowCreack;
 	[SerializeField] private Light tvLight;
 	[SerializeField] private GameObject objectPlaceHolder;
 	[SerializeField] private string[] pageContents = new string[8] 
@@ -54,6 +56,15 @@ public class OpenCloseObject : MonoBehaviour
 	private void MaterialChange(VideoClip clip)
 	{
 		videoPlayer.clip = clip;
+	}
+
+	private IEnumerator windowCooldown()
+	{
+		if (!windowReady)
+		{
+			yield return new WaitForSeconds(1);
+			windowReady = true;
+		}
 	}
 
 	//ћен€ет текущий видос в зависимости от переменной.
@@ -165,15 +176,20 @@ public class OpenCloseObject : MonoBehaviour
 
             case "mid":
                 currentInteractible = GameObject.Find("MainWindow");
-                if (!windowOpened)
+                if (!windowOpened && windowReady)
                 {
 					currentInteractible.transform.DOLocalMoveZ(0.001f, 0.7f);
+					windowCreack.Play();
+					windowReady = false;
 					windowOpened = true;
+					StartCoroutine(windowCooldown());
 				}
-                else
+                else if (windowReady)
                 {
 					currentInteractible.transform.DOLocalMoveZ(0.01f, 0.7f);
+					windowReady = false;
 					windowOpened = false;
+					StartCoroutine(windowCooldown());
 				}
 				break;
 

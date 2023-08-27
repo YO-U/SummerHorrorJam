@@ -14,6 +14,7 @@ public class HumanWalkToWindow : MonoBehaviour
     private bool humanChecker = true;
     public bool beenRejected;
     public GameObject human;
+    [SerializeField] private AudioSource carSoundOpen;
     [SerializeField] private int currentPointIndex = 0;
     [SerializeField] private MovingCar movingCar;
     public float humanSpeed = 0.01f;
@@ -90,6 +91,7 @@ public class HumanWalkToWindow : MonoBehaviour
     private IEnumerator ExecuteWithDelayCreate()
     {
 		yield return new WaitForSeconds(2);
+        carSoundOpen.Play();
 		human = Instantiate(humansArray[Random.Range(0, 2)], pointsArray[0].position, Quaternion.identity) as GameObject;
         yield return new WaitForSeconds(2);
         StartCoroutine(MoveHumanToPoint());
