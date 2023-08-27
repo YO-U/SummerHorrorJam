@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
+=======
+// Author: Daniele Giardini - http://www.demigiant.com
+>>>>>>> 907681788ffb957fecdc315cb077a9d4264ea33f
 // Created: 2018/07/13
 
 using System;
@@ -98,7 +102,11 @@ namespace DG.Tweening
             // Returns FALSE if the DOTween's Physics2D Module is disabled, or if there's no Rigidbody2D attached
             public static bool HasRigidbody2D(Component target)
             {
+<<<<<<< HEAD
 #if true // PHYSICS2D_MARKER
+=======
+#if false // PHYSICS2D_MARKER
+>>>>>>> 907681788ffb957fecdc315cb077a9d4264ea33f
                 return target.GetComponent<Rigidbody2D>() != null;
 #else
                 return false;
@@ -142,7 +150,11 @@ namespace DG.Tweening
                     }
                 }
 #endif
+<<<<<<< HEAD
 #if true // PHYSICS2D_MARKER
+=======
+#if false // PHYSICS2D_MARKER
+>>>>>>> 907681788ffb957fecdc315cb077a9d4264ea33f
                 if (!rBodyFoundAndTweened && tweenRigidbody) {
                     Rigidbody2D rBody2D = target.GetComponent<Rigidbody2D>();
                     if (rBody2D != null) {

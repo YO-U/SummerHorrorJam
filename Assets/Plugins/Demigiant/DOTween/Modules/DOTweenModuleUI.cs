@@ -1,7 +1,11 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2018/07/13
 
+<<<<<<< HEAD
 #if true // MODULE_MARKER
+=======
+#if true && (UNITY_4_6 || UNITY_5 || UNITY_2017_1_OR_NEWER) // MODULE_MARKER
+>>>>>>> 907681788ffb957fecdc315cb077a9d4264ea33f
 
 using System;
 using System.Globalization;

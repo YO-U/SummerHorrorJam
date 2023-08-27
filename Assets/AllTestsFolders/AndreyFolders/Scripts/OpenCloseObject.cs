@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using DG.Tweening;
 
 public class OpenCloseObject : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class OpenCloseObject : MonoBehaviour
     private int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;
+	[SerializeField] private Light tvLight;
 	[SerializeField] private GameObject objectPlaceHolder;
 	[SerializeField] private string[] pageContents = new string[8] 
 	{"Your job is to oversee the gate", "The button is used to open it", "Don't let any weirdos inside", "You can watch TV on the left", 
@@ -36,7 +38,7 @@ public class OpenCloseObject : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		tvLight.enabled = false;
     }
 
     // Update is called once per frame
@@ -165,13 +167,13 @@ public class OpenCloseObject : MonoBehaviour
                 currentInteractible = GameObject.Find("MainWindow");
                 if (!windowOpened)
                 {
-					currentInteractible.transform.Translate(new Vector3(0, 0, -moveDistance));
+					currentInteractible.transform.DOLocalMoveZ(0.001f, 0.7f);
 					windowOpened = true;
 				}
                 else
                 {
-					currentInteractible.transform.Translate(new Vector3(0, 0, moveDistance));
-                    windowOpened = false;
+					currentInteractible.transform.DOLocalMoveZ(0.01f, 0.7f);
+					windowOpened = false;
 				}
 				break;
 
@@ -181,12 +183,14 @@ public class OpenCloseObject : MonoBehaviour
                 {
 					videoPlayer.Play();
 					CurrentChannelCheck();
+					tvLight.enabled = true;
 					tvScreen.GetComponent<Renderer>().material = activated;
 					tvAvtivated = true;
                 }
                 else
                 {
 					videoPlayer.Stop();
+					tvLight.enabled = false;
 					tvScreen.GetComponent<Renderer>().material = deactivated;
 					tvAvtivated = false;
 				}
