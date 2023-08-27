@@ -25,16 +25,21 @@ public class HumanWalkToWindow : MonoBehaviour
 
     private void Update()
     {
-        if (car.gm.transform.position.x < new Vector3(2.2001f, 0.004999995f, -0.943f).x && leavingSequence == false)
-        {
-            if (humanChecker)
-            {
-                StartCoroutine(ExecuteWithDelayCreate());
-                humanChecker = false;
-                leavingSequence = true;
-            }
-        }
+        if (!movingCar.isNextCarReady) CarPositionCheck();
     }
+
+    private void CarPositionCheck()
+    {
+		if (car.gm.transform.position.x < new Vector3(2.2001f, 0.004999995f, -0.943f).x && leavingSequence == false)
+		{
+			if (humanChecker)
+			{
+				StartCoroutine(ExecuteWithDelayCreate());
+				humanChecker = false;
+				leavingSequence = true;
+			}
+		}
+	}
 
     public IEnumerator HumanNahuiPoshel()
     {
