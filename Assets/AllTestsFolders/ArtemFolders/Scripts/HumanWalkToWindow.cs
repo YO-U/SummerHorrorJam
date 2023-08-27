@@ -12,6 +12,7 @@ public class HumanWalkToWindow : MonoBehaviour
     public bool leavingSequence = false;
     private MovingCar car;
     private bool humanChecker = true;
+    public bool beenRejected;
     public GameObject human;
     [SerializeField] private int currentPointIndex = 0;
     [SerializeField] private MovingCar movingCar;

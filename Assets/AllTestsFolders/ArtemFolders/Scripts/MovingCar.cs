@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Plugins.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,9 @@ public class MovingCar : MonoBehaviour
     public bool isNextCarReady = true;
     private bool isBoostReady = true;
     [SerializeField] private HumanWalkToWindow humanWalk;
+    [SerializeField] private Vector3[] carDepartPath = new Vector3[4];
     [SerializeField] private float currentDestination;
+    [SerializeField] private float rejectDestination;
     [SerializeField] private float moveChange;
 
     private void Start()
@@ -32,6 +35,8 @@ public class MovingCar : MonoBehaviour
         MoveCar();
 
         StartCoroutine(MoveCarIntoCamp());
+
+        StartCoroutine(MoveCarOutOfCamp());
 
         //if (_cheker)
         //{
@@ -70,7 +75,7 @@ public class MovingCar : MonoBehaviour
 
 	private IEnumerator MoveCarIntoCamp()
 	{
-		if (readyToDepart)
+		if (readyToDepart && !humanWalk.beenRejected)
 		{
 			currentDestination -= moveChange*3;
 			gm.transform.DOLocalMoveX(currentDestination, 12f);
@@ -82,4 +87,20 @@ public class MovingCar : MonoBehaviour
             isBoostReady = true;
 		}
 	}
+
+    private IEnumerator MoveCarOutOfCamp()
+    {
+        if (readyToDepart && humanWalk.beenRejected)
+        {
+            gm.transform.DOPath(carDepartPath, 10f, PathType.CatmullRom, PathMode.Full3D, 5, Color.green);
+            gm.transform.DORotate(new Vector3(0, 180, 0), 4f, RotateMode.LocalAxisAdd);
+			readyToDepart = false;
+			yield return new WaitForSeconds(20);
+			Destroy(gm);
+            humanWalk.beenRejected = false;
+			currentDestination = 4.4f;
+			isNextCarReady = true;
+			isBoostReady = true;
+		}
+    }
 }
