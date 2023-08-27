@@ -79,7 +79,7 @@ public class HumanWalkToWindow : MonoBehaviour
     private IEnumerator ExecuteWithDelayCreate()
     {
         human = Instantiate(humansArray[Random.Range(0, 2)], pointsArray[0].position, Quaternion.identity) as GameObject;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         StartCoroutine(MoveHumanToPoint());
     }
 	private IEnumerator ExecuteWithDelayDelete()
