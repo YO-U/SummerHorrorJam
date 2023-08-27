@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class GateOpening : MonoBehaviour
@@ -26,14 +27,14 @@ public class GateOpening : MonoBehaviour
 
     private void ButtonInteract()
     {
-        if (Input.GetKeyDown(buttonInteract) && !isGateOpened && cameraMove.down)
+        if (Input.GetKeyDown(buttonInteract) && !isGateOpened && cameraMove.down && humanWalk.hCreatedCh)
         {
             isGateOpened = true;
             button.transform.DOLocalMoveZ(0f, 0.5f);
             Gate.transform.DOLocalMoveZ(-3.5F, 5F);
             StartCoroutine(DelayGate());
             humanWalk.leavingSequence = true;
-            humanWalk.HumanNahuiPoshel();
+            StartCoroutine(humanWalk.HumanNahuiPoshel());
 		}
     }
 
@@ -41,7 +42,7 @@ public class GateOpening : MonoBehaviour
     {
 		yield return new WaitForSeconds(0.5f);
 		button.transform.DOLocalMoveZ(0.00043f, 1f);
-		yield return new WaitForSeconds(15);
+		yield return new WaitForSeconds(20);
 		Gate.transform.DOLocalMoveZ(-2.3276f, 5f);
         yield return new WaitForSeconds(7);
 		isGateOpened = false;

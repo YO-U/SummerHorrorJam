@@ -111,11 +111,6 @@ public class CameraMove : MonoBehaviour
 		currentState = currentStateHolder;
 	}
 
-	public IEnumerator ExecuteWithDelay()
-	{
-		yield return new WaitForSeconds(4);
-	}
-
 	//private IEnumerator RotateCamera(Vector3 rotation)
 	//{
 	//	isRotating = true;

@@ -30,7 +30,7 @@ public class Phone : MonoBehaviour
 
     private void Update()
     {
-        if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.Space))
+        if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(FadeInOutText());
         }
@@ -52,7 +52,7 @@ public class Phone : MonoBehaviour
             }
             
             // Выбор текущей кнопки
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (currentButtonIndex == 0)
                 {
@@ -63,7 +63,7 @@ public class Phone : MonoBehaviour
                     btnsEmp.SetActive(false);
                 }
             } 
-            if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.Space))
+            if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
             {
                 btnsEmp.SetActive(true);
             }

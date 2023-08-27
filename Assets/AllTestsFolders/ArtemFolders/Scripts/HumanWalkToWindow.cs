@@ -14,6 +14,7 @@ public class HumanWalkToWindow : MonoBehaviour
     private bool humanChecker = true;
     public GameObject human;
     [SerializeField] private int currentPointIndex = 0;
+    [SerializeField] private MovingCar movingCar;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
 
@@ -30,20 +31,23 @@ public class HumanWalkToWindow : MonoBehaviour
             {
                 StartCoroutine(ExecuteWithDelayCreate());
                 humanChecker = false;
+                leavingSequence = true;
             }
         }
     }
 
-    public void HumanNahuiPoshel()
+    public IEnumerator HumanNahuiPoshel()
     {
-        StartCoroutine(cameraMove.ExecuteWithDelay());
-        cameraMove.CameraDirectionChange(new Vector3(0, 180, 0), 0.05f, 0.5f, "mid");
+		yield return new WaitForSeconds(1);
+		cameraMove.CameraDirectionChange(new Vector3(0, 180, 0), 0.05f, 0.5f, "mid");
         cameraMove.currentState = "mid";
         cameraMove.mid = true;
         cameraMove.left = false;
         cameraMove.right = false;
         cameraMove.down = false;
 		StartCoroutine(ExecuteWithDelayDelete());
+		yield return new WaitForSeconds(10);
+		movingCar.readyToDepart = true;
     }
 
     private IEnumerator MoveHumanToPoint()
@@ -65,7 +69,7 @@ public class HumanWalkToWindow : MonoBehaviour
     {
 		hCreatedCh = false;
 
-		for (int i = currentPointIndex-1; i != 0; i--)
+		for (int i = currentPointIndex-1; i != -1; i--)
 		{
 			while (Vector3.Distance(human.transform.position, pointsArray[i].position) > 0.01f)
 			{
@@ -74,11 +78,13 @@ public class HumanWalkToWindow : MonoBehaviour
 			}
 			currentPointIndex = i - 1; // Переходим к следующей точке
 		}
+        currentPointIndex= 0;
 	}
 
     private IEnumerator ExecuteWithDelayCreate()
     {
-        human = Instantiate(humansArray[Random.Range(0, 2)], pointsArray[0].position, Quaternion.identity) as GameObject;
+		yield return new WaitForSeconds(2);
+		human = Instantiate(humansArray[Random.Range(0, 2)], pointsArray[0].position, Quaternion.identity) as GameObject;
         yield return new WaitForSeconds(2);
         StartCoroutine(MoveHumanToPoint());
     }
@@ -86,7 +92,7 @@ public class HumanWalkToWindow : MonoBehaviour
 	{
 		yield return new WaitForSeconds(5);
 		StartCoroutine(MoveHumanToCar());
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(2);
         Destroy(human);
         humanChecker = true;
 	}
