@@ -104,14 +104,12 @@ public class CameraMove : MonoBehaviour
 		}
 	}
 
-	private void CameraDirectionChange(Vector3 vector3, float volume, float speed, string currentStateHolder)
+	public void CameraDirectionChange(Vector3 vector3, float volume, float speed, string currentStateHolder)
 	{
 		cameraPos.DORotate(vector3, 1f, default);
 		DOTweenModuleAudio.DOFade(tvAudioSource, volume, speed);
 		currentState = currentStateHolder;
 	}
-
-
 
 	//private IEnumerator RotateCamera(Vector3 rotation)
 	//{

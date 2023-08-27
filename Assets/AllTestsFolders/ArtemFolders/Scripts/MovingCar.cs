@@ -14,26 +14,72 @@ public class MovingCar : MonoBehaviour
     private bool _cheker = true;
     public GameObject[] array = new GameObject[1];
     public GameObject gm;
+    public bool readyToDepart = false;
+    public bool isNextCarReady = true;
+    private bool isBoostReady = true;
+    [SerializeField] private HumanWalkToWindow humanWalk;
+    [SerializeField] private float currentDestination;
+    [SerializeField] private float moveChange;
 
     private void Start()
     {
-        gm = Instantiate(array[Random.Range(0,5)],new Vector3(_startPoint.position.x,_startPoint.position.y,_startPoint.position.z) ,Quaternion.identity) as GameObject;
-        gm.transform.Rotate(0, -90, 0);
     }
 
     private void Update()
     {
-        if (_cheker)
-        {
-            if (gm.transform.position != _endPoint.position)
-            {
-                gm.transform.DOLocalMoveX(2.2f, 5f);
-                //gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
-            }
-            else
-            {
-                _cheker = false;
-            }
-        }
+        SpawnCar();
+
+        MoveCar();
+
+        StartCoroutine(MoveCarIntoCamp());
+
+        //if (_cheker)
+        //{
+        //    if (gm.transform.position != _endPoint.position)
+        //    {
+        //        gm.transform.DOLocalMoveX(2.2f, 4f);
+        //        //gm.transform.position = Vector3.MoveTowards(gm.transform.position, _endPoint.position, _carSpeed);
+        //    }
+        //    else
+        //    {
+        //        _cheker = false;
+        //    }
+        //}
     }
+
+    private void MoveCar()
+    {
+        if (isBoostReady)
+        {
+			currentDestination -= moveChange;
+			gm.transform.DOLocalMoveX(currentDestination, 4f);
+            isBoostReady= false;
+		}
+	}
+
+    private void SpawnCar()
+    {
+        if (isNextCarReady)
+		{
+			gm = Instantiate(array[Random.Range(0, 5)], new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
+			gm.transform.Rotate(0, -90, 0);
+            humanWalk.leavingSequence = false;
+            isNextCarReady = false;
+		}
+	}
+
+	private IEnumerator MoveCarIntoCamp()
+	{
+		if (readyToDepart)
+		{
+			currentDestination -= moveChange*3;
+			gm.transform.DOLocalMoveX(currentDestination, 12f);
+            readyToDepart = false;
+			yield return new WaitForSeconds(20);
+            Destroy(gm);
+            currentDestination = 4.4f;
+            isNextCarReady = true;
+            isBoostReady = true;
+		}
+	}
 }
