@@ -22,7 +22,7 @@ public class HumanWalkToWindow : MonoBehaviour
 
     private void Update()
     {
-        if (car.gm.transform.position == car._endPoint.position)
+        if (car.gm.transform.position == new Vector3(2.200006f,0.004999995f,-0.943f))
         {
             if (humanChecker)
             {
@@ -49,9 +49,9 @@ public class HumanWalkToWindow : MonoBehaviour
     } 
     private IEnumerator ExecuteWithDelay()
     {
-        yield return new WaitForSeconds(5);
+        
         human = Instantiate(humansArray[Random.Range(0, 2)], pointsArray[0].position, Quaternion.identity) as GameObject;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         StartCoroutine(MoveHumanToPoint());
     }
 }
