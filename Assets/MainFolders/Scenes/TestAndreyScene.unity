@@ -20522,7 +20522,7 @@ MonoBehaviour:
   leavingSequence: 0
   beenRejected: 0
   human: {fileID: 0}
-  carSoundOpen: {fileID: 0}
+  carSoundOpen: {fileID: 709772480}
   currentPointIndex: 0
   movingCar: {fileID: 1156071074}
   humanSpeed: 1
