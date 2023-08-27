@@ -13,7 +13,7 @@ public class MovingCar : MonoBehaviour
     public float _carSpeed = 0.1f;
     private bool _cheker = true;
     public GameObject[] array = new GameObject[1];
-    private GameObject gm;
+    public GameObject gm;
 
     private void Start()
     {

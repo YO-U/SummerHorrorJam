@@ -13,7 +13,9 @@ public class Phone : MonoBehaviour
     public TextMeshProUGUI textToFade;
     public GameObject btnsEmp;
     public Button button1;
+    public TextMeshProUGUI txtBtn1;
     public Button button2;
+    public TextMeshProUGUI txtBtn2;
     public KeyCode switchKey = KeyCode.W;
     public KeyCode selectKey = KeyCode.Space;
     private int currentButtonIndex = 0;
@@ -37,15 +39,20 @@ public class Phone : MonoBehaviour
             {
                 currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
 
-                // Включаем/выключаем Image в зависимости от текущего индекса
-               // button1.image.gameObject.SetActive(currentButtonIndex == 0);
-                button1.GetComponent<Image>().GameObject().SetActive(currentButtonIndex == 0);
-                button2.GetComponent<Image>().GameObject().SetActive(currentButtonIndex == 1);
-               // button2.image.gameObject.SetActive(currentButtonIndex == 1);
+                if (currentButtonIndex == 1)
+                {
+                    txtBtn1.text = "   >Cancel";
+                    txtBtn2.text = "Quest";
+                }
+                else
+                {
+                    txtBtn1.text = "Cancel";
+                    txtBtn2.text = "   >Quest";
+                }
             }
             
             // Выбор текущей кнопки
-            if (Input.GetKeyDown(selectKey))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (currentButtonIndex == 0)
                 {
@@ -54,13 +61,16 @@ public class Phone : MonoBehaviour
                 else if (currentButtonIndex == 1)
                 {
                     btnsEmp.SetActive(false);
-                    
                 }
             } 
-            if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.Space) && chekerCanvas ==false)
+            if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.Space))
             {
                 btnsEmp.SetActive(true);
-                chekerCanvas = true;
+            }
+
+            if (cm.right == false)
+            {
+                btnsEmp.SetActive(false);
             }
     }
     private IEnumerator FadeInOutText()
