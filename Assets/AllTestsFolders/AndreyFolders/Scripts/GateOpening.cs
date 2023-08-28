@@ -8,7 +8,8 @@ public class GateOpening : MonoBehaviour
 {
     private bool isGateOpened;
     [SerializeField] private HumanWalkToWindow humanWalk;
-    [SerializeField] private CameraMove cameraMove;
+	[SerializeField] private AudioSource gateSound;
+	[SerializeField] private CameraMove cameraMove;
     [SerializeField] private KeyCode buttonInteract;
     [SerializeField] private GameObject Gate;
     [SerializeField] private GameObject button;
@@ -42,9 +43,11 @@ public class GateOpening : MonoBehaviour
     {
 		yield return new WaitForSeconds(0.5f);
 		button.transform.DOLocalMoveZ(0.00043f, 1f);
+        gateSound.Play();
 		yield return new WaitForSeconds(20);
 		Gate.transform.DOLocalMoveZ(-2.3276f, 5f);
-        yield return new WaitForSeconds(7);
+		gateSound.Play();
+		yield return new WaitForSeconds(7);
 		isGateOpened = false;
 	}
 }

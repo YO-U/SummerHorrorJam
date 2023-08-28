@@ -19,6 +19,7 @@ public class OpenCloseObject : MonoBehaviour
 	[SerializeField] private bool windowReady;
 	[SerializeField] private AudioSource windowCreack;
 	[SerializeField] private Light tvLight;
+	[SerializeField] private AudioSource tvSoundStatic;
 	[SerializeField] private GameObject objectPlaceHolder;
 	[SerializeField] private string[] pageContents = new string[8] 
 	{"Your job is to oversee the gate", "The button is used to open it", "Don't let any weirdos inside", "You can watch TV on the left", 
@@ -149,7 +150,7 @@ public class OpenCloseObject : MonoBehaviour
 		textTemp.text = pageContents[currentPage];
 	}
 
-	//Отвечает за все взаимодействия с предметами.
+	//Отвечает за все взаимодействия с предметами (Кроме телефона).
 
 	private void GetAndActivateCurrentInteractable()
     {
@@ -202,6 +203,7 @@ public class OpenCloseObject : MonoBehaviour
 					tvLight.enabled = true;
 					tvScreen.GetComponent<Renderer>().material = activated;
 					tvAvtivated = true;
+					tvSoundStatic.Play();
                 }
                 else
                 {
@@ -209,6 +211,7 @@ public class OpenCloseObject : MonoBehaviour
 					tvLight.enabled = false;
 					tvScreen.GetComponent<Renderer>().material = deactivated;
 					tvAvtivated = false;
+					tvSoundStatic.Stop();
 				}
 				break;
 

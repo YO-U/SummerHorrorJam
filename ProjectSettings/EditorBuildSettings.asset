@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/AllTestsFolders/Scenes/Menu.unity
     guid: 24b9a01e764f4db459b16adcbce34618
   - enabled: 1
-    path: Assets/AllTestsFolders/Scenes/TestArtemScene.unity
-    guid: 8b33e18b49609b543aece605d03a43f6
+    path: Assets/MainFolders/Scenes/TestAndreyScene.unity
+    guid: b4697445dbda36943a22433aaf7ae688
   m_configObjects: {}
