@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrayShuffle : MonoBehaviour
+public static class ArrayShuffle
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public static void Shuffle<T>(this System.Random rng, T[] array)
+	{
+		int n = array.Length;
+		while (n > 1)
+		{
+			int k = rng.Next(n--);
+			T temp = array[n];
+			array[n] = array[k];
+			array[k] = temp;
+		}
+	}
 }

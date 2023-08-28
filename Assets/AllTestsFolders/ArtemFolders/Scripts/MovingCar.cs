@@ -64,7 +64,7 @@ public class MovingCar : MonoBehaviour
 
     private void SpawnCar()
     {
-        if (isNextCarReady)
+        if (isNextCarReady && humanWalk.currentHuman != 8)
 		{
 			gm = Instantiate(array[Random.Range(0, 9)], new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
 			gm.transform.Rotate(0, -90, 0);

@@ -15,18 +15,22 @@ public class HumanWalkToWindow : MonoBehaviour
     private bool humanChecker = true;
     public bool beenRejected;
     public GameObject human;
+	private System.Random rng;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
     [SerializeField] private MovingCar movingCar;
+    public int currentHuman=0;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
 
     private void Start()
     {
+		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
+		rng.Shuffle(humansArray);
     }
     
     private void Update()
@@ -103,14 +107,14 @@ public class HumanWalkToWindow : MonoBehaviour
     private IEnumerator ExecuteWithDelayCreate()
     {
 		yield return new WaitForSeconds(2);
-        carSoundOpen.Play();
-		human = Instantiate(humansArray[Random.Range(0, 8)], pointsArray[0].position, Quaternion.identity) as GameObject;
-        humanAnimator = human.GetComponent<Animator>();
-        yield return new WaitForSeconds(2);
+		carSoundOpen.Play();
+		human = Instantiate(humansArray[currentHuman], pointsArray[0].position, Quaternion.identity) as GameObject;
+		currentHuman++;
+		humanAnimator = human.GetComponent<Animator>();
+		yield return new WaitForSeconds(2);
 		human.GetComponent<AudioSource>().Play();
-        humanAnimator.SetBool("IsWalking", true);
+		humanAnimator.SetBool("IsWalking", true);
 		StartCoroutine(MoveHumanToPoint());
-
 	}
 	private IEnumerator ExecuteWithDelayDelete()
 	{
