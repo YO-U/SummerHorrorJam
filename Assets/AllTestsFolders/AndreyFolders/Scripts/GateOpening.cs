@@ -44,7 +44,7 @@ public class GateOpening : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		button.transform.DOLocalMoveZ(0.00043f, 1f);
         gateSound.Play();
-		yield return new WaitForSeconds(20);
+		yield return new WaitForSeconds(25);
 		Gate.transform.DOLocalMoveZ(-2.3276f, 5f);
 		gateSound.Play();
 		yield return new WaitForSeconds(7);
