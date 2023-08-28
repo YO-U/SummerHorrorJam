@@ -57,7 +57,7 @@ public class HumanWalkToWindow : MonoBehaviour
         cameraMove.right = false;
         cameraMove.down = false;
 		StartCoroutine(ExecuteWithDelayDelete());
-		yield return new WaitForSeconds(12);
+		yield return new WaitForSeconds(15);
 		movingCar.readyToDepart = true;
     }
 
@@ -114,11 +114,11 @@ public class HumanWalkToWindow : MonoBehaviour
 	}
 	private IEnumerator ExecuteWithDelayDelete()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
 		human.GetComponent<AudioSource>().Play();
 		humanAnimator.SetBool("IsWalking", true);
 		StartCoroutine(MoveHumanToCar());
-		yield return new WaitForSeconds(4);
+		yield return new WaitForSeconds(7);
         Destroy(human);
         carSoundClose.Play();
         humanChecker = true;
