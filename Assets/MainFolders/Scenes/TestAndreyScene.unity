@@ -20669,6 +20669,7 @@ MonoBehaviour:
   currentPointIndex: 0
   humanAnimator: {fileID: 0}
   movingCar: {fileID: 1156071074}
+  currentHuman: 0
   humanSpeed: 0.5
   hCreatedCh: 0
 --- !u!114 &1156071078
@@ -33225,6 +33226,8 @@ GameObject:
   - component: {fileID: 1957362842}
   - component: {fileID: 1957362841}
   - component: {fileID: 1957362840}
+  - component: {fileID: 1957362843}
+  - component: {fileID: 1957362844}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -33361,7 +33364,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1957362839}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -33406,6 +33409,37 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1957362843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957362836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c6bfda817a46eb9d976719fd25909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on: 1
+  amount: 0.003
+  speed: 3
+  material: {fileID: 2100000, guid: 668e4ca5bbe07424e90bffec7dd41598, type: 2}
+--- !u!114 &1957362844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957362836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24866fd877eed4481a2d4cfd73bb2242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on: 1
+  strength: 0.75
+  material: {fileID: 2100000, guid: dabac87302b71472d89c8543b765eba8, type: 2}
 --- !u!1 &1958980804
 GameObject:
   m_ObjectHideFlags: 0
