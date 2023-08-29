@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_07 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2bebb6afb9c7cb340b661d3b59d15d67, type: 3}
+      propertyPath: m_TagString
+      value: womanblueshirt
+      objectReference: {fileID: 0}
     - target: {fileID: 4915485504873810722, guid: 2bebb6afb9c7cb340b661d3b59d15d67, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_09 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c2fe01c8a7cf0d40b218f791f61e5ec, type: 3}
+      propertyPath: m_TagString
+      value: grandpa
+      objectReference: {fileID: 0}
     - target: {fileID: 5811659916142499774, guid: 5c2fe01c8a7cf0d40b218f791f61e5ec, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

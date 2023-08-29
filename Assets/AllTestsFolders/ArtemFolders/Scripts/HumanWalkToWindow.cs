@@ -28,6 +28,7 @@ public class HumanWalkToWindow : MonoBehaviour
 	public bool wasPoliceCalledEarly = false;
 	public int humansSincePoliceCall = 0;
 	public bool wasImposterEncountered = false;
+	public string impostorTag;
 	[SerializeField] private OpenCloseObject openCloseObject;
 	[SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
@@ -41,10 +42,11 @@ public class HumanWalkToWindow : MonoBehaviour
 
     private void Start()
     {
+		impostorTag = humansArray[imposter].gameObject.tag;
 		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(3, 7);
+		imposter = Random.Range(2, 6);
     }
     
     private void Update()
@@ -86,8 +88,16 @@ public class HumanWalkToWindow : MonoBehaviour
 			cameraMove.right = false;
 			cameraMove.down = false;
 			yield return new WaitForSeconds(1);
-			openCloseObject.GetAndActivateCurrentInteractable();
-			yield return new WaitForSeconds(6);
+			if (!openCloseObject.tvAvtivated) openCloseObject.GetAndActivateCurrentInteractable();
+			yield return new WaitForSeconds(1);
+			openCloseObject.videoPlayer.Pause();
+			openCloseObject.currentChannel = 1;
+			openCloseObject.CurrentChannelCheck();
+			openCloseObject.videoPlayer.Play();
+			yield return new WaitForSeconds(4);
+			openCloseObject.videoPlayer.Pause();
+			yield return new WaitForSeconds(9);
+			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
 		}
 		yield return new WaitForSeconds(14);

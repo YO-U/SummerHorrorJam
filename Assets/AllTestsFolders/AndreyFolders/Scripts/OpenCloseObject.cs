@@ -13,7 +13,7 @@ public class OpenCloseObject : MonoBehaviour
 	public bool bookOpened = false;
     public bool tvAvtivated = false;
 
-    private int currentChannel = 1;
+    public int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;
 	public bool inputEvailable;
@@ -26,7 +26,7 @@ public class OpenCloseObject : MonoBehaviour
 	{"Your job is to oversee the gate", "The button is used to open it", "Don't let any weirdos inside", "You can watch TV on the left", 
 		"There is a phone on the right", "You can use it to call the police", "Window is openable, open it to talk", "If it is closed, no one can hear you"};
 	[SerializeField] private GameObject tvScreen;
-	[SerializeField] private VideoPlayer videoPlayer;
+	public VideoPlayer videoPlayer;
     [SerializeField] private VideoClip news;
 	[SerializeField] private VideoClip sports;
 	[SerializeField] private VideoClip music;
@@ -75,7 +75,7 @@ public class OpenCloseObject : MonoBehaviour
 
 	//ћен€ет текущий видос в зависимости от переменной.
 
-	private void CurrentChannelCheck()
+	public void CurrentChannelCheck()
 	{
 		switch (currentChannel)
 		{
@@ -203,11 +203,12 @@ public class OpenCloseObject : MonoBehaviour
 				currentInteractible = GameObject.Find("TVScreen");
                 if (!tvAvtivated)
                 {
+
 					videoPlayer.Play();
 					CurrentChannelCheck();
 					tvLight.enabled = true;
-					tvScreen.GetComponent<Renderer>().material = activated;
 					tvAvtivated = true;
+					tvScreen.GetComponent<Renderer>().material = activated;
 					tvSoundStatic.Play();
                 }
                 else
