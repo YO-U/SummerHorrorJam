@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Phone : MonoBehaviour
 {
     private CameraMove cm;
+    [SerializeField] private EndingController endingController;
     private HumanWalkToWindow humans;
     public TextMeshProUGUI textToFade;
     public GameObject btnsEmp;
@@ -34,7 +35,6 @@ public class Phone : MonoBehaviour
         {
             StartCoroutine(FadeInOutText());
         }
-        
             if (Input.GetKeyDown(switchKey))
             {
                 currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
@@ -54,14 +54,28 @@ public class Phone : MonoBehaviour
             // Выбор текущей кнопки
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (currentButtonIndex == 0)
+            if (currentButtonIndex == 0 && humans.wasImposterEncountered)
+            {
+                if (humans.humansSinceTheImposter < 1)
                 {
-                    
+                    humans.wasPoliceCalledInTime = true;
+                    endingController.endingNumber = 0;
                 }
-                else if (currentButtonIndex == 1)
+                else
                 {
-                    btnsEmp.SetActive(false);
+                    humans.wasPoliceCalled = true;
+                    endingController.endingNumber = 1;
                 }
+            }
+            else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
+            {
+                humans.wasPoliceCalledEarly = true;
+				endingController.endingNumber = 2;
+			}
+            else if (currentButtonIndex == 1)
+            {
+                btnsEmp.SetActive(false);
+            }
             } 
             if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
             {
