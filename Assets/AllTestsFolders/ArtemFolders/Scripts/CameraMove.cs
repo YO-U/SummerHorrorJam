@@ -9,6 +9,7 @@ public class CameraMove : MonoBehaviour
 	public string currentState;
 	public GameObject camera;
 	public DOTween dOTween;
+	[SerializeField] private OpenCloseObject openCloseObject; 
 	[SerializeField] private AudioSource tvAudioSource;
 	[SerializeField] private Transform cameraPos;
 
@@ -20,11 +21,15 @@ public class CameraMove : MonoBehaviour
 
 	private void Update()
 	{
-		InputCheck();
+		if (openCloseObject.inputEvailable)
+		{
+			InputCheck();
+		}
 	}
 
 	private void InputCheck()
 	{
+
 		switch (currentState)
 		{
 			case "down":

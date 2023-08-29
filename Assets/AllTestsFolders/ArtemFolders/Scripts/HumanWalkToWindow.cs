@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
 
@@ -27,13 +28,14 @@ public class HumanWalkToWindow : MonoBehaviour
 	public bool wasPoliceCalledEarly = false;
 	public int humansSincePoliceCall = 0;
 	public bool wasImposterEncountered = false;
-    [SerializeField] private Transform cameraPosition;
+	[SerializeField] private OpenCloseObject openCloseObject;
+	[SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
     [SerializeField] private MovingCar movingCar;
-    public int currentHuman=-1;
+    public int currentHuman = -1;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
 
@@ -42,7 +44,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(3, 9);
+		imposter = Random.Range(3, 7);
     }
     
     private void Update()
@@ -73,7 +75,22 @@ public class HumanWalkToWindow : MonoBehaviour
         cameraMove.right = false;
         cameraMove.down = false;
 		StartCoroutine(ExecuteWithDelayDelete());
-		yield return new WaitForSeconds(15);
+		if (currentHuman == 1)
+		{
+			openCloseObject.inputEvailable = false;
+			yield return new WaitForSeconds(3);
+			cameraMove.CameraDirectionChange(new Vector3(15, 110, 0), 0.2f, 0.5f, "left");
+			cameraMove.currentState = "left";
+			cameraMove.mid = false;
+			cameraMove.left = true;
+			cameraMove.right = false;
+			cameraMove.down = false;
+			yield return new WaitForSeconds(1);
+			openCloseObject.GetAndActivateCurrentInteractable();
+			yield return new WaitForSeconds(6);
+			openCloseObject.inputEvailable = true;
+		}
+		yield return new WaitForSeconds(14);
 		movingCar.readyToDepart = true;
     }
 

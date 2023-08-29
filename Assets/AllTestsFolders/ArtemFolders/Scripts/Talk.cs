@@ -1268,7 +1268,7 @@ public class Talk : MonoBehaviour
         }
         else
         {
-            if (_phone)
+            if (_phone.call)
             {
                 Array.Resize(ref possibleQuestNew, 5); 
                 switcher = true;
