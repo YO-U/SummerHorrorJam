@@ -21,13 +21,19 @@ public class HumanWalkToWindow : MonoBehaviour
 	public bool didImposterGotIn = false;
 	public bool didImposterNahuiPoshel = false;
 	public int amountOfHappyHumans = 0;
+	public int humansSinceTheImposter = 0;
+	public bool wasPoliceCalledInTime = false;
+	public bool wasPoliceCalled = false;
+	public bool wasPoliceCalledEarly = false;
+	public int humansSincePoliceCall = 0;
+	public bool wasImposterEncountered = false;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
     [SerializeField] private MovingCar movingCar;
-    public int currentHuman=0;
+    public int currentHuman=-1;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
 
@@ -36,7 +42,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(1, 2);
+		imposter = Random.Range(3, 9);
     }
     
     private void Update()
@@ -114,12 +120,21 @@ public class HumanWalkToWindow : MonoBehaviour
     {
 		yield return new WaitForSeconds(2);
 		carSoundOpen.Play();
+		currentHuman++;
 		human = Instantiate(humansArray[currentHuman], pointsArray[0].position, Quaternion.identity) as GameObject;
 		if (currentHuman == imposter)
 		{
 			human.transform.DOScale(new Vector3(0.3f,0.3f,0.3f), 1);
+			wasImposterEncountered = true;
 		}
-		currentHuman++;
+		else if (wasImposterEncountered)
+		{
+			humansSinceTheImposter++;
+		}
+		if (wasPoliceCalled || wasPoliceCalledEarly || wasPoliceCalledInTime)
+		{
+			humansSincePoliceCall++;
+		}
 		humanAnimator = human.GetComponent<Animator>();
 		yield return new WaitForSeconds(2);
 		human.GetComponent<AudioSource>().Play();

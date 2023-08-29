@@ -25,7 +25,7 @@ public class Talk : MonoBehaviour
     private int numberQuest;
     private bool selectQuest=false;
     private bool impost = false;
-    private int normalAnswer,srangeAnswer=0;
+    [SerializeField] private int normalAnswer,srangeAnswer=0;
     private int BadRandom1;
     private int BadRandom2;
 
@@ -68,7 +68,7 @@ public class Talk : MonoBehaviour
             BadRandom1 = Random.Range(1, 5);
         } while (BadRandom1 == BadRandom2);
         
-        if (human.imposter != human.currentHuman)
+        if (human.imposter == human.currentHuman)
         {
             impost = true;
         }

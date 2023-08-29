@@ -18,6 +18,9 @@ public class MovingCar : MonoBehaviour
     public bool readyToDepart = false;
     public bool isNextCarReady = true;
     private bool isBoostReady = true;
+    private bool spawnSiren = true;
+    [SerializeField] private EndingController endingController;
+    [SerializeField] private GameObject policeLights;
     [SerializeField] private HumanWalkToWindow humanWalk;
     [SerializeField] private Vector3[] carDepartPath = new Vector3[4];
     [SerializeField] private float currentDestination;
@@ -64,12 +67,32 @@ public class MovingCar : MonoBehaviour
 
     private void SpawnCar()
     {
-        if (isNextCarReady && humanWalk.currentHuman != 8)
+        if (isNextCarReady && humanWalk.currentHuman != 8 && humanWalk.humansSincePoliceCall <= 2)
 		{
 			gm = Instantiate(array[Random.Range(0, 9)], new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
 			gm.transform.Rotate(0, -90, 0);
             humanWalk.leavingSequence = false;
             isNextCarReady = false;
+		}
+        else if ((humanWalk.humansSincePoliceCall > 2 && spawnSiren && isNextCarReady) || ((humanWalk.wasPoliceCalled || humanWalk.wasPoliceCalledEarly) || humanWalk.wasPoliceCalledInTime) && humanWalk.currentHuman == 8)
+        {
+            spawnSiren = false;
+			gm = Instantiate(policeLights, new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
+			gm.transform.Rotate(0, -90, 0);
+            endingController.IsEndingStarting = true;
+		}
+        else if (humanWalk.currentHuman == 8)
+        {
+            if (humanWalk.didImposterNahuiPoshel)
+            {
+				endingController.IsEndingStarting = true;
+				endingController.endingNumber = 3;
+			}
+			else if (humanWalk.didImposterGotIn)
+			{
+				endingController.IsEndingStarting = true;
+				endingController.endingNumber = 4;
+			}
 		}
 	}
 
