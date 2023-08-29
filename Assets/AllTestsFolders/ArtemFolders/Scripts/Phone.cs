@@ -32,63 +32,64 @@ public class Phone : MonoBehaviour
 
     private void Update()
     {
-        if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
-        {
-            StartCoroutine(FadeInOutText());
-        }
-            if (Input.GetKeyDown(switchKey))
-            {
-                currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
+		if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
+		{
+			StartCoroutine(FadeInOutText());
+		}
+		if (Input.GetKeyDown(switchKey))
+		{
+			currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
 
-                if (currentButtonIndex == 1)
-                {
-                    txtBtn1.text = "   >Cancel";
-                    txtBtn2.text = "Quest";
-                }
-                else
-                {
-                    txtBtn1.text = "Cancel";
-                    txtBtn2.text = "   >Quest";
-                }
-            }
-            
-            // Выбор текущей кнопки
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-            if (currentButtonIndex == 0 && humans.wasImposterEncountered)
-            {
-                if (humans.humansSinceTheImposter < 1)
-                {
-                    humans.wasPoliceCalledInTime = true;
-                    endingController.endingNumber = 0;
-                    call = true;
-                }
-                else
-                {
-                    humans.wasPoliceCalled = true;
-                    endingController.endingNumber = 1;
-                }
-            }
-            else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
-            {
-                humans.wasPoliceCalledEarly = true;
+			if (currentButtonIndex == 1)
+			{
+				txtBtn1.text = "   >Cancel";
+				txtBtn2.text = "Quest";
+			}
+			else
+			{
+				txtBtn1.text = "Cancel";
+				txtBtn2.text = "   >Quest";
+			}
+		}
+
+		// Выбор текущей кнопки
+		if (Input.GetKeyDown(KeyCode.Space) && cm.right)
+		{
+			if (currentButtonIndex == 0 && humans.wasImposterEncountered)
+			{
+				if (humans.humansSinceTheImposter < 1)
+				{
+					humans.wasPoliceCalledInTime = true;
+					endingController.endingNumber = 0;
+					call = true;
+				}
+				else
+				{
+					humans.wasPoliceCalled = true;
+					endingController.endingNumber = 1;
+				}
+			}
+			else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
+			{
+				humans.wasPoliceCalledEarly = true;
 				endingController.endingNumber = 2;
 			}
-            else if (currentButtonIndex == 1)
-            {
-                btnsEmp.SetActive(false);
-            }
-            } 
-            if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
-            {
-                btnsEmp.SetActive(true);
-            }
+			else if (currentButtonIndex == 1)
+			{
+				btnsEmp.SetActive(false);
+			}
+		}
+		if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
+		{
+			btnsEmp.SetActive(true);
+		}
 
-            if (cm.right == false)
-            {
-                btnsEmp.SetActive(false);
-            }
-    }
+		if (cm.right == false)
+		{
+			btnsEmp.SetActive(false);
+		}
+
+	}
     private IEnumerator FadeInOutText()
     {
         Color initialColor = textToFade.color;

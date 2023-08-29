@@ -16,6 +16,7 @@ public class OpenCloseObject : MonoBehaviour
     private int currentChannel = 1;
 	private int currentPage = 1;
 	private TMP_Text textTemp;
+	public bool inputEvailable;
 	[SerializeField] private bool windowReady;
 	[SerializeField] private AudioSource windowCreack;
 	[SerializeField] private Light tvLight;
@@ -41,15 +42,19 @@ public class OpenCloseObject : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		inputEvailable = true;
 		tvLight.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        InteractibleActivete();
-		TvChannelSwitch();
-		BookPageChange();
+		if (inputEvailable)
+		{
+			InteractibleActivete();
+			TvChannelSwitch();
+			BookPageChange();
+		}
     }
 
 	//Меняет видос.
@@ -152,7 +157,7 @@ public class OpenCloseObject : MonoBehaviour
 
 	//Отвечает за все взаимодействия с предметами (Кроме телефона).
 
-	private void GetAndActivateCurrentInteractable()
+	public void GetAndActivateCurrentInteractable()
     {
         switch (cameraMove.currentState)
         {
