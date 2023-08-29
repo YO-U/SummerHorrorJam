@@ -67,12 +67,14 @@ public class Phone : MonoBehaviour
 				{
 					humans.wasPoliceCalled = true;
 					endingController.endingNumber = 1;
+					call = true;
 				}
 			}
 			else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
 			{
 				humans.wasPoliceCalledEarly = true;
 				endingController.endingNumber = 2;
+				call = true;
 			}
 			else if (currentButtonIndex == 1)
 			{
