@@ -36,6 +36,14 @@ public class GateOpening : MonoBehaviour
             StartCoroutine(DelayGate());
             humanWalk.leavingSequence = true;
             StartCoroutine(humanWalk.HumanNahuiPoshel());
+            if (humanWalk.currentHuman == humanWalk.imposter)
+            {
+                humanWalk.didImposterGotIn = true;
+            }
+            else
+            {
+                humanWalk.amountOfHappyHumans ++;
+            }
 		}
     }
 

@@ -70,7 +70,6 @@ public class Talk : MonoBehaviour
                         
                         switcher = false;
                     }
-                    
                 }
                 else
                 {
@@ -147,6 +146,7 @@ public class Talk : MonoBehaviour
                                 break;
                         }
 						StartCoroutine(human.HumanNahuiPoshel());
+                        human.didImposterNahuiPoshel = true;
 					}
                 }
                 else 
