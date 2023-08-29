@@ -19,6 +19,7 @@ public class Phone : MonoBehaviour
     public TextMeshProUGUI txtBtn2;
     public KeyCode switchKey = KeyCode.W;
     public KeyCode selectKey = KeyCode.Space;
+    public bool call = false;
     private int currentButtonIndex = 0;
     private bool chekerCanvas = false;
 
@@ -60,6 +61,7 @@ public class Phone : MonoBehaviour
                 {
                     humans.wasPoliceCalledInTime = true;
                     endingController.endingNumber = 0;
+                    call = true;
                 }
                 else
                 {

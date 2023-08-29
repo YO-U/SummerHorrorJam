@@ -28,6 +28,7 @@ public class Talk : MonoBehaviour
     [SerializeField] private int normalAnswer,srangeAnswer=0;
     private int BadRandom1;
     private int BadRandom2;
+    private Phone _phone;
 
     string[] possibleAnswers = {
         "Poshol nahui",
@@ -59,6 +60,7 @@ public class Talk : MonoBehaviour
         camera = FindObjectOfType<CameraMove>();
         human = FindObjectOfType<HumanWalkToWindow>();
         window = FindObjectOfType<OpenCloseObject>();
+        _phone = FindObjectOfType<Phone>();
     }
 
     private void Update()
@@ -77,7 +79,7 @@ public class Talk : MonoBehaviour
             impost = false;
         }
         
-        if (camera.mid && human.hCreatedCh && window.windowOpened)
+        if (camera.mid && human.hCreatedCh && window.windowOpened && _phone.call == false)
         { 
             canvas.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Q) && switcher)
@@ -138,7 +140,7 @@ public class Talk : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        Array.Resize(ref possibleQuestNew, 5); ;
+                        Array.Resize(ref possibleQuestNew, 5); 
                         switcher = true;
 						human.beenRejected = true;
 						human.leavingSequence = true;
@@ -1266,7 +1268,36 @@ public class Talk : MonoBehaviour
         }
         else
         {
-           
+            if (_phone)
+            {
+                Array.Resize(ref possibleQuestNew, 5); 
+                switcher = true;
+                human.beenRejected = true;
+                human.leavingSequence = true;
+                chekerDisagree = true;
+                randomAnswer = Random.Range(0, 5);
+                switch(randomAnswer)
+                {
+                    case 1:
+                        humenSpeak.text = "Thx";
+                        break;
+                    case 2:
+                        humenSpeak.text = ":)";
+                        break;
+                    case 3:
+                        humenSpeak.text = "XD";
+                        break;
+                    case 4:
+                        humenSpeak.text = "OK";
+                        break;
+                    case 5:
+                        humenSpeak.text = "zaebok";
+                        break;
+                    default:
+                        humenSpeak.text = "uraaaa";
+                        break;
+                }
+            }
             if (human.hCreatedCh == false)
             {
                 srangeAnswer = 0;
