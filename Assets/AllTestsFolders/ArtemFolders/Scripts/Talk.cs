@@ -29,8 +29,9 @@ public class Talk : MonoBehaviour
     private int BadRandom1;
     private int BadRandom2;
     private Phone _phone;
+	private bool seeCallPolice = true;
 
-    string[] possibleAnswers = {
+	string[] possibleAnswers = {
         "Poshol nahui",
         "pidoras",
         "Gandoun",
@@ -1268,13 +1269,10 @@ public class Talk : MonoBehaviour
         }
         else
         {
-            if (_phone.call)
-            {
-                Array.Resize(ref possibleQuestNew, 5); 
-                switcher = true;
+            if (_phone.call && seeCallPolice)
+				{
                 human.beenRejected = true;
                 human.leavingSequence = true;
-                chekerDisagree = true;
                 randomAnswer = Random.Range(0, 5);
                 switch(randomAnswer)
                 {
@@ -1333,10 +1331,10 @@ public class Talk : MonoBehaviour
                         humenSpeak.text = "OK";
                         break;
                 }
-            }
-
-            chekerDisagree = false;
-            canvas.SetActive(false);
+				chekerDisagree = false;
+				canvas.SetActive(false);
+				seeCallPolice = false;
+			}
         }
     }
 }
