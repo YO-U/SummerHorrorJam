@@ -30,6 +30,8 @@ public class Talk : MonoBehaviour
     private int BadRandom2;
     private Phone _phone;
 	private bool seeCallPolice = true;
+    private bool smert = true;
+    private GateOpening eBtn;
 
 	string[] possibleAnswers = {
         "Poshol nahui",
@@ -62,6 +64,7 @@ public class Talk : MonoBehaviour
         human = FindObjectOfType<HumanWalkToWindow>();
         window = FindObjectOfType<OpenCloseObject>();
         _phone = FindObjectOfType<Phone>();
+        eBtn = FindObjectOfType<GateOpening>();
     }
 
     private void Update()
@@ -79,108 +82,174 @@ public class Talk : MonoBehaviour
         {
             impost = false;
         }
-        
-        if (camera.mid && human.hCreatedCh && window.windowOpened && _phone.call == false)
-        { 
-            canvas.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Q) && switcher)
+
+
+        if (_phone.call && window.windowOpened && camera.right)
+        {
+            humenSpeak.gameObject.SetActive(true);
+            objBtns.SetActive(false);
+            human.beenRejected = true;
+            human.leavingSequence = true;
+            smert = false;
+            randomAnswer = Random.Range(0, 5);
+            switch (randomAnswer)
             {
-                if (switcher)
-                {
-                    if (chekerDisagree == false)
-                    {
-                        randomQuest = Random.Range(0, possibleQuestNew.Length);
-                        
-                        switcher = false;
-                    }
-                }
-                else
-                {
-                    switcher = true;
-                }
+                case 1:
+                    humenSpeak.text = "Thx";
+                    break;
+                case 2:
+                    humenSpeak.text = ":)";
+                    break;
+                case 3:
+                    humenSpeak.text = "XD";
+                    break;
+                case 4:
+                    humenSpeak.text = "OK";
+                    break;
+                case 5:
+                    humenSpeak.text = "zaebok";
+                    break;
+                default:
+                    humenSpeak.text = "uraaaa";
+                    break;
             }
-            if (switcher)
+        }
+
+        if (eBtn.isGateOpened && camera.down)
             {
                 humenSpeak.gameObject.SetActive(true);
                 objBtns.SetActive(false);
-            }
-            else
-            {
-                humenSpeak.gameObject.SetActive(false);//выкл текст
-                objBtns.SetActive(true);//вкл кнопки 
-                if (Input.GetKeyDown(KeyCode.Q) && switcher == false )
+                human.beenRejected = true;
+                human.leavingSequence = true;
+                randomAnswer = Random.Range(0, 5);
+                switch(randomAnswer)
                 {
-                    if (possibleQuestNew.Length != 0)
+                    case 1:
+                        humenSpeak.text = "Thx";
+                        break;
+                    case 2:
+                        humenSpeak.text = ":)";
+                        break;
+                    case 3:
+                        humenSpeak.text = "XD";
+                        break;
+                    case 4:
+                        humenSpeak.text = "OK";
+                        break;
+                    case 5:
+                        humenSpeak.text = "zaebok";
+                        break;
+                    default:
+                        humenSpeak.text = "uraaaa";
+                        break;
+                }
+        }
+        if (camera.mid && human.hCreatedCh && window.windowOpened )
+        {
+            canvas.SetActive(true);
+            if ((smert && eBtn.isGateOpened==false)  || (smert==false && eBtn.isGateOpened))
+            {
+                if (Input.GetKeyDown(KeyCode.Q) && switcher)
+                {
+                    if (switcher)
                     {
-                        if (switcherbtns)
+                        if (chekerDisagree == false)
                         {
-                            switcherbtns = false;
+                            randomQuest = Random.Range(0, possibleQuestNew.Length);
+
+                            switcher = false;
+                        }
+                    }
+                    else
+                    {
+                        switcher = true;
+                    }
+                }
+
+                if (switcher)
+                {
+                    humenSpeak.gameObject.SetActive(true);
+                    objBtns.SetActive(false);
+                }
+                else
+                {
+                    humenSpeak.gameObject.SetActive(false); //выкл текст
+                    objBtns.SetActive(true); //вкл кнопки 
+                    if (Input.GetKeyDown(KeyCode.Q) && switcher == false)
+                    {
+                        if (possibleQuestNew.Length != 0)
+                        {
+                            if (switcherbtns)
+                            {
+                                switcherbtns = false;
+                            }
+                            else
+                            {
+                                switcherbtns = true;
+                            }
                         }
                         else
                         {
                             switcherbtns = true;
                         }
                     }
-                    else
-                    {
-                        switcherbtns = true;
-                    }
-                }
-                if (switcherbtns)
-                {
-                    textDisagree.text = "   >Disagree";
-                    if (possibleQuestNew.Length != 0)
-                    {
-                        selectedQuest = possibleQuestNew[randomQuest];
-                        textQuest.text = selectedQuest;
-                    }
-                    else
-                    {
-                        textQuest.text = "";
-                    }
 
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if (switcherbtns)
                     {
-                        Array.Resize(ref possibleQuestNew, 5); 
-                        switcher = true;
-						human.beenRejected = true;
-						human.leavingSequence = true;
-                        chekerDisagree = true;
-                        randomAnswer = Random.Range(0, 5);
-                        switch(randomAnswer)
+                        textDisagree.text = "   >Disagree";
+                        if (possibleQuestNew.Length != 0)
                         {
-                            case 1:
-                                humenSpeak.text = "Poshol nahui";
-                                break;
-                            case 2:
-                                humenSpeak.text = "pidoras";
-                                break;
-                            case 3:
-                                humenSpeak.text = "Gandoun";
-                                break;
-                            case 4:
-                                humenSpeak.text = "OK";
-                                break;
-                            case 5:
-                                humenSpeak.text = "HAHAHAHAH";
-                                break;
-                            default:
-                                humenSpeak.text = "choooooo";
-                                break;
+                            selectedQuest = possibleQuestNew[randomQuest];
+                            textQuest.text = selectedQuest;
                         }
-						StartCoroutine(human.HumanNahuiPoshel());
-                        human.didImposterNahuiPoshel = true;
-					}
-                }
-                else 
-                {
-                    textDisagree.text = "Disagree";
-                    textQuest.text = "";
-                    selectedQuest = possibleQuestNew[randomQuest];
-                        textQuest.text = "   >" + selectedQuest;
-                       
+                        else
+                        {
+                            textQuest.text = "";
+                        }
 
-                        
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            Array.Resize(ref possibleQuestNew, 5);
+                            switcher = true;
+                            human.beenRejected = true;
+                            human.leavingSequence = true;
+                            chekerDisagree = true;
+                            randomAnswer = Random.Range(0, 5);
+                            switch (randomAnswer)
+                            {
+                                case 1:
+                                    humenSpeak.text = "Poshol nahui";
+                                    break;
+                                case 2:
+                                    humenSpeak.text = "pidoras";
+                                    break;
+                                case 3:
+                                    humenSpeak.text = "Gandoun";
+                                    break;
+                                case 4:
+                                    humenSpeak.text = "OK";
+                                    break;
+                                case 5:
+                                    humenSpeak.text = "HAHAHAHAH";
+                                    break;
+                                default:
+                                    humenSpeak.text = "choooooo";
+                                    break;
+                            }
+
+                            StartCoroutine(human.HumanNahuiPoshel());
+                            human.didImposterNahuiPoshel = true;
+                        }
+                    }
+                    else
+                    {
+                        textDisagree.text = "Disagree";
+                        textQuest.text = "";
+                        selectedQuest = possibleQuestNew[randomQuest];
+                        textQuest.text = "   >" + selectedQuest;
+
+
+
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
                             List<string> tempAnswers = new List<string>(possibleQuestNew);
@@ -188,20 +257,20 @@ public class Talk : MonoBehaviour
                             possibleQuestNew = tempAnswers.ToArray();
                             switcher = true;
                             selectQuest = true;
-                            
-                            fistChar = selectedQuest[0]; 
-                            numberQuest = (int)char.GetNumericValue(fistChar); 
+
+                            fistChar = selectedQuest[0];
+                            numberQuest = (int)char.GetNumericValue(fistChar);
                             int randans = Random.Range(0, 200);
                             int randansG = Random.Range(1, 3);
                             int randansNB = Random.Range(1, 2);
 
 
-                            if (impost !=true)
+                            if (impost != true)
                             {
                                 switch (numberQuest)
                                 {
                                     case 1:
-                                        
+
                                         switch (randans)
                                         {
                                             case >= 190 and <= 200:
@@ -223,10 +292,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -244,8 +314,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -259,10 +330,12 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "1G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
-                                    
+
                                     case 2:
                                         switch (randans)
                                         {
@@ -285,10 +358,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -306,8 +380,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -321,11 +396,13 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "2G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 3:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 190 and <= 200:
                                                 if (srangeAnswer < 1)
@@ -346,10 +423,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -367,8 +445,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -382,11 +461,13 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "3G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 4:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 190 and <= 200:
                                                 if (srangeAnswer < 1)
@@ -407,10 +488,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -428,8 +510,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -443,8 +526,10 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "4G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 5:
                                         switch (randans)
@@ -468,10 +553,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -489,8 +575,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -504,8 +591,10 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "5G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 6:
                                         switch (randans)
@@ -529,10 +618,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -550,8 +640,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -565,11 +656,13 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "6G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 7:
-                                       switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 190 and <= 200:
                                                 if (srangeAnswer < 1)
@@ -590,10 +683,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -611,8 +705,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -626,14 +721,16 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "7G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 8:
-                                       switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 190 and <= 200:
-                                                if (srangeAnswer <1)
+                                                if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -651,10 +748,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -672,8 +770,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -687,14 +786,16 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "8G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                     case 9:
-                                       switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 190 and <= 200:
-                                                if (srangeAnswer <1)
+                                                if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -712,10 +813,11 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 130 and <= 190:
-                                                if (normalAnswer<2)
+                                                if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
                                                     {
@@ -733,8 +835,9 @@ public class Talk : MonoBehaviour
                                                 {
                                                     randans = 5;
                                                 }
+
                                                 break;
-                                            
+
                                             case >= 0 and <= 130:
                                                 switch (randansG)
                                                 {
@@ -748,8 +851,10 @@ public class Talk : MonoBehaviour
                                                         humenSpeak.text = "9G3";
                                                         break;
                                                 }
+
                                                 break;
                                         }
+
                                         break;
                                 }
                             }
@@ -759,10 +864,11 @@ public class Talk : MonoBehaviour
                                 {
                                     randans = 199;
                                 }
+
                                 switch (numberQuest)
                                 {
                                     case 1:
-                                       
+
                                         switch (randans)
                                         {
                                             case >= 150 and <= 200:
@@ -779,13 +885,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -813,12 +920,12 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
                                     case 2:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 150 and <= 200:
                                                 if (srangeAnswer < 2)
@@ -834,13 +941,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -868,12 +976,12 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
                                     case 3:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 150 and <= 200:
                                                 if (srangeAnswer < 2)
@@ -889,13 +997,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -923,7 +1032,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
@@ -944,13 +1053,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -978,7 +1088,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
@@ -999,13 +1109,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -1033,7 +1144,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
@@ -1054,13 +1165,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -1088,12 +1200,12 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
                                     case 7:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 150 and <= 200:
                                                 if (srangeAnswer < 2)
@@ -1109,13 +1221,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -1143,12 +1256,12 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
                                     case 8:
-                                         switch (randans)
+                                        switch (randans)
                                         {
                                             case >= 150 and <= 200:
                                                 if (srangeAnswer < 2)
@@ -1164,13 +1277,14 @@ public class Talk : MonoBehaviour
                                                             srangeAnswer++;
                                                             break;
                                                     }
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     randans = Random.Range(0, 149);
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -1198,7 +1312,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
@@ -1226,7 +1340,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
@@ -1254,7 +1368,7 @@ public class Talk : MonoBehaviour
                                                 }
 
                                                 break;
-                                            
+
                                         }
 
                                         break;
@@ -1263,39 +1377,13 @@ public class Talk : MonoBehaviour
 
                             selectQuest = false;
                         }
+                    }
                 }
             }
-            
         }
         else
         {
-            if (_phone.call && seeCallPolice)
-				{
-                human.beenRejected = true;
-                human.leavingSequence = true;
-                randomAnswer = Random.Range(0, 5);
-                switch(randomAnswer)
-                {
-                    case 1:
-                        humenSpeak.text = "Thx";
-                        break;
-                    case 2:
-                        humenSpeak.text = ":)";
-                        break;
-                    case 3:
-                        humenSpeak.text = "XD";
-                        break;
-                    case 4:
-                        humenSpeak.text = "OK";
-                        break;
-                    case 5:
-                        humenSpeak.text = "zaebok";
-                        break;
-                    default:
-                        humenSpeak.text = "uraaaa";
-                        break;
-                }
-            }
+            
             if (human.hCreatedCh == false)
             {
                 srangeAnswer = 0;
@@ -1332,9 +1420,10 @@ public class Talk : MonoBehaviour
                         break;
                 }
 				chekerDisagree = false;
-				canvas.SetActive(false);
-				seeCallPolice = false;
+                seeCallPolice = false;
 			}
+            canvas.SetActive(false);
         }
     }
+        
 }

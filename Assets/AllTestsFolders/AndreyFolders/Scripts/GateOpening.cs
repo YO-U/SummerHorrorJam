@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GateOpening : MonoBehaviour
 {
-    private bool isGateOpened;
+    public bool isGateOpened;
     [SerializeField] private HumanWalkToWindow humanWalk;
 	[SerializeField] private AudioSource gateSound;
 	[SerializeField] private CameraMove cameraMove;
