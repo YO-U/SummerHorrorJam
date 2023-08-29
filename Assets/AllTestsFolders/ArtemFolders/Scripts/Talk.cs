@@ -119,7 +119,6 @@ public class Talk : MonoBehaviour
             {
                 humenSpeak.gameObject.SetActive(true);
                 objBtns.SetActive(false);
-                human.beenRejected = true;
                 human.leavingSequence = true;
                 randomAnswer = Random.Range(0, 5);
                 switch(randomAnswer)
@@ -209,7 +208,6 @@ public class Talk : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
-                            Array.Resize(ref possibleQuestNew, 5);
                             switcher = true;
                             human.beenRejected = true;
                             human.leavingSequence = true;
@@ -1386,7 +1384,8 @@ public class Talk : MonoBehaviour
             
             if (human.hCreatedCh == false)
             {
-                srangeAnswer = 0;
+				Array.Resize(ref possibleQuestNew, 5);
+				srangeAnswer = 0;
                 normalAnswer = 0;
                 BadRandom2 = Random.Range(1, 5);
                 BadRandom1 = Random.Range(1, 5);
