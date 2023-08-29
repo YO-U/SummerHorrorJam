@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ public class HumanWalkToWindow : MonoBehaviour
     public bool beenRejected;
     public GameObject human;
 	private System.Random rng;
+	public int imposter;
+	public bool didImposterGotIn = false;
+	public bool didImposterNahuiPoshel = false;
+	public int amountOfHappyHumans = 0;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
 	[SerializeField] private AudioSource carSoundClose;
@@ -31,6 +36,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
+		imposter = Random.Range(1, 2);
     }
     
     private void Update()
@@ -109,6 +115,10 @@ public class HumanWalkToWindow : MonoBehaviour
 		yield return new WaitForSeconds(2);
 		carSoundOpen.Play();
 		human = Instantiate(humansArray[currentHuman], pointsArray[0].position, Quaternion.identity) as GameObject;
+		if (currentHuman == imposter)
+		{
+			human.transform.DOScale(new Vector3(0.3f,0.3f,0.3f), 1);
+		}
 		currentHuman++;
 		humanAnimator = human.GetComponent<Animator>();
 		yield return new WaitForSeconds(2);
