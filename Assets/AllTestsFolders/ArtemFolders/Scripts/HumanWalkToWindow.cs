@@ -31,6 +31,7 @@ public class HumanWalkToWindow : MonoBehaviour
 	public int humansSincePoliceCall = 0;
 	public bool wasImposterEncountered = false;
 	public string impostorTag;
+	public bool tvSceneHappenned = false;
 	[SerializeField] private OpenCloseObject openCloseObject;
 	[SerializeField] private Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
@@ -54,7 +55,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		window = FindObjectOfType<OpenCloseObject>();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(0, 1);
+		imposter = Random.Range(2, 6);
 		impostorTag = humansArray[imposter].gameObject.tag;
     }
     
@@ -110,8 +111,9 @@ public class HumanWalkToWindow : MonoBehaviour
         cameraMove.right = false;
         cameraMove.down = false;
 		StartCoroutine(ExecuteWithDelayDelete());
-		if (currentHuman == 1)
+		if (currentHuman == 1 && !tvSceneHappenned)
 		{
+			tvSceneHappenned = true;
 			openCloseObject.inputEvailable = false;
 			yield return new WaitForSeconds(3);
 			cameraMove.CameraDirectionChange(new Vector3(15, 110, 0), 0.2f, 0.5f, "left");
@@ -130,8 +132,9 @@ public class HumanWalkToWindow : MonoBehaviour
 			yield return new WaitForSeconds(12);
 			openCloseObject.videoPlayer.Pause();
 			NewsTxt.gameObject.SetActive(true);
-			NewsTxt.text = "Breaking news! One of the recently discovered 'doppelgangers' was spotted in local area!.";
-			yield return new WaitForSeconds(4);
+			NewsTxt.text = "Breaking news! One of the recently discovered 'doppelgangers' who can mimic humans was spotted near 'West Woods' camp!";
+			yield return new WaitForSeconds(6);
+			movingCar.readyToDepart = true;
 			switch (impostorTag)
 			{
 				case "grandpa":
@@ -170,19 +173,21 @@ public class HumanWalkToWindow : MonoBehaviour
 					NewsTxt.text = "It seems like creature 'transformed' to the form of young male. Other characteristics are unknown.";
 					break;
 			}
-			yield return new WaitForSeconds(4);
-			movingCar.readyToDepart = true;
+			yield return new WaitForSeconds(6);
 			NewsTxt.text = "Please notify the police if you see someone who fits the description and acts strange.";
-			yield return new WaitForSeconds(4);
+			yield return new WaitForSeconds(5);
 			NewsTxt.text = "Keep in mind that those creatures are extremely violent. Keep yourself safe. End of broadcast.";
 			yield return new WaitForSeconds(5);
 			NewsTxt.gameObject.SetActive(false);
 			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
 		}
-		yield return new WaitForSeconds(14);
-		if (!movingCar.readyToDepart) movingCar.readyToDepart = true;
-    }
+		else
+		{
+			yield return new WaitForSeconds(14);
+			movingCar.readyToDepart = true;
+		}
+	} 
 
     private IEnumerator MoveHumanToPoint()
     {

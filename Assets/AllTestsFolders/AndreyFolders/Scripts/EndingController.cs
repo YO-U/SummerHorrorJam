@@ -1,15 +1,18 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndingController : MonoBehaviour
 {
     public int endingNumber = 0;
     public bool IsEndingStarting;
-    private Canvas blackScreen;
+    public bool IsEndingStart = false;
+    [SerializeField] private Canvas blackScreen;
     [SerializeField] private OpenCloseObject openCloseObject;
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private MovingCar movingCar;
@@ -43,9 +46,9 @@ public class EndingController : MonoBehaviour
 
     private IEnumerator StartEnding()
     {
-        if (IsEndingStarting)
+        if (IsEndingStarting && !IsEndingStart)
         {
-            IsEndingStarting= false;
+            IsEndingStart = true;
 			openCloseObject.inputEvailable = false;
 			blackScreen.GetComponent<Image>().DOColor(Color.black, 5);
             yield return new WaitForSeconds(5);
@@ -64,6 +67,7 @@ public class EndingController : MonoBehaviour
 			EndingSelector();
 			blackScreen.GetComponent<Image>().DOColor(Color.clear, 5);
 			yield return new WaitForSeconds(5);
+            SceneManager.LoadScene(0);
 		}
     }
 }

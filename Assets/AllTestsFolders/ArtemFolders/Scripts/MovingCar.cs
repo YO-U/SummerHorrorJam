@@ -67,7 +67,7 @@ public class MovingCar : MonoBehaviour
 
     private void SpawnCar()
     {
-        if (isNextCarReady && humanWalk.currentHuman != 8 && humanWalk.humansSincePoliceCall <= 2)
+        if (isNextCarReady && humanWalk.currentHuman != 6 && humanWalk.humansSincePoliceCall <= 2 && !endingController.IsEndingStarting)
 		{
 			gm = Instantiate(array[Random.Range(0, 9)], new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
 			gm.transform.Rotate(0, -90, 0);
@@ -81,7 +81,7 @@ public class MovingCar : MonoBehaviour
 			gm.transform.Rotate(0, -90, 0);
             endingController.IsEndingStarting = true;
 		}
-        else if (humanWalk.currentHuman == 8)
+        else if (humanWalk.currentHuman == 6 && endingController.IsEndingStarting)
         {
             if (humanWalk.didImposterNahuiPoshel)
             {

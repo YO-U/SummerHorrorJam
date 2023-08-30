@@ -36,7 +36,7 @@ public class Phone : MonoBehaviour
 		{
 			StartCoroutine(FadeInOutText());
 		}
-		if (Input.GetKeyDown(switchKey))
+		if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
 

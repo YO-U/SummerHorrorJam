@@ -148,8 +148,8 @@ public class Talk : MonoBehaviour
             canvas.SetActive(true);
             if ((smert && eBtn.isGateOpened==false)  || (smert==false && eBtn.isGateOpened))
             {
-                if (Input.GetKeyDown(KeyCode.Q) && switcher)
-                {
+                if ((Input.GetKeyDown(KeyCode.Q)  && switcher))
+				{
                     if (switcher)
                     {
                         if (chekerDisagree == false)
@@ -174,7 +174,7 @@ public class Talk : MonoBehaviour
                 {
                     humenSpeak.gameObject.SetActive(false); //выкл текст
                     objBtns.SetActive(true); //вкл кнопки 
-                    if (Input.GetKeyDown(KeyCode.Q) && switcher == false)
+                    if ((Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.UpArrow)) && switcher == false)))
                     {
                         if (possibleQuestNew.Length != 0)
                         {
