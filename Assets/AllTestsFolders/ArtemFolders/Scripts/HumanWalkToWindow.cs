@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
@@ -39,14 +40,16 @@ public class HumanWalkToWindow : MonoBehaviour
     public int currentHuman = -1;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
+    public TextMeshProUGUI NewsTxt;
 
     private void Start()
     {
-		impostorTag = humansArray[imposter].gameObject.tag;
-		rng = new System.Random();
+	    NewsTxt.gameObject.SetActive(false);
+	    rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
 		imposter = Random.Range(2, 6);
+		impostorTag = humansArray[imposter].gameObject.tag;
     }
     
     private void Update()
@@ -96,7 +99,53 @@ public class HumanWalkToWindow : MonoBehaviour
 			openCloseObject.videoPlayer.Play();
 			yield return new WaitForSeconds(4);
 			openCloseObject.videoPlayer.Pause();
-			yield return new WaitForSeconds(9);
+			NewsTxt.gameObject.SetActive(true);
+			NewsTxt.text = "We are having bad news...";
+			yield return new WaitForSeconds(3);
+			switch (impostorTag)
+			{
+				case "grandpa":
+					NewsTxt.text = "Granpa is killer...";
+					break;
+				
+				case "afro":
+					NewsTxt.text = "Afro is killer...";
+					break;
+				
+				case "grandma":
+					NewsTxt.text = "Grandma is killer...";
+					break;
+				
+				case "man":
+					NewsTxt.text = "Man is killer...";
+					break;
+				
+				case "asianwoman":
+					NewsTxt.text = "Asianwoman is killer...";
+					break;
+				
+				case "womanhairblack":
+					NewsTxt.text = "Womangairblack is killer...";
+					break;
+				
+				case "womanhairwhite":
+					NewsTxt.text = "Womanhairwhite is killer...";
+					break;
+				
+				case "womanblueshirt":
+					NewsTxt.text = "Womanblueshirt is killer...";
+					break;
+				
+				case "manyoung":
+					NewsTxt.text = "Manyoung is killer...";
+					break;
+			}
+			yield return new WaitForSeconds(3);
+			NewsTxt.text = "Be save and thanks for listen...";
+			yield return new WaitForSeconds(3);
+			NewsTxt.text = "Now about something important...";
+			yield return new WaitForSeconds(4);
+			NewsTxt.gameObject.SetActive(false);
 			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
 		}

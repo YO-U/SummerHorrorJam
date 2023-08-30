@@ -1384,9 +1384,11 @@ public class Talk : MonoBehaviour
             
             if (human.hCreatedCh == false)
             {
+                
 				Array.Resize(ref possibleQuestNew, 5);
 				srangeAnswer = 0;
                 normalAnswer = 0;
+                switcher = true;
                 BadRandom2 = Random.Range(1, 5);
                 BadRandom1 = Random.Range(1, 5);
                 List<string> tempList = new List<string>(possibleQuestOld);
@@ -1420,6 +1422,8 @@ public class Talk : MonoBehaviour
                 }
 				chekerDisagree = false;
                 seeCallPolice = false;
+                humenSpeak.gameObject.SetActive(true);
+                objBtns.SetActive(false);
 			}
             canvas.SetActive(false);
         }
