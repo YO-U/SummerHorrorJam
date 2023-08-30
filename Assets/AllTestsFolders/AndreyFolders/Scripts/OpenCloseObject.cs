@@ -203,12 +203,11 @@ public class OpenCloseObject : MonoBehaviour
 				currentInteractible = GameObject.Find("TVScreen");
                 if (!tvAvtivated)
                 {
-
+					tvScreen.GetComponent<Renderer>().material = activated;
 					videoPlayer.Play();
 					CurrentChannelCheck();
 					tvLight.enabled = true;
 					tvAvtivated = true;
-					tvScreen.GetComponent<Renderer>().material = activated;
 					tvSoundStatic.Play();
                 }
                 else

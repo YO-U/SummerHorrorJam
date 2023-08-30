@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour
 	public GameObject camera;
 	public DOTween dOTween;
 	[SerializeField] private OpenCloseObject openCloseObject; 
-	[SerializeField] private AudioSource tvAudioSource;
+	public AudioSource tvAudioSource;
 	[SerializeField] private Transform cameraPos;
 
 	private void Start()
