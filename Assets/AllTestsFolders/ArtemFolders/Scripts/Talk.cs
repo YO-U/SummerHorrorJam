@@ -33,6 +33,7 @@ public class Talk : MonoBehaviour
 	private bool seeCallPolice = true;
     private bool smert = true;
     private GateOpening eBtn;
+    private bool deletedFirstChar=false;
 
 	string[] possibleAnswers = {
         "Poshol nahui",
@@ -202,16 +203,27 @@ public class Talk : MonoBehaviour
                         textDisagree.text = "   >Deny access.";
                         if (possibleQuestNew.Length != 0)
                         {
-                            selectedQuest = possibleQuestNew[randomQuest];
+                            if (deletedFirstChar==false)
+                            {
+                                selectedQuest = possibleQuestNew[randomQuest];
+                                Debug.Log( selectedQuest);
+                                fistChar = selectedQuest[0];
+                                selectedQuest = selectedQuest.Substring(1);
+                                Debug.Log( selectedQuest);
+                                deletedFirstChar = true;
+                            }
+                           
                             textQuest.text = selectedQuest;
                         }
                         else
                         {
+                            
                             textQuest.text = "";
                         }
 
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            deletedFirstChar = false;
                             switcher = true;
                             human.beenRejected = true;
                             human.leavingSequence = true;
@@ -245,23 +257,34 @@ public class Talk : MonoBehaviour
                     }
                     else
                     {
+                       
+                        if (deletedFirstChar==false)
+                        {
+                            selectedQuest = possibleQuestNew[randomQuest];
+                            Debug.Log( selectedQuest);
+                            fistChar = selectedQuest[0];
+                            selectedQuest = selectedQuest.Substring(1);
+                            Debug.Log( selectedQuest);
+                            deletedFirstChar = true;
+                        }
+                        
                         textDisagree.text = "Deny access";
                         textQuest.text = "";
-                        selectedQuest = possibleQuestNew[randomQuest];
                         textQuest.text = "   >" + selectedQuest;
 
 
 
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            deletedFirstChar = false;
                             List<string> tempAnswers = new List<string>(possibleQuestNew);
                             tempAnswers.RemoveAt(randomQuest);
                             possibleQuestNew = tempAnswers.ToArray();
+                           
+                            numberQuest = (int)char.GetNumericValue(fistChar);
+                            
                             switcher = true;
                             selectQuest = true;
-
-                            fistChar = selectedQuest[0];
-                            numberQuest = (int)char.GetNumericValue(fistChar);
                             int randans = Random.Range(0, 200);
                             int randansG = Random.Range(1, 3);
                             int randansNB = Random.Range(1, 2);
