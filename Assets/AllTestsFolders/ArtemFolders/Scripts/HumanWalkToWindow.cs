@@ -55,7 +55,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		window = FindObjectOfType<OpenCloseObject>();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(2, 6);
+		imposter = Random.Range(3, 6);
 		impostorTag = humansArray[imposter].gameObject.tag;
     }
     
@@ -86,15 +86,15 @@ public class HumanWalkToWindow : MonoBehaviour
 	    if (timer >0 && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false)
 	    {
 		    timer -= Time.deltaTime;
-	    }else if (timer <= 0  && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false) 
+	    }
+		else if (timer <= 0  && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false) 
 	    {
 		    StartCoroutine(HumanNahuiPoshel());
-		    didImposterNahuiPoshel = true;
 		    beenRejected = true;
 		    PoshelNaherClosedWindow = true;
 		    timer = timerMax;
 	    }
-	    if (window.windowOpened)
+	    if (window.windowOpened || humanChecker)
 	    {
 		    timer = timerMax;
 	    }

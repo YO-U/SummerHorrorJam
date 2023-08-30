@@ -28,7 +28,8 @@ public class Talk : MonoBehaviour
     [SerializeField] private int normalAnswer,srangeAnswer=0;
     private int BadRandom1;
     private int BadRandom2;
-    private Phone _phone;
+    private bool didHumanGotScared;
+	private Phone _phone;
 	private bool seeCallPolice = true;
     private bool smert = true;
     private GateOpening eBtn;
@@ -84,8 +85,9 @@ public class Talk : MonoBehaviour
         }
 
 
-        if (_phone.call && window.windowOpened && camera.right)
+        if (_phone.call && window.windowOpened && camera.right && !didHumanGotScared)
         {
+            didHumanGotScared = true;
             humenSpeak.gameObject.SetActive(true);
             objBtns.SetActive(false);
             human.beenRejected = true;
@@ -113,6 +115,8 @@ public class Talk : MonoBehaviour
                     humenSpeak.text = "Am i THAT suspicious?";
                     break;
             }
+			human.beenRejected = true;
+            StartCoroutine(human.HumanNahuiPoshel());
         }
 
         if (eBtn.isGateOpened && camera.down)

@@ -12,6 +12,7 @@ public class EndingController : MonoBehaviour
     public int endingNumber = 0;
     public bool IsEndingStarting;
     public bool IsEndingStart = false;
+    private bool HasSceneStarted = false;
     [SerializeField] private Canvas blackScreen;
     [SerializeField] private OpenCloseObject openCloseObject;
     [SerializeField] private CameraMove cameraMove;
@@ -59,6 +60,11 @@ public class EndingController : MonoBehaviour
 			cameraMove.right = false;
 			cameraMove.down = false;
 			if (!openCloseObject.tvAvtivated) openCloseObject.GetAndActivateCurrentInteractable();
+            else
+            {
+				openCloseObject.GetAndActivateCurrentInteractable();
+				openCloseObject.GetAndActivateCurrentInteractable();
+			}
 			openCloseObject.currentChannel = 1;
 			openCloseObject.CurrentChannelCheck();
 			openCloseObject.videoPlayer.Play();
@@ -67,7 +73,9 @@ public class EndingController : MonoBehaviour
 			EndingSelector();
 			blackScreen.GetComponent<Image>().DOColor(Color.clear, 5);
 			yield return new WaitForSeconds(5);
+            if (!HasSceneStarted)
             SceneManager.LoadScene(0);
+            HasSceneStarted = true;
 		}
     }
 }
