@@ -19,16 +19,25 @@ public class Menu : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)&&chekerCanvase)
+        if ((Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.DownArrow))&&chekerCanvase))
         {
             switcher++;
 
             if (switcher == 4)
             {
                 switcher = 0;
-            }
-                
+            }     
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && chekerCanvase)
+        {
+			switcher--;
+
+			if (switcher == 0)
+			{
+				switcher = 4;
+			}
+		}
         if (switcher == 0)
         {
             play.text = "   >Play";

@@ -34,19 +34,19 @@ public class SCrimers : MonoBehaviour
 
     private void Update()
     {
-        if (monsterChecker.didImposterGotIn || monsterChecker.didImposterNahuiPoshel)
+        if (monsterChecker.currentHuman < 2)
         { 
-            if (monsterChecker.humansSinceTheImposter == 3 && spawnInForestCheck ==false)
+            if (monsterChecker.currentHuman >= 3 && camera.mid && spawnInForestCheck ==false)
             {
                 StartCoroutine(SpawnMonsterInForest());
             }
 
-            if (window.windowOpened == false && monsterChecker.humansSinceTheImposter == 4 &&spawnInWindowCheck==false && camera.mid)
+            if (window.windowOpened == false && monsterChecker.currentHuman >= 4 &&spawnInWindowCheck == false && camera.mid)
             {
                 StartCoroutine(SpawnMonsterInWindow());
             }
 
-            if (monsterChecker.humansSinceTheImposter == 1 && camera.right && spawnInWindowPhoneCheck==false)
+            if (monsterChecker.currentHuman >= 5 && camera.right && spawnInWindowPhoneCheck==false)
             {
                 StartCoroutine(SpawnMonsterInWindowPhone());
             }

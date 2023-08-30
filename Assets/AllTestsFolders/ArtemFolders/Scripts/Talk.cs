@@ -28,7 +28,8 @@ public class Talk : MonoBehaviour
     [SerializeField] private int normalAnswer,srangeAnswer=0;
     private int BadRandom1;
     private int BadRandom2;
-    private Phone _phone;
+    private bool didHumanGotScared;
+	private Phone _phone;
 	private bool seeCallPolice = true;
     private bool smert = true;
     private GateOpening eBtn;
@@ -84,8 +85,9 @@ public class Talk : MonoBehaviour
         }
 
 
-        if (_phone.call && window.windowOpened && camera.right)
+        if (_phone.call && window.windowOpened && camera.right && !didHumanGotScared)
         {
+            didHumanGotScared = true;
             humenSpeak.gameObject.SetActive(true);
             objBtns.SetActive(false);
             human.beenRejected = true;
@@ -113,6 +115,8 @@ public class Talk : MonoBehaviour
                     humenSpeak.text = "Am i THAT suspicious?";
                     break;
             }
+			human.beenRejected = true;
+            StartCoroutine(human.HumanNahuiPoshel());
         }
 
         if (eBtn.isGateOpened && camera.down)
@@ -148,8 +152,8 @@ public class Talk : MonoBehaviour
             canvas.SetActive(true);
             if ((smert && eBtn.isGateOpened==false)  || (smert==false && eBtn.isGateOpened))
             {
-                if (Input.GetKeyDown(KeyCode.Q) && switcher)
-                {
+                if ((Input.GetKeyDown(KeyCode.Q)  && switcher))
+				{
                     if (switcher)
                     {
                         if (chekerDisagree == false)
@@ -174,7 +178,7 @@ public class Talk : MonoBehaviour
                 {
                     humenSpeak.gameObject.SetActive(false); //выкл текст
                     objBtns.SetActive(true); //вкл кнопки 
-                    if (Input.GetKeyDown(KeyCode.Q) && switcher == false)
+                    if ((Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.UpArrow)) && switcher == false)))
                     {
                         if (possibleQuestNew.Length != 0)
                         {
