@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Phone : MonoBehaviour
 {
     private CameraMove cm;
     [SerializeField] private EndingController endingController;
+	[SerializeField] private OpenCloseObject openCloseObject;
     private HumanWalkToWindow humans;
     public TextMeshProUGUI textToFade;
     public GameObject btnsEmp;
@@ -57,10 +59,16 @@ public class Phone : MonoBehaviour
 		{
 			if (currentButtonIndex == 0 && humans.wasImposterEncountered)
 			{
-				if (humans.humansSinceTheImposter < 1)
+				if (humans.humansSinceTheImposter < 1 && !openCloseObject.windowOpened)
 				{
 					humans.wasPoliceCalledInTime = true;
 					endingController.endingNumber = 0;
+					call = true;
+				}
+				else if (humans.humansSinceTheImposter < 1 && openCloseObject.windowOpened)
+				{
+					humans.wasPoliceCalledInTime = true;
+					endingController.endingNumber = 5;
 					call = true;
 				}
 				else
