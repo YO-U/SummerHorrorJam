@@ -45,7 +45,7 @@ public class HumanWalkToWindow : MonoBehaviour
     private void Start()
     {
 	    NewsTxt.gameObject.SetActive(false);
-	    rng = new System.Random();
+		rng = new System.Random();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
 		imposter = Random.Range(2, 6);
@@ -97,7 +97,7 @@ public class HumanWalkToWindow : MonoBehaviour
 			openCloseObject.currentChannel = 1;
 			openCloseObject.CurrentChannelCheck();
 			openCloseObject.videoPlayer.Play();
-			yield return new WaitForSeconds(4);
+			yield return new WaitForSeconds(8);
 			openCloseObject.videoPlayer.Pause();
 			NewsTxt.gameObject.SetActive(true);
 			NewsTxt.text = "We are having bad news...";
@@ -146,11 +146,12 @@ public class HumanWalkToWindow : MonoBehaviour
 			NewsTxt.text = "Now about something important...";
 			yield return new WaitForSeconds(4);
 			NewsTxt.gameObject.SetActive(false);
+			movingCar.readyToDepart = true;
 			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
 		}
 		yield return new WaitForSeconds(14);
-		movingCar.readyToDepart = true;
+		if (!movingCar.readyToDepart) movingCar.readyToDepart = true;
     }
 
     private IEnumerator MoveHumanToPoint()
