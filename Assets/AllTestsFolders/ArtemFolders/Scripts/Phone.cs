@@ -43,12 +43,12 @@ public class Phone : MonoBehaviour
 			if (currentButtonIndex == 1)
 			{
 				txtBtn1.text = "   >Cancel";
-				txtBtn2.text = "Quest";
+				txtBtn2.text = "Call police";
 			}
 			else
 			{
 				txtBtn1.text = "Cancel";
-				txtBtn2.text = "   >Quest";
+				txtBtn2.text = "   >Call police";
 			}
 		}
 

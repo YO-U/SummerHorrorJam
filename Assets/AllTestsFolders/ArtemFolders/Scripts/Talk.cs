@@ -41,15 +41,15 @@ public class Talk : MonoBehaviour
         "HAHAHAHAH"
     };
     string[] possibleQuestOld = {
-        "1Poshol nahui?",
-        "2pidoras?",
-        "3Gandoun?",
-        "4OK?",
-        "5HAHAHAHAH?",
-        "6Poshol?",
-        "7pido?",
-        "8Gand?",
-        "9O?",
+        "1Why do you want to go inside?",
+        "2Does anyone from camp staff know you are comming?",
+        "3Is there anyone else in the car?",
+        "4Can i see your ID?",
+        "5Why did you decide to arrive at night?",
+		"6Are you aware of the recent 'doppelganger?' threat?",
+        "7Are you familliar with camp's rules of visiting?",
+        "8Do you have children?",
+        "9For how long do you plan to stay here?",
     };
     string[] possibleQuestNew = new string[5];
 
@@ -95,22 +95,22 @@ public class Talk : MonoBehaviour
             switch (randomAnswer)
             {
                 case 1:
-                    humenSpeak.text = "Thx";
+                    humenSpeak.text = "What?... i-i need to go.";
                     break;
                 case 2:
-                    humenSpeak.text = ":)";
+                    humenSpeak.text = "What the hell!? Are you out of your mind!?";
                     break;
                 case 3:
-                    humenSpeak.text = "XD";
+                    humenSpeak.text = "Time to get the fuck out i guess.";
                     break;
                 case 4:
-                    humenSpeak.text = "OK";
+                    humenSpeak.text = "...";
                     break;
                 case 5:
-                    humenSpeak.text = "zaebok";
+                    humenSpeak.text = "I haven't even done anything!";
                     break;
                 default:
-                    humenSpeak.text = "uraaaa";
+                    humenSpeak.text = "Am i THAT suspicious?";
                     break;
             }
         }
@@ -124,22 +124,22 @@ public class Talk : MonoBehaviour
                 switch(randomAnswer)
                 {
                     case 1:
-                        humenSpeak.text = "Thx";
+                        humenSpeak.text = "Thank you!";
                         break;
                     case 2:
-                        humenSpeak.text = ":)";
+                        humenSpeak.text = "Finally.";
                         break;
                     case 3:
-                        humenSpeak.text = "XD";
+                        humenSpeak.text = "...";
                         break;
                     case 4:
-                        humenSpeak.text = "OK";
+                        humenSpeak.text = "Have a good night.";
                         break;
                     case 5:
-                        humenSpeak.text = "zaebok";
+                        humenSpeak.text = "Can't wait to see my children!";
                         break;
                     default:
-                        humenSpeak.text = "uraaaa";
+                        humenSpeak.text = "Oh... That's it? Goodbye!";
                         break;
                 }
         }
@@ -195,7 +195,7 @@ public class Talk : MonoBehaviour
 
                     if (switcherbtns)
                     {
-                        textDisagree.text = "   >Disagree";
+                        textDisagree.text = "   >Deny access.";
                         if (possibleQuestNew.Length != 0)
                         {
                             selectedQuest = possibleQuestNew[randomQuest];
@@ -216,22 +216,22 @@ public class Talk : MonoBehaviour
                             switch (randomAnswer)
                             {
                                 case 1:
-                                    humenSpeak.text = "Poshol nahui";
+                                    humenSpeak.text = "That's... unfortunate.";
                                     break;
                                 case 2:
-                                    humenSpeak.text = "pidoras";
+                                    humenSpeak.text = "I will write a complain.";
                                     break;
                                 case 3:
-                                    humenSpeak.text = "Gandoun";
+                                    humenSpeak.text = "What!? Do you know who i am!?";
                                     break;
                                 case 4:
-                                    humenSpeak.text = "OK";
+                                    humenSpeak.text = "Ugh, whatever. Fuck you.";
                                     break;
                                 case 5:
-                                    humenSpeak.text = "HAHAHAHAH";
+                                    humenSpeak.text = "I will come back in morning.";
                                     break;
                                 default:
-                                    humenSpeak.text = "choooooo";
+                                    humenSpeak.text = "..."; 
                                     break;
                             }
 
@@ -241,7 +241,7 @@ public class Talk : MonoBehaviour
                     }
                     else
                     {
-                        textDisagree.text = "Disagree";
+                        textDisagree.text = "Deny access";
                         textQuest.text = "";
                         selectedQuest = possibleQuestNew[randomQuest];
                         textQuest.text = "   >" + selectedQuest;
@@ -277,11 +277,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "1B1";
+                                                            humenSpeak.text = "I want ot eat... right now.";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "1B2";
+                                                            humenSpeak.text = "It's none of you concern you worthless worm!";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -299,11 +299,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "1N1";
+                                                            humenSpeak.text = "...";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "1N2";
+                                                            humenSpeak.text = "To kidnapp some children, of course.";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -319,13 +319,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "1G1";
+                                                        humenSpeak.text = "I want to visit my children.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "1G2";
+                                                        humenSpeak.text = "Why are you asking? I thought... nevermind. I'm here to take my children home for a couple of days.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "1G3";
+                                                        humenSpeak.text = "Can i just pass throught? I need to talk to my children urgently.";
                                                         break;
                                                 }
 
@@ -343,11 +343,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "2B1";
+                                                            humenSpeak.text = "They will soon know... oh they will know!";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "2B2";
+                                                            humenSpeak.text = "It doesn't matter. Is doesn't matter. It doesn't matter.";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -365,11 +365,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "2N1";
+                                                            humenSpeak.text = "No, they don't. But don't worry, i'll be gone in a couple of minutes.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "2N2";
+                                                            humenSpeak.text = "Surely we can strike a deal, aye?";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -385,13 +385,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "2G1";
+                                                        humenSpeak.text = "Of course! I planned this visit about a week ago.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "2G2";
+                                                        humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "2G3";
+                                                        humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
                                                         break;
                                                 }
 
@@ -408,11 +408,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "3B1";
+                                                            humenSpeak.text = "That someone might not be what you expect. Hehe...";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "3B2";
+                                                            humenSpeak.text = "There was someone! Now i'm all alone...";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -430,11 +430,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "3N1";
+                                                            humenSpeak.text = "Umm... No. I'm... alone here.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "3N2";
+                                                            humenSpeak.text = "Look, is it that important? Can we just get this over with?";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -450,13 +450,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "3G1";
+                                                        humenSpeak.text = "No, you can check if you want.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "3G2";
+                                                        humenSpeak.text = "Yes. I am here with my spouse.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "3G3";
+                                                        humenSpeak.text = "I'm here with my family. 4 people in total.";
                                                         break;
                                                 }
 
@@ -473,11 +473,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "4B1";
+                                                            humenSpeak.text = "What's that?";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "4B2";
+                                                            humenSpeak.text = "No! It's mine! Mine! MINE!";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -495,11 +495,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "4N1";
+                                                            humenSpeak.text = "I forgot to take it. Shit. Oh... sorry.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "4N2";
+                                                            humenSpeak.text = "If i had it with me i wouldn't give it to you. Sorry, you just seem sketchy.";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -515,13 +515,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "4G1";
+                                                        humenSpeak.text = "Yes, here it is!";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "4G2";
+                                                        humenSpeak.text = "Here you go.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "4G3";
+                                                        humenSpeak.text = "Maybe. Let me check... Oh there it is! Here.";
                                                         break;
                                                 }
 
@@ -538,11 +538,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "5B1";
+                                                            humenSpeak.text = "They look so good when they sleep... i can't stand it!";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "5B2";
+                                                            humenSpeak.text = "Smart hunter uses darkness as his weapon. Don't you agree?";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -560,11 +560,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "5N1";
+                                                            humenSpeak.text = "I didn't have a choice. Look, i'm already in a bad mood. Let me in.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "5N2";
+                                                            humenSpeak.text = "I prefer to stay awake at night.";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -580,13 +580,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "5G1";
+                                                        humenSpeak.text = "I don't have a lot of time in my schedule. Sorry for disturbing you in such time.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "5G2";
+                                                        humenSpeak.text = "Just a bad coincidence. I would visit at daytime but here we are.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "5G3";
+                                                        humenSpeak.text = "Sorry for that. Shit happens.";
                                                         break;
                                                 }
 
@@ -603,11 +603,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "6B1";
+                                                            humenSpeak.text = "I am most familiar with it. Heh... haha... hahahaha! HAHAHAHA!";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "6B2";
+                                                            humenSpeak.text = ":)";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -625,11 +625,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "6N1";
+                                                            humenSpeak.text = "What? Come again?";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "6N2";
+                                                            humenSpeak.text = "I... did hear about it. Why... why are you asking?";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -645,13 +645,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "6G1";
+                                                        humenSpeak.text = "Yes, i am! I wasn't expecting someone like that outside of horror movie. Horrible creature.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "6G2";
+                                                        humenSpeak.text = "Kinda. My friend told me in a brief details. Sounds scary.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "6G3";
+                                                        humenSpeak.text = "Yes and i hope your camp prepared for a threat like that. I'm scared for my children.";
                                                         break;
                                                 }
 
@@ -668,11 +668,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "7B1";
+                                                            humenSpeak.text = "I don't care for those. Why have rules in the firts place?";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "7B2";
+                                                            humenSpeak.text = "Does it have something about cannibalism? Just asking...why are you looking at me like that?";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -690,11 +690,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "7N1";
+                                                            humenSpeak.text = "Oh my god. There were so many! I didn't read through all of them.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "7N2";
+                                                            humenSpeak.text = "Ehh... kinda? I mean yes i do.";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -710,13 +710,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "7G1";
+                                                        humenSpeak.text = "Of course. I haven't red that much rules since the last time i played DarkRP. I mean there was a lot of rules.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "7G2";
+                                                        humenSpeak.text = "I know enough. Didn't read throug the whole thing.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "7G3";
+                                                        humenSpeak.text = "Rules? No i don't. Do you have a list of those with you? I can read it on my to the shack.";
                                                         break;
                                                 }
 
@@ -733,11 +733,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "8B1";
+                                                            humenSpeak.text = "I want to but they end so fast...";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "8B2";
+                                                            humenSpeak.text = "I will acquire some.";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -755,11 +755,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "8N1";
+                                                            humenSpeak.text = "Yes... wh-what kind of question is that!?";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "8N2";
+                                                            humenSpeak.text = "I don't";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -775,13 +775,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "8G1";
+                                                        humenSpeak.text = "Of cource i do! Was it necessary to ask a question like that?";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "8G2";
+                                                        humenSpeak.text = "Actually, i don't. A friend of mine asked me to pick up his children.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "8G3";
+                                                        humenSpeak.text = "I do! 4 of them in fact!";
                                                         break;
                                                 }
 
@@ -798,11 +798,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "9B1";
+                                                            humenSpeak.text = "For as long as i please.";
                                                             srangeAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "9B2";
+                                                            humenSpeak.text = "As long as my needs are satisfied.";
                                                             srangeAnswer++;
                                                             break;
                                                     }
@@ -820,11 +820,11 @@ public class Talk : MonoBehaviour
                                                     switch (randansNB)
                                                     {
                                                         case 1:
-                                                            humenSpeak.text = "9N1";
+                                                            humenSpeak.text = "I don't know.";
                                                             normalAnswer++;
                                                             break;
                                                         case 2:
-                                                            humenSpeak.text = "9N2";
+                                                            humenSpeak.text = "That doesn't matter.";
                                                             normalAnswer++;
                                                             break;
                                                     }
@@ -840,13 +840,13 @@ public class Talk : MonoBehaviour
                                                 switch (randansG)
                                                 {
                                                     case 1:
-                                                        humenSpeak.text = "9G1";
+                                                        humenSpeak.text = "For a couple of hours.";
                                                         break;
                                                     case 2:
-                                                        humenSpeak.text = "9G2";
+                                                        humenSpeak.text = "For 20 minutes or so. This might change thoug.";
                                                         break;
                                                     case 3:
-                                                        humenSpeak.text = "9G3";
+                                                        humenSpeak.text = "As far as i'm concerned, i can stay here for about a day so i'm going to do just that.";
                                                         break;
                                                 }
 
@@ -874,15 +874,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "1B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "1B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "I want ot eat... right now.";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "It's none of you concern you worthless worm!";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -894,28 +894,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "1G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "1G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "1G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I want to visit my children.";
+														break;
+													case 2:
+														humenSpeak.text = "Why are you asking? I thought... nevermind. I'm here to take my children home for a couple of days.";
+														break;
+													case 3:
+														humenSpeak.text = "Can i just pass throught? I need to talk to my children urgently.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "1N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "1N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "...";
+														break;
+													case 2:
+														humenSpeak.text = "To kidnapp some children, of course.";
+														break;
+												}
 
                                                 break;
 
@@ -930,15 +930,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "2B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "2B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "They will soon know... oh they will know!";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "It doesn't matter. Is doesn't matter. It doesn't matter.";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -950,28 +950,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "2G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "2G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "2G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Of course! I planned this visit about a week ago.";
+														break;
+													case 2:
+														humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+														break;
+													case 3:
+														humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "2N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "2N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "No, they don't. But don't worry, i'll be gone in a couple of minutes.";
+														break;
+													case 2:
+														humenSpeak.text = "Surely we can strike a deal, aye?";
+														break;
+												}
 
                                                 break;
 
@@ -986,15 +986,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "3B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "3B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "That someone might not be what you expect. Hehe...";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "There was someone! Now i'm all alone...";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1006,28 +1006,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "3G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "3G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "3G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "No, you can check if you want.";
+														break;
+													case 2:
+														humenSpeak.text = "Yes. I am here with my spouse.";
+														break;
+													case 3:
+														humenSpeak.text = "I'm here with my family. 4 people in total.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "3N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "3N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Umm... No. I'm... alone here.";
+														break;
+													case 2:
+														humenSpeak.text = "Look, is it that important? Can we just get this over with?";
+														break;
+												}
 
                                                 break;
 
@@ -1042,15 +1042,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "4B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "4B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "What's that?";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "No! It's mine! Mine! MINE!";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1062,28 +1062,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "4G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "4G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "4G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I don't have a lot of time in my schedule. Sorry for disturbing you in such time.";
+														break;
+													case 2:
+														humenSpeak.text = "Just a bad coincidence. I would visit at daytime but here we are.";
+														break;
+													case 3:
+														humenSpeak.text = "Sorry for that. Shit happens.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "4N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "4N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I forgot to take it. Shit. Oh... sorry.";
+														break;
+													case 2:
+														humenSpeak.text = "If i had it with me i wouldn't give it to you. Sorry, you just seem sketchy.";
+														break;
+												}
 
                                                 break;
 
@@ -1098,15 +1098,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "5B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "5B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "They look so good when they sleep... i can't stand it!";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "Smart hunter uses darkness as his weapon. Don't you agree?";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1118,28 +1118,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "5G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "5G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "5G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I don't have a lot of time in my schedule. Sorry for disturbing you in such time.";
+														break;
+													case 2:
+														humenSpeak.text = "Just a bad coincidence. I would visit at daytime but here we are.";
+														break;
+													case 3:
+														humenSpeak.text = "Sorry for that. Shit happens.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "5N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "5N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I didn't have a choice. Look, i'm already in a bad mood. Let me in.";
+														break;
+													case 2:
+														humenSpeak.text = "I prefer to stay awake at night.";
+														break;
+												}
 
                                                 break;
 
@@ -1154,15 +1154,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "6B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "6B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "I am most familiar with it. Heh... haha... hahahaha! HAHAHAHA!";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = ":)";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1174,28 +1174,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "6G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "6G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "6G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Yes, i am! I wasn't expecting someone like that outside of horror movie. Horrible creature.";
+														break;
+													case 2:
+														humenSpeak.text = "Kinda. My friend told me in a brief details. Sounds scary.";
+														break;
+													case 3:
+														humenSpeak.text = "Yes and i hope your camp prepared for a threat like that. I'm scared for my children.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "6N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "6N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "What? Come again?";
+														break;
+													case 2:
+														humenSpeak.text = "I... did hear about it. Why... why are you asking?";
+														break;
+												}
 
                                                 break;
 
@@ -1210,15 +1210,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "7B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "7B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "I don't care for those. Why have rules in the firts place?";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "Does it have something about cannibalism? Just asking...why are you looking at me like that?";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1230,28 +1230,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "7G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "7G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "7G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Of course. I haven't red that much rules since the last time i played DarkRP. I mean there was a lot of rules.";
+														break;
+													case 2:
+														humenSpeak.text = "I know enough. Didn't read throug the whole thing.";
+														break;
+													case 3:
+														humenSpeak.text = "Rules? No i don't. Do you have a list of those with you? I can read it on my to the shack.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "7N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "7N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Oh my god. There were so many! I didn't read through all of them.";
+														break;
+													case 2:
+														humenSpeak.text = "Ehh... kinda? I mean yes i do.";
+														break;
+												}
 
                                                 break;
 
@@ -1266,15 +1266,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "8B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "8B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "I want to but they end so fast...";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "I will acquire some.";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1286,28 +1286,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "8G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "8G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "8G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Of cource i do! Was it necessary to ask a question like that?";
+														break;
+													case 2:
+														humenSpeak.text = "Actually, i don't. A friend of mine asked me to pick up his children.";
+														break;
+													case 3:
+														humenSpeak.text = "I do! 4 of them in fact!";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "8N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "8N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "Yes... wh-what kind of question is that!?";
+														break;
+													case 2:
+														humenSpeak.text = "I don't";
+														break;
+												}
 
                                                 break;
 
@@ -1322,15 +1322,15 @@ public class Talk : MonoBehaviour
                                                 {
                                                     switch (randansNB)
                                                     {
-                                                        case 1:
-                                                            humenSpeak.text = "9B1";
-                                                            srangeAnswer++;
-                                                            break;
-                                                        case 2:
-                                                            humenSpeak.text = "9B2";
-                                                            srangeAnswer++;
-                                                            break;
-                                                    }
+														case 1:
+															humenSpeak.text = "For as long as i please.";
+															srangeAnswer++;
+															break;
+														case 2:
+															humenSpeak.text = "As long as my needs are satisfied.";
+															srangeAnswer++;
+															break;
+													}
                                                 }
                                                 else
                                                 {
@@ -1342,28 +1342,28 @@ public class Talk : MonoBehaviour
                                             case >= 0 and <= 75:
                                                 switch (randansG)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "9G1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "9G2";
-                                                        break;
-                                                    case 3:
-                                                        humenSpeak.text = "9G3";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "For a couple of hours.";
+														break;
+													case 2:
+														humenSpeak.text = "For 20 minutes or so. This might change thoug.";
+														break;
+													case 3:
+														humenSpeak.text = "As far as i'm concerned, i can stay here for about a day so i'm going to do just that.";
+														break;
+												}
 
                                                 break;
                                             case >= 75 and <= 150:
                                                 switch (randansNB)
                                                 {
-                                                    case 1:
-                                                        humenSpeak.text = "9N1";
-                                                        break;
-                                                    case 2:
-                                                        humenSpeak.text = "9N2";
-                                                        break;
-                                                }
+													case 1:
+														humenSpeak.text = "I don't know.";
+														break;
+													case 2:
+														humenSpeak.text = "That doesn't matter.";
+														break;
+												}
 
                                                 break;
 
@@ -1401,25 +1401,25 @@ public class Talk : MonoBehaviour
                 randomAnswer = Random.Range(0, 5);
                 switch (randomAnswer)
                 {
-                    case 1:
-                        humenSpeak.text = "Ku";
-                        break;
-                    case 2:
-                        humenSpeak.text = "zdarova";
-                        break;
-                    case 3:
-                        humenSpeak.text = "Nice balls";
-                        break;
-                    case 4:
-                        humenSpeak.text = "Privet";
-                        break;
-                    case 5:
-                        humenSpeak.text = "HAHAHAHAH";
-                        break;
-                    default:
-                        humenSpeak.text = "OK";
-                        break;
-                }
+					case 1:
+						humenSpeak.text = "Hi there!";
+						break;
+					case 2:
+						humenSpeak.text = "Hello.";
+						break;
+					case 3:
+						humenSpeak.text = "...";
+						break;
+					case 4:
+						humenSpeak.text = "Can i pass throught?";
+						break;
+					case 5:
+						humenSpeak.text = "Let me in.";
+						break;
+					default:
+						humenSpeak.text = "My name is Yoshikage Kira. I'm 33 years old.";
+						break;
+				}
 				chekerDisagree = false;
                 seeCallPolice = false;
                 humenSpeak.gameObject.SetActive(true);

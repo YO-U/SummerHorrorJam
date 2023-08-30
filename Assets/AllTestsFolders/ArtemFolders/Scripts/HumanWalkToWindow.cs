@@ -97,56 +97,56 @@ public class HumanWalkToWindow : MonoBehaviour
 			openCloseObject.currentChannel = 1;
 			openCloseObject.CurrentChannelCheck();
 			openCloseObject.videoPlayer.Play();
-			yield return new WaitForSeconds(8);
+			yield return new WaitForSeconds(12);
 			openCloseObject.videoPlayer.Pause();
 			NewsTxt.gameObject.SetActive(true);
-			NewsTxt.text = "We are having bad news...";
-			yield return new WaitForSeconds(3);
+			NewsTxt.text = "Breaking news! One of the recently discovered 'doppelgangers' was spotted in local area!.";
+			yield return new WaitForSeconds(4);
 			switch (impostorTag)
 			{
 				case "grandpa":
-					NewsTxt.text = "Granpa is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of eldery person. Other characteristics are unknown.";
 					break;
 				
 				case "afro":
-					NewsTxt.text = "Afro is killer...";
+					NewsTxt.text = "It seems like creature wears some kind of formal clothes. Other characteristics are unknown.";
 					break;
 				
 				case "grandma":
-					NewsTxt.text = "Grandma is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of eldery person. Other characteristics are unknown.";
 					break;
 				
 				case "man":
-					NewsTxt.text = "Man is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of human male. Other characteristics are unknown.";
 					break;
 				
 				case "asianwoman":
-					NewsTxt.text = "Asianwoman is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the young female. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairblack":
-					NewsTxt.text = "Womangairblack is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the young female. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairwhite":
-					NewsTxt.text = "Womanhairwhite is killer...";
+					NewsTxt.text = "It seems like creature wears some kind of formal clothes. Other characteristics are unknown.";
 					break;
 				
 				case "womanblueshirt":
-					NewsTxt.text = "Womanblueshirt is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the human female. Other characteristics are unknown.";
 					break;
 				
 				case "manyoung":
-					NewsTxt.text = "Manyoung is killer...";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young male. Other characteristics are unknown.";
 					break;
 			}
-			yield return new WaitForSeconds(3);
-			NewsTxt.text = "Be save and thanks for listen...";
-			yield return new WaitForSeconds(3);
-			NewsTxt.text = "Now about something important...";
 			yield return new WaitForSeconds(4);
-			NewsTxt.gameObject.SetActive(false);
 			movingCar.readyToDepart = true;
+			NewsTxt.text = "Please notify the police if you see someone who fits the description and acts strange.";
+			yield return new WaitForSeconds(4);
+			NewsTxt.text = "Keep in mind that those creatures are extremely violent. Keep yourself safe. End of broadcast.";
+			yield return new WaitForSeconds(5);
+			NewsTxt.gameObject.SetActive(false);
 			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
 		}
