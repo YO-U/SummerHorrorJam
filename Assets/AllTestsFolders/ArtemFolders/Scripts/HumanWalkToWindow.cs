@@ -15,6 +15,7 @@ public class HumanWalkToWindow : MonoBehaviour
     [SerializeField] private CameraMove cameraMove;
     public bool leavingSequence = false;
     private MovingCar car;
+    private OpenCloseObject window;
     private bool humanChecker = true;
     public bool beenRejected;
     public GameObject human;
@@ -41,20 +42,29 @@ public class HumanWalkToWindow : MonoBehaviour
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
     public TextMeshProUGUI NewsTxt;
+    private bool PoshelNaherClosedWindow=false;
+    private float timer;
+    public float timerMax = 20f;
 
     private void Start()
     {
+	    timer = timerMax;
 	    NewsTxt.gameObject.SetActive(false);
 		rng = new System.Random();
+		window = FindObjectOfType<OpenCloseObject>();
         car = FindObjectOfType<MovingCar>();
 		rng.Shuffle(humansArray);
-		imposter = Random.Range(2, 6);
+		imposter = Random.Range(0, 1);
 		impostorTag = humansArray[imposter].gameObject.tag;
     }
     
     private void Update()
     {
         if (!movingCar.isNextCarReady) CarPositionCheck();
+        if (hCreatedCh)
+        {
+	        TimerClosedWindow();
+        }
     }
 
     private void CarPositionCheck()
@@ -69,6 +79,26 @@ public class HumanWalkToWindow : MonoBehaviour
 			}
 		}
 	}
+
+    private void TimerClosedWindow()
+    {
+	    if (timer >0 && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false)
+	    {
+		    timer -= Time.deltaTime;
+	    }else if (timer <= 0  && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false) 
+	    {
+		    StartCoroutine(HumanNahuiPoshel());
+		    didImposterNahuiPoshel = true;
+		    beenRejected = true;
+		    PoshelNaherClosedWindow = true;
+		    timer = timerMax;
+	    }
+	    if (window.windowOpened)
+	    {
+		    timer = timerMax;
+	    }
+	   
+    }
 
     public IEnumerator HumanNahuiPoshel()
     {
@@ -176,6 +206,7 @@ public class HumanWalkToWindow : MonoBehaviour
     {
 
 		hCreatedCh = false;
+		PoshelNaherClosedWindow = false;
 
 		for (int i = currentPointIndex-1; i != -1; i--)
 		{
