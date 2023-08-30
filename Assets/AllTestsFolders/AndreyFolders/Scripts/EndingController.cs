@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -18,31 +19,57 @@ public class EndingController : MonoBehaviour
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private MovingCar movingCar;
     [SerializeField] private HumanWalkToWindow humanWalk;
+
+    public CanvasGroup canvas;
+    public TextMeshProUGUI endText;
+    public float fadeInDuration = 1.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        canvas.alpha = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         StartCoroutine(StartEnding());
+        endText.gameObject.SetActive(false);
     }
 
     private void EndingSelector()
     {
+	    StartCoroutine(FadeInCanvas());
         switch (endingNumber)
         {
-            case 0:
+	        case 0:
+	            endText.text = "0";
                 break; 
             case 1:
+	            endText.text = "1";
                 break; 
             case 2:
+	            endText.text = "2";
                 break;
             case 3:
+	            endText.text = "3";
                 break;
         }
+    }
+    private IEnumerator FadeInCanvas()
+    {
+	    float elapsedTime = 0f;
+
+	    while (elapsedTime < fadeInDuration)
+	    {
+		    float normalizedTime = elapsedTime / fadeInDuration;
+		    canvas.alpha = Mathf.Lerp(0f, 1f, normalizedTime);
+
+		    elapsedTime += Time.deltaTime;
+		    yield return null;
+	    }
+	    endText.gameObject.SetActive(false);
+	    canvas.alpha = 1f; // Ensure it's fully visible at the end
     }
 
     private IEnumerator StartEnding()
