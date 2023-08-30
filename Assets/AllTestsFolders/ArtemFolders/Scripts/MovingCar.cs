@@ -85,8 +85,16 @@ public class MovingCar : MonoBehaviour
         {
             if (humanWalk.didImposterNahuiPoshel)
             {
-				endingController.IsEndingStarting = true;
-				endingController.endingNumber = 3;
+                if (humanWalk.amountOfHappyHumans >= 4)
+                {
+					endingController.IsEndingStarting = true;
+					endingController.endingNumber = 3;
+				}
+				if (humanWalk.amountOfHappyHumans < 4)
+				{
+					endingController.IsEndingStarting = true;
+					endingController.endingNumber = 6;
+				}
 			}
 			else if (humanWalk.didImposterGotIn)
 			{
