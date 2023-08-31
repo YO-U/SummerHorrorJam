@@ -34,7 +34,7 @@ public class SCrimers : MonoBehaviour
 
     private void Update()
     {
-        if (monsterChecker.currentHuman < 2)
+        if (monsterChecker.currentHuman > 2)
         { 
             if (monsterChecker.currentHuman >= 3 && camera.mid && spawnInForestCheck ==false)
             {
