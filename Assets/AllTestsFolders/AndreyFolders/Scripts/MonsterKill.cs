@@ -33,7 +33,7 @@ public class MonsterKill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		LookAtMonster();
+
     }
 
     public IEnumerator SpawnMonsterRemoveHuman()
@@ -70,14 +70,6 @@ public class MonsterKill : MonoBehaviour
 			endingController.IsEndingStarting = true;
 			Destroy(monster);
 			MonsterSpawned = false;
-		}
-	}
-
-	private void LookAtMonster()
-	{
-		if (MonsterSpawned && IsdoorBroken)
-		{
-			cameraMove.cameraPos.LookAt(monster.transform);
 		}
 	}
 

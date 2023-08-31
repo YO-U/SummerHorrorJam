@@ -30,6 +30,8 @@ public class MovingCar : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(StartDelay());
+        isBoostReady = false;
     }
 
     private void Update()
@@ -143,5 +145,11 @@ public class MovingCar : MonoBehaviour
 			isNextCarReady = true;
 			isBoostReady = true;
 		}
+    }
+
+    private IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(20);
+        isBoostReady = true;
     }
 }
