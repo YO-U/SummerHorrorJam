@@ -147,7 +147,7 @@ public class HumanWalkToWindow : MonoBehaviour
 			switch (impostorTag)
 			{
 				case "grandpa":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of eldery person. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of elderly person. Other characteristics are unknown.";
 					break;
 				
 				case "afro":
@@ -155,7 +155,7 @@ public class HumanWalkToWindow : MonoBehaviour
 					break;
 				
 				case "grandma":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of eldery person. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of elderly person. Other characteristics are unknown.";
 					break;
 				
 				case "man":

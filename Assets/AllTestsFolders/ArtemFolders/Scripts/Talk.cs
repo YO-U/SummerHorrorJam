@@ -86,7 +86,7 @@ public class Talk : MonoBehaviour
         }
 
 
-        if (_phone.call && window.windowOpened && camera.right && !didHumanGotScared)
+        if (_phone.call && window.windowOpened && camera.right && !didHumanGotScared && human.currentHuman != human.imposter)
         {
             didHumanGotScared = true;
             humenSpeak.gameObject.SetActive(true);

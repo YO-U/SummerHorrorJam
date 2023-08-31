@@ -75,7 +75,7 @@ public class MonsterKill : MonoBehaviour
 
 	private void LookAtMonster()
 	{
-		if (MonsterSpawned && doorBroken)
+		if (MonsterSpawned && IsdoorBroken)
 		{
 			cameraMove.cameraPos.LookAt(monster.transform);
 		}
