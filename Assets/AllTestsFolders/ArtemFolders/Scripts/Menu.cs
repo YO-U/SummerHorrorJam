@@ -63,7 +63,7 @@ public class Menu : MonoBehaviour
               //  {
                     StartCoroutine(StartTxt());
                // }
-            }
+            }  
         }
         if (switcher == 1)
         {
@@ -150,5 +150,6 @@ public class Menu : MonoBehaviour
         start.text = "gay";
         yield return new WaitForSeconds(speedScrolStartText);
         SceneManager.LoadScene(1);
+		SceneManager.UnloadSceneAsync(0);
     }
 }

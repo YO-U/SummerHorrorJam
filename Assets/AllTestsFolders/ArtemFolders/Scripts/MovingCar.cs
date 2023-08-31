@@ -3,6 +3,7 @@ using DG.Tweening.Plugins.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Range = UnityEngine.SocialPlatforms.Range;
@@ -118,7 +119,8 @@ public class MovingCar : MonoBehaviour
 			currentDestination -= moveChange*3;
 			gm.transform.DOLocalMoveX(currentDestination, 12f);
             readyToDepart = false;
-			yield return new WaitForSeconds(20);
+			int rng = Random.Range(30, 61);
+			yield return new WaitForSeconds(rng);
             Destroy(gm);
             currentDestination = 4.4f;
             isNextCarReady = true;
@@ -133,7 +135,8 @@ public class MovingCar : MonoBehaviour
             gm.transform.DOPath(carDepartPath, 10f, PathType.CatmullRom, PathMode.Full3D, 5, Color.green);
             gm.transform.DORotate(new Vector3(0, 180, 0), 4f, RotateMode.LocalAxisAdd);
 			readyToDepart = false;
-			yield return new WaitForSeconds(20);
+            int rng = Random.Range(30, 61);
+			yield return new WaitForSeconds(rng);
 			Destroy(gm);
             humanWalk.beenRejected = false;
 			currentDestination = 4.4f;

@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -13,7 +12,6 @@ public class EndingController : MonoBehaviour
     public int endingNumber = 0;
     public bool IsEndingStarting;
     public bool IsEndingStart = false;
-    private bool HasSceneStarted = false;
     [SerializeField] private string[] firstEndingText;
 	[SerializeField] private string[] secondEndingText;
 	[SerializeField] private string[] thirdEndingText;
@@ -21,7 +19,7 @@ public class EndingController : MonoBehaviour
 	[SerializeField] private string[] fifthEndingText;
 	[SerializeField] private string[] sixEndingText;
 	[SerializeField] private string[] sevenEndingText;
-	[SerializeField] private Canvas blackScreen;
+	public Canvas blackScreen;
     [SerializeField] private OpenCloseObject openCloseObject;
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private MovingCar movingCar;
@@ -75,7 +73,7 @@ public class EndingController : MonoBehaviour
         for (int i = 0; i <= stringArray.Length-1; i++)
         {
             endText.text = stringArray[i];
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(7);
         }
     }
 
@@ -112,11 +110,11 @@ public class EndingController : MonoBehaviour
 			DOTweenModuleAudio.DOFade(cameraMove.tvAudioSource, 0.02f, 3);
 			endText.gameObject.SetActive(true);
 			EndingSelector();
-			yield return new WaitForSeconds(25);
+			yield return new WaitForSeconds(35);
 			blackScreen.GetComponent<Image>().DOColor(Color.black, 3);
 			yield return new WaitForSeconds(3);
-			SceneManager.UnloadSceneAsync(1);
 			SceneManager.LoadScene(0);
+			SceneManager.UnloadSceneAsync(1);
 		}
     }
 }

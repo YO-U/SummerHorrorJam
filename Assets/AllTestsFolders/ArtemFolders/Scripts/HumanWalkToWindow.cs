@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,13 +33,15 @@ public class HumanWalkToWindow : MonoBehaviour
 	public bool wasImposterEncountered = false;
 	public string impostorTag;
 	public bool tvSceneHappenned = false;
+	[SerializeField] private EndingController endingController;
 	[SerializeField] private OpenCloseObject openCloseObject;
-	[SerializeField] private Transform cameraPosition;
+	public Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
     [SerializeField] private MovingCar movingCar;
+	[SerializeField] private MonsterKill monsterKill;
     public int currentHuman = -1;
     public float humanSpeed = 0.01f;
     public bool hCreatedCh = false;
@@ -83,7 +86,7 @@ public class HumanWalkToWindow : MonoBehaviour
 
     private void TimerClosedWindow()
     {
-	    if (timer >0 && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false)
+		if (timer > 0 && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow == false)
 	    {
 		    timer -= Time.deltaTime;
 	    }
@@ -94,6 +97,12 @@ public class HumanWalkToWindow : MonoBehaviour
 		    PoshelNaherClosedWindow = true;
 		    timer = timerMax;
 	    }
+		else if (timer <= 0 && hCreatedCh && currentHuman == imposter && cameraMove.currentState != "mid" && !endingController.IsEndingStart)
+		{
+			endingController.endingNumber = 7;
+			StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
+		}
+
 	    if (window.windowOpened || humanChecker)
 	    {
 		    timer = timerMax;
@@ -133,7 +142,7 @@ public class HumanWalkToWindow : MonoBehaviour
 			openCloseObject.videoPlayer.Pause();
 			NewsTxt.gameObject.SetActive(true);
 			NewsTxt.text = "Breaking news! One of the recently discovered 'doppelgangers' who can mimic humans was spotted near 'West Woods' camp!";
-			yield return new WaitForSeconds(6);
+			yield return new WaitForSeconds(8);
 			movingCar.readyToDepart = true;
 			switch (impostorTag)
 			{
@@ -150,15 +159,15 @@ public class HumanWalkToWindow : MonoBehaviour
 					break;
 				
 				case "man":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of human male. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young male. Other characteristics are unknown.";
 					break;
 				
 				case "asianwoman":
-					NewsTxt.text = "It seems like creature 'transformed' to the young female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young female. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairblack":
-					NewsTxt.text = "It seems like creature 'transformed' to the young female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young female. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairwhite":
@@ -166,18 +175,18 @@ public class HumanWalkToWindow : MonoBehaviour
 					break;
 				
 				case "womanblueshirt":
-					NewsTxt.text = "It seems like creature 'transformed' to the human female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of female. Other characteristics are unknown.";
 					break;
 				
 				case "manyoung":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of young male. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of male. Other characteristics are unknown.";
 					break;
 			}
-			yield return new WaitForSeconds(6);
+			yield return new WaitForSeconds(8);
 			NewsTxt.text = "Please notify the police if you see someone who fits the description and acts strange.";
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(7);
 			NewsTxt.text = "Keep in mind that those creatures are extremely violent. Keep yourself safe. End of broadcast.";
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(7);
 			NewsTxt.gameObject.SetActive(false);
 			openCloseObject.videoPlayer.Play();
 			openCloseObject.inputEvailable = true;
