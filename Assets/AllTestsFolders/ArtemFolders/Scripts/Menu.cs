@@ -47,7 +47,8 @@ public class Menu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 SceneManager.LoadScene(1);
-            }
+				SceneManager.UnloadSceneAsync(0);
+			}
         }
         if (switcher == 1)
         {

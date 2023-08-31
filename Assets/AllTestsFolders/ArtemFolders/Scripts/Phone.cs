@@ -24,6 +24,7 @@ public class Phone : MonoBehaviour
     public bool call = false;
     private int currentButtonIndex = 0;
     private bool chekerCanvas = false;
+	[SerializeField] private MonsterKill monsterKill;
 
     private void Start()
     {
@@ -65,11 +66,12 @@ public class Phone : MonoBehaviour
 					endingController.endingNumber = 0;
 					call = true;
 				}
-				else if (humans.humansSinceTheImposter < 1 && openCloseObject.windowOpened)
+				else if (humans.currentHuman == humans.imposter && openCloseObject.windowOpened)
 				{
 					humans.wasPoliceCalledInTime = true;
 					endingController.endingNumber = 5;
 					call = true;
+					StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
 				}
 				else
 				{
