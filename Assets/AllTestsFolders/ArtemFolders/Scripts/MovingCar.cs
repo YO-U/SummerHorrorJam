@@ -41,7 +41,7 @@ public class MovingCar : MonoBehaviour
     {
         SpawnCar();
 
-        MoveCar();
+        StartCoroutine(MoveCar());
 
         StartCoroutine(MoveCarIntoCamp());
 
@@ -61,7 +61,7 @@ public class MovingCar : MonoBehaviour
         //}
     }
 
-    private void MoveCar()
+    private IEnumerator MoveCar()
     {
         if (isBoostReady && spawnSiren && endingController.endingNumber <= 2)
         {
@@ -71,9 +71,19 @@ public class MovingCar : MonoBehaviour
 		}
         else if (isBoostReady && !spawnSiren)
         {
-			currentDestination -= moveChange/2;
+			currentDestination -= moveChange/3;
 			gm.transform.DOLocalMoveX(currentDestination, 5f);
 			isBoostReady = false;
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 0, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 0, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+            policeLights.GetComponent<AudioSource>().Stop();
 		}
 	}
 

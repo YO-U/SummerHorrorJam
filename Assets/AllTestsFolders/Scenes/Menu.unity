@@ -9291,7 +9291,7 @@ MonoBehaviour:
   canvaseCredits: {fileID: 1305725931}
   canvasStartGame: {fileID: 246759812}
   fadeInDuration: 1
-  speedScrolStartText: 2
+  speedScrolStartText: 5
 --- !u!4 &510302180
 Transform:
   m_ObjectHideFlags: 0

@@ -60,8 +60,8 @@ public class MonsterKill : MonoBehaviour
 			yield return new WaitForSeconds(4);
 			doorBash.Play();
 			yield return new WaitForSeconds(2);
-			doorBash.Play();
 			doorBroken.Play();
+			yield return new WaitForSeconds(2);
 			door.transform.DOLocalMove(new Vector3(0.536f, -0.005f, -1.328f), 0.1f);
 			door.transform.DOLocalRotate(new Vector3(-90, 0, 13), 0.1f);
 			openClose.inputEvailable = false;
@@ -70,7 +70,7 @@ public class MonsterKill : MonoBehaviour
 			yield return new WaitForSeconds(5);
 			monster.GetComponent<Animator>().SetBool("IsRunning", true);
 			Stinger.Play();
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(0.6f);
 			ghostCHoir.Stop();
 			endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().color = Color.black;
 			endingController.IsEndingStarting = true;

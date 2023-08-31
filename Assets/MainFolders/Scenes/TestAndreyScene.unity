@@ -14186,7 +14186,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 43f8e650b798cb84c8e839ff378bc61c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 0
   Loop: 0
   Mute: 0
@@ -23023,7 +23023,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fc240232f926d014f8d9925ab5aa30d7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -24635,6 +24635,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3659671371412702050, guid: 12e3ed9452876154ab85424c1eed97ce, type: 3}
   m_PrefabInstance: {fileID: 1052282189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1052816845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052816846}
+  - component: {fileID: 1052816847}
+  m_Layer: 0
+  m_Name: windowBonk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1052816846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052816845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.517, y: 0.0607, z: -0.9219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1860519449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1052816847
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052816845}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ae0735bd1710e9740bdfe2a899e32d97, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1058195253
 GameObject:
   m_ObjectHideFlags: 0
@@ -26877,6 +27005,7 @@ MonoBehaviour:
   openCloseObject: {fileID: 1156071075}
   cameraPosition: {fileID: 1957362839}
   carSoundOpen: {fileID: 709772480}
+  windowBonk: {fileID: 1052816847}
   carSoundClose: {fileID: 1993620332}
   currentPointIndex: 0
   humanAnimator: {fileID: 0}
@@ -26952,7 +27081,7 @@ MonoBehaviour:
   - Our country's lead scientists are already studying it's behaviour and soon we
     might find something to oppose them!
   - But as of now, stay vigilant and try to avoid contant with doppelgangers.
-  - Thank you for you attention!
+  - Let's move to another topics...
   secondEndingText:
   - 'Today''s topic: doppelgangers. If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
@@ -26962,7 +27091,7 @@ MonoBehaviour:
     something to defend from them.
   - This situation is an another reminder to stay vigilant and to contact police
     as soon as you see one of those creatures.
-  - Thank you for you attention.
+  - Let's move to another topics...
   thirdEndingText:
   - 'Today''s topic: doppelgangers! If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
@@ -26970,13 +27099,13 @@ MonoBehaviour:
     were found. He was fired for misinformation.
   - Doppelganger may be still somewhere in that area. If you encounter said creature
     immediatly notify the police.
-  - Thank you for you attention!
+  - Let's move to another topics...
   fourEndingText:
   - 'Today''s topic: doppelgangers! If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
   - Sadly, there is currently no addition info about situation in that region.
   - If you are currently at or near that camp be very careful.
-  - Thank you for you attention!
+  - Let's move to another topics...
   fifthEndingText:
   - 'Today''s topic: doppelgangers. If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
@@ -26985,7 +27114,7 @@ MonoBehaviour:
   - 'It is speculated that that was doppelganger''s work. There were no cases when
     these creatures were that bloodthirsty. '
   - Investigation is still going. This incident is an another reminder to stay vigilant.
-  - Thank you for you attention.
+  - Let's move to another topics...
   sixEndingText:
   - 'Today''s topic: doppelgangers. If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
@@ -26993,21 +27122,29 @@ MonoBehaviour:
     was eaten alive by this creature.
   - It is speculated that he died a hero, trying to save camp residents.
   - Creature was caught and is now under research. We hope, that those vile creatures
-    won't will soon be dealt with.
-  - Thank you for you attention.
+    will soon be dealt with.
+  - Let's move to another topics...
   sevenEndingText:
   - 'Today''s topic: doppelgangers! If you remember previous broadcast you may remember
     that somewhere around ''West Woods'' one of them was spotted.'
   - Sadly, there is currently no addition info about situation in that region.
   - But as for a summer camp we have some spicy news! Local guard was fired because
     of extreme visitor dissatiftaction!
-  - That's all for now. Thank you for you attention!
+  - Let's move to another topics...
+  eightEndingText:
+  - 'Today''s topic: doppelgangers! If you remember previous broadcast you may remember
+    that somewhere around ''West Woods'' one of them was spotted.'
+  - Sadly, encounter with a doppelgangers is a very dangerous situation. Local guard
+    was eaten alive by this creature.
+  - It's status and whereabouts are unknown. Please, inform police if you encounter
+    someoone of creature's description.
+  - Let's move to another topics...
   blackScreen: {fileID: 1652169130}
   openCloseObject: {fileID: 1156071075}
   cameraMove: {fileID: 1156071072}
   movingCar: {fileID: 1156071074}
   humanWalk: {fileID: 1156071077}
-  canvas: {fileID: 0}
+  canvas: {fileID: 555870523}
   endText: {fileID: 1347944025}
   fadeInDuration: 1
 --- !u!114 &1156071081
@@ -31654,7 +31791,7 @@ Transform:
   m_GameObject: {fileID: 1369956256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5831, y: 0, z: 0.865}
+  m_LocalPosition: {x: -1.5831, y: 0, z: 0.8812}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43728,7 +43865,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 4
-  m_Range: 0.5
+  m_Range: 0.3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -43921,6 +44058,7 @@ Transform:
   - {fileID: 179044301}
   - {fileID: 1133492129}
   - {fileID: 1993427774}
+  - {fileID: 1052816846}
   - {fileID: 709772479}
   - {fileID: 170235043}
   - {fileID: 1993620331}
@@ -45435,9 +45573,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c4cc60587c7ecee4b816cedb54bac290, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -45481,7 +45619,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.7
       inSlope: 0
       outSlope: 0
       tangentMode: 0

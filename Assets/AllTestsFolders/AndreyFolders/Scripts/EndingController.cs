@@ -19,6 +19,7 @@ public class EndingController : MonoBehaviour
 	[SerializeField] private string[] fifthEndingText;
 	[SerializeField] private string[] sixEndingText;
 	[SerializeField] private string[] sevenEndingText;
+	[SerializeField] private string[] eightEndingText;
 	public Canvas blackScreen;
     [SerializeField] private OpenCloseObject openCloseObject;
     [SerializeField] private CameraMove cameraMove;
@@ -64,6 +65,9 @@ public class EndingController : MonoBehaviour
 				break;
 			case 6:
 				StartCoroutine(EndingText(sevenEndingText));
+				break;
+			case 7:
+				StartCoroutine(EndingText(eightEndingText));
 				break;
 		}
     }

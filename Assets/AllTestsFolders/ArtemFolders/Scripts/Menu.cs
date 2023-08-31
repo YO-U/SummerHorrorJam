@@ -141,13 +141,11 @@ public class Menu : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         start.gameObject.SetActive(true);
-        start.text = "esli";
+        start.text = "Today is my first day as the summer camp guard.";
         yield return new WaitForSeconds(speedScrolStartText);
-        start.text = "cho";
+        start.text = "I don't know much about the job, but it seems pretty chill.";
         yield return new WaitForSeconds(speedScrolStartText);
-        start.text = "ti";
-        yield return new WaitForSeconds(speedScrolStartText);
-        start.text = "gay";
+        start.text = "Thankfully previous guard gave me his notes.";
         yield return new WaitForSeconds(speedScrolStartText);
         SceneManager.LoadScene(1);
 		SceneManager.UnloadSceneAsync(0);

@@ -37,6 +37,7 @@ public class HumanWalkToWindow : MonoBehaviour
 	[SerializeField] private OpenCloseObject openCloseObject;
 	public Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
+	[SerializeField] private AudioSource windowBonk;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
@@ -48,7 +49,7 @@ public class HumanWalkToWindow : MonoBehaviour
     public TextMeshProUGUI NewsTxt;
     private bool PoshelNaherClosedWindow=false;
     private float timer;
-    public float timerMax = 20f;
+    public float timerMax = 30f;
 
     private void Start()
     {
@@ -97,6 +98,10 @@ public class HumanWalkToWindow : MonoBehaviour
 		    PoshelNaherClosedWindow = true;
 		    timer = timerMax;
 	    }
+		else if (timer <= 15 && !(currentHuman == imposter) && hCreatedCh)
+		{
+			windowBonk.Play();
+		}
 		else if (timer <= 0 && hCreatedCh && currentHuman == imposter && cameraMove.currentState != "mid" && !endingController.IsEndingStart)
 		{
 			endingController.endingNumber = 7;
@@ -107,7 +112,6 @@ public class HumanWalkToWindow : MonoBehaviour
 	    {
 		    timer = timerMax;
 	    }
-	   
     }
 
     public IEnumerator HumanNahuiPoshel()
@@ -246,7 +250,6 @@ public class HumanWalkToWindow : MonoBehaviour
 		human = Instantiate(humansArray[currentHuman], pointsArray[0].position, Quaternion.identity) as GameObject;
 		if (currentHuman == imposter)
 		{
-			human.transform.DOScale(new Vector3(0.3f,0.3f,0.3f), 1);
 			wasImposterEncountered = true;
 		}
 		else if (wasImposterEncountered)
