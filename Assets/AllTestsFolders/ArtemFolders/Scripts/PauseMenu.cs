@@ -7,73 +7,25 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject canvasPauseMenu;
-    public TextMeshProUGUI BackMenu;
-    public TextMeshProUGUI resume;
-    public GameObject scripts;
-    private bool isTimePaused = false;
-    private bool switcher= false;
-    private bool chekerCanvase = true;
-    private void Start()
-    {
-        canvasPauseMenu.SetActive(false);
-    }
-
+    private bool ch1=false;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            scripts.SetActive(false);
-            chekerCanvase = true;
-            PauseTime();
-            canvasPauseMenu.SetActive(true);
+            ch1 =true;
+            StartCoroutine(StartEnding());
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    if (switcher)
-                    {
-                        switcher = false;
-                    }
-                    else
-                    {
-                        switcher = true;
-                    }
-                }
-
-                if (switcher)
-                {
-                    BackMenu.text = "   >Back to the menu";
-                    resume.text = "Resume";
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        ResumeTime();
-                        SceneManager.LoadScene(0);
-                    }
-                }
-                else
-                {
-                    BackMenu.text = "Back to the menu";
-                    resume.text = "   >Resume";
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        ResumeTime();
-                        scripts.SetActive(true);
-                        canvasPauseMenu.SetActive(false);
-                    }
-                }
-            
-        
-    }
-    void PauseTime()
-    {
-        Time.timeScale = 0f; // Остановка времени
-        isTimePaused = true;
+        if (Input.GetKeyDown(KeyCode.Escape) && ch1)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
-    void ResumeTime()
+    private IEnumerator StartEnding()
     {
-        Time.timeScale = 1f; // Возобновление времени
-        isTimePaused = false;
+        yield return new WaitForSeconds(1);
+        ch1 = false;
     }
 }

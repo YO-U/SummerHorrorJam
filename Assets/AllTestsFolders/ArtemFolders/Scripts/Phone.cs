@@ -65,6 +65,8 @@ public class Phone : MonoBehaviour
 					humans.wasPoliceCalledInTime = true;
 					endingController.endingNumber = 0;
 					call = true;
+					btnsEmp.SetActive(false);
+					
 				}
 				else if (humans.currentHuman == humans.imposter && openCloseObject.windowOpened)
 				{
@@ -72,12 +74,14 @@ public class Phone : MonoBehaviour
 					endingController.endingNumber = 5;
 					call = true;
 					StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
+					btnsEmp.SetActive(false);
 				}
 				else
 				{
 					humans.wasPoliceCalled = true;
 					endingController.endingNumber = 1;
 					call = true;
+					btnsEmp.SetActive(false);
 				}
 			}
 			else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
@@ -85,6 +89,7 @@ public class Phone : MonoBehaviour
 				humans.wasPoliceCalledEarly = true;
 				endingController.endingNumber = 2;
 				call = true;
+				btnsEmp.SetActive(false);
 			}
 			else if (currentButtonIndex == 1)
 			{
