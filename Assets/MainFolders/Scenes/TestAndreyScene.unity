@@ -5500,7 +5500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RandomQuest
+  m_text: Call police
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: abd90b683377a2c4aa315ec662a3f7d8, type: 2}
   m_sharedMaterial: {fileID: -9024870322574717520, guid: abd90b683377a2c4aa315ec662a3f7d8, type: 2}
@@ -26759,6 +26759,7 @@ MonoBehaviour:
   currentDestination: 4.4
   rejectDestination: 6
   moveChange: 2.2
+  monsterKill: {fileID: 0}
 --- !u!114 &1156071075
 MonoBehaviour:
   m_ObjectHideFlags: 0
