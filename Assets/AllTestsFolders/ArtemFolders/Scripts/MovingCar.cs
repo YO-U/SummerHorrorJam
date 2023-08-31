@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Range = UnityEngine.SocialPlatforms.Range;
 
@@ -31,7 +32,8 @@ public class MovingCar : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDelay());
+        endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().color = Color.black;
+		StartCoroutine(StartDelay());
         isBoostReady = false;
     }
 
@@ -151,7 +153,8 @@ public class MovingCar : MonoBehaviour
 
     private IEnumerator StartDelay()
     {
-        yield return new WaitForSeconds(20);
+        endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().DOColor(Color.clear, 3);
+		yield return new WaitForSeconds(20);
         isBoostReady = true;
     }
 }
