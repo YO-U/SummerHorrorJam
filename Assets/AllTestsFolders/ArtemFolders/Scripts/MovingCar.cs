@@ -27,6 +27,7 @@ public class MovingCar : MonoBehaviour
     [SerializeField] private float currentDestination;
     [SerializeField] private float rejectDestination;
     [SerializeField] private float moveChange;
+    [SerializeField] private MonsterKill monsterKill;
 
     private void Start()
     {
@@ -103,6 +104,7 @@ public class MovingCar : MonoBehaviour
 			{
 				endingController.IsEndingStarting = true;
 				endingController.endingNumber = 4;
+                StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
 			}
 		}
 		else if (isNextCarReady && humanWalk.currentHuman != 6 && humanWalk.humansSincePoliceCall <= 2 && !endingController.IsEndingStart)

@@ -40,10 +40,14 @@ public class MonsterKill : MonoBehaviour
     {
 		if (!MonsterSpawned && !HasMonsterSequenceStarted)
 		{
+			DOTweenModuleAudio.DOFade(cameraMove.tvAudioSource, 0.02f, 3);
 			ghostCHoir.Play();
 			HasMonsterSequenceStarted = true;
 			MonsterSpawned = true;
-			human.human.transform.position = new Vector3(4, 4, 4);
+			if(human.human != null)
+			{
+				human.human.transform.position = new Vector3(4, 4, 4);
+			}
 			human.hCreatedCh = false;
 			yield return new WaitForSeconds(10);
 			monster = Instantiate(monsterStock, pointsArray[0].position, Quaternion.identity) as GameObject;
@@ -51,21 +55,23 @@ public class MonsterKill : MonoBehaviour
 			monster.GetComponent<Animator>().SetBool("IsRunning", true);
 			StartCoroutine(MonsterMove());
 			yield return new WaitForSeconds(5);
+			monster.transform.DOLocalRotate(new Vector3(0, 180, 0), 0.1f);
 			doorHandle.Play();
 			yield return new WaitForSeconds(4);
 			doorBash.Play();
 			yield return new WaitForSeconds(2);
 			doorBash.Play();
 			doorBroken.Play();
-			door.transform.localPosition = new Vector3(0.536f, -0.005f, -1.328f);
-			door.transform.localRotation = new Quaternion(-90, 0, 13, 1);
+			door.transform.DOLocalMove(new Vector3(0.536f, -0.005f, -1.328f), 0.1f);
+			door.transform.DOLocalRotate(new Vector3(-90, 0, 13), 0.1f);
 			openClose.inputEvailable = false;
 			IsdoorBroken = true;
+			cameraMove.cameraPos.transform.DORotate(new Vector3(0, 0 ,0), 1f);
 			yield return new WaitForSeconds(5);
 			monster.GetComponent<Animator>().SetBool("IsRunning", true);
 			Stinger.Play();
-			cameraMove.cameraPos.LookAt(monster.transform);
 			yield return new WaitForSeconds(1);
+			ghostCHoir.Stop();
 			endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().color = Color.black;
 			endingController.IsEndingStarting = true;
 			Destroy(monster);
