@@ -10408,6 +10408,7 @@ MonoBehaviour:
   canvaseGuide: {fileID: 1479448136}
   canvaseCredits: {fileID: 1305725931}
   canvasStartGame: {fileID: 246759812}
+  Cameracam: {fileID: 1497834014}
   isFullscreen: 1
   fadeInDuration: 1
   speedScrolStartText: 4

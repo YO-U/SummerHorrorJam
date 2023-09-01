@@ -17,6 +17,7 @@ public class Menu : MonoBehaviour
     public GameObject canvaseGuide;
     public GameObject canvaseCredits;
     public CanvasGroup canvasStartGame;
+    [SerializeField] private Camera Cameracam;
     public bool isFullscreen = true;
     public float fadeInDuration = 1.0f;
     public int speedScrolStartText = 2;
@@ -27,9 +28,9 @@ public class Menu : MonoBehaviour
     private void Start()
     {
         canvasStartGame.alpha = 0f;
-    }
+	}
 
-    public void Update()
+	public void Update()
     {
         if (Input.GetKeyDown(KeyCode.S)&&chekerCanvase)
         {
@@ -176,7 +177,10 @@ public class Menu : MonoBehaviour
 
 	public void setFullscreen(bool fullscreen)
 	{
-		if (fullscreen) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-		else Screen.fullScreenMode = FullScreenMode.Windowed;
+        if (fullscreen) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        else
+        {
+			Screen.fullScreenMode = FullScreenMode.Windowed;
+		}
 	}
 }
