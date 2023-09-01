@@ -51,7 +51,7 @@ public class OpenCloseObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	    if (shift)
+	    if (shift == false)
 	    {
 		    if (inputEvailable) 
 		    { 
