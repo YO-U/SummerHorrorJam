@@ -12,6 +12,7 @@ public class Phone : MonoBehaviour
     private CameraMove cm;
     [SerializeField] private EndingController endingController;
 	[SerializeField] private OpenCloseObject openCloseObject;
+	[SerializeField] private AudioSource policeConformation;
     private HumanWalkToWindow humans;
     public TextMeshProUGUI textToFade;
     public GameObject btnsEmp;
@@ -25,8 +26,9 @@ public class Phone : MonoBehaviour
     private int currentButtonIndex = 0;
     private bool chekerCanvas = false;
 	[SerializeField] private MonsterKill monsterKill;
+	[SerializeField] private Talk talk;
 
-    private void Start()
+	private void Start()
     {
         cm = FindObjectOfType<CameraMove>();
         humans = FindObjectOfType<HumanWalkToWindow>();
@@ -35,77 +37,90 @@ public class Phone : MonoBehaviour
 
     private void Update()
     {
-		if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
+		if (call == false)
 		{
-			StartCoroutine(FadeInOutText());
-		}
-		if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
-
-			if (currentButtonIndex == 1)
+			if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
 			{
-				txtBtn1.text = "   >Cancel";
-				txtBtn2.text = "Call police";
+				StartCoroutine(FadeInOutText());
 			}
-			else
+			if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
 			{
-				txtBtn1.text = "Cancel";
-				txtBtn2.text = "   >Call police";
-			}
-		}
+				currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
 
-		// Выбор текущей кнопки
-		if (Input.GetKeyDown(KeyCode.Space) && cm.right)
-		{
-			if (currentButtonIndex == 0 && humans.wasImposterEncountered)
-			{
-				if (humans.humansSinceTheImposter < 1 && !openCloseObject.windowOpened)
+				if (currentButtonIndex == 1)
 				{
-					humans.wasPoliceCalledInTime = true;
-					endingController.endingNumber = 0;
-					call = true;
-					btnsEmp.SetActive(false);
-					
-				}
-				else if (humans.currentHuman == humans.imposter && openCloseObject.windowOpened)
-				{
-					humans.wasPoliceCalledInTime = true;
-					endingController.endingNumber = 5;
-					call = true;
-					StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
-					btnsEmp.SetActive(false);
+					txtBtn1.text = "   >Cancel";
+					txtBtn2.text = "Call police";
 				}
 				else
 				{
-					humans.wasPoliceCalled = true;
-					endingController.endingNumber = 1;
+					txtBtn1.text = "Cancel";
+					txtBtn2.text = "   >Call police";
+				}
+			}
+
+			// Выбор текущей кнопки
+			if (Input.GetKeyDown(KeyCode.Space) && cm.right && btnsEmp.active)
+			{
+				if (currentButtonIndex == 0 && humans.wasImposterEncountered)
+				{
+					if (humans.humansSinceTheImposter < 1 && !openCloseObject.windowOpened)
+					{
+						humans.wasPoliceCalledInTime = true;
+						endingController.endingNumber = 0;
+						call = true;
+						btnsEmp.SetActive(false);
+						policeConformation.Play();
+					}
+					else if (humans.currentHuman == humans.imposter && openCloseObject.windowOpened)
+					{
+						humans.wasPoliceCalledInTime = true;
+						endingController.endingNumber = 5;
+						call = true;
+						StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
+						btnsEmp.SetActive(false);
+						policeConformation.Play();
+					}
+					else
+					{
+						humans.wasPoliceCalled = true;
+						endingController.endingNumber = 1;
+						call = true;
+						btnsEmp.SetActive(false);
+						policeConformation.Play();
+						if (openCloseObject.windowOpened)
+						{
+							talk.didHumanGotScared = true;
+						}
+					}
+				}
+				else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
+				{
+					humans.wasPoliceCalledEarly = true;
+					endingController.endingNumber = 2;
 					call = true;
+					btnsEmp.SetActive(false);
+					policeConformation.Play();
+					if (openCloseObject.windowOpened)
+					{
+						talk.didHumanGotScared = true;
+					}
+				}
+				else if (currentButtonIndex == 1)
+				{
 					btnsEmp.SetActive(false);
 				}
 			}
-			else if (currentButtonIndex == 0 && !humans.wasImposterEncountered)
+			if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
 			{
-				humans.wasPoliceCalledEarly = true;
-				endingController.endingNumber = 2;
-				call = true;
-				btnsEmp.SetActive(false);
+				btnsEmp.SetActive(true);
 			}
-			else if (currentButtonIndex == 1)
+
+			if (cm.right == false)
 			{
 				btnsEmp.SetActive(false);
 			}
 		}
-		if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
-		{
-			btnsEmp.SetActive(true);
-		}
-
-		if (cm.right == false)
-		{
-			btnsEmp.SetActive(false);
-		}
-
 	}
     private IEnumerator FadeInOutText()
     {

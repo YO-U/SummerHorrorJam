@@ -114,7 +114,6 @@ public class MovingCar : MonoBehaviour
 			}
 			else if (humanWalk.didImposterGotIn)
 			{
-				endingController.IsEndingStarting = true;
 				endingController.endingNumber = 4;
                 StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
 			}
@@ -135,7 +134,7 @@ public class MovingCar : MonoBehaviour
 			currentDestination -= moveChange*3;
 			gm.transform.DOLocalMoveX(currentDestination, 12f);
             readyToDepart = false;
-			int rng = Random.Range(30, 61);
+			int rng = Random.Range(20, 31);
 			yield return new WaitForSeconds(rng);
             Destroy(gm);
             currentDestination = 4.4f;
@@ -151,7 +150,7 @@ public class MovingCar : MonoBehaviour
             gm.transform.DOPath(carDepartPath, 10f, PathType.CatmullRom, PathMode.Full3D, 5, Color.green);
             gm.transform.DORotate(new Vector3(0, 180, 0), 4f, RotateMode.LocalAxisAdd);
 			readyToDepart = false;
-            int rng = Random.Range(30, 61);
+            int rng = Random.Range(20, 31);
 			yield return new WaitForSeconds(rng);
 			Destroy(gm);
             humanWalk.beenRejected = false;

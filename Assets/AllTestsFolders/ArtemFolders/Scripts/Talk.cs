@@ -28,7 +28,7 @@ public class Talk : MonoBehaviour
     [SerializeField] private int normalAnswer,srangeAnswer=0;
     private int BadRandom1;
     private int BadRandom2;
-    private bool didHumanGotScared;
+    public bool didHumanGotScared = false;
 	private Phone _phone;
 	private bool seeCallPolice = true;
     private bool smert = true;
@@ -86,9 +86,8 @@ public class Talk : MonoBehaviour
         }
 
 
-        if (_phone.call && window.windowOpened && camera.right && !didHumanGotScared && human.currentHuman != human.imposter)
+        if (_phone.call && window.windowOpened && camera.right && didHumanGotScared && human.currentHuman != human.imposter)
         {
-            didHumanGotScared = true;
             humenSpeak.gameObject.SetActive(true);
             objBtns.SetActive(false);
             human.beenRejected = true;
@@ -252,7 +251,7 @@ public class Talk : MonoBehaviour
                             }
 
                             StartCoroutine(human.HumanNahuiPoshel());
-                            human.didImposterNahuiPoshel = true;
+                            if (human.currentHuman == human.imposter) human.didImposterNahuiPoshel = true;
                         }
                     }
                     else
@@ -298,7 +297,7 @@ public class Talk : MonoBehaviour
 
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -315,12 +314,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -337,8 +348,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -364,7 +387,7 @@ public class Talk : MonoBehaviour
                                     case 2:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -381,12 +404,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -404,7 +439,19 @@ public class Talk : MonoBehaviour
                                                 else
                                                 {
                                                     randans = 5;
-                                                }
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -429,7 +476,7 @@ public class Talk : MonoBehaviour
                                     case 3:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -451,7 +498,7 @@ public class Talk : MonoBehaviour
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -468,8 +515,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -494,7 +553,7 @@ public class Talk : MonoBehaviour
                                     case 4:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -511,12 +570,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -533,8 +604,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -559,7 +642,7 @@ public class Talk : MonoBehaviour
                                     case 5:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -576,12 +659,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -598,8 +693,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -624,7 +731,7 @@ public class Talk : MonoBehaviour
                                     case 6:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -641,12 +748,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -663,8 +782,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -689,7 +820,7 @@ public class Talk : MonoBehaviour
                                     case 7:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -706,12 +837,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -728,8 +871,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -754,7 +909,7 @@ public class Talk : MonoBehaviour
                                     case 8:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -771,12 +926,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -793,8 +960,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -819,7 +998,7 @@ public class Talk : MonoBehaviour
                                     case 9:
                                         switch (randans)
                                         {
-                                            case >= 190 and <= 200:
+                                            case > 195 and <= 200:
                                                 if (srangeAnswer < 1)
                                                 {
                                                     switch (randansNB)
@@ -836,12 +1015,24 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
-                                            case >= 130 and <= 190:
+                                            case > 130 and <= 195:
                                                 if (normalAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -858,8 +1049,20 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = 5;
-                                                }
+													randans = 5;
+													switch (randansG)
+													{
+														case 1:
+															humenSpeak.text = "Of course! I planned this visit about a week ago.";
+															break;
+														case 2:
+															humenSpeak.text = "They do. I you don't believe me, call them. They will remember me.";
+															break;
+														case 3:
+															humenSpeak.text = "Not yet. But please, can i go in? You can call the staff and we will talk. I need to see my children.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -896,7 +1099,7 @@ public class Talk : MonoBehaviour
 
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -913,8 +1116,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+                                                    randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -933,7 +1145,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -952,7 +1164,7 @@ public class Talk : MonoBehaviour
                                     case 2:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -969,8 +1181,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -989,7 +1210,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1008,7 +1229,7 @@ public class Talk : MonoBehaviour
                                     case 3:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1025,8 +1246,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1045,7 +1275,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1064,7 +1294,7 @@ public class Talk : MonoBehaviour
                                     case 4:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1081,8 +1311,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1101,7 +1340,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1120,7 +1359,7 @@ public class Talk : MonoBehaviour
                                     case 5:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1137,8 +1376,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1157,7 +1405,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1176,7 +1424,7 @@ public class Talk : MonoBehaviour
                                     case 6:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1193,8 +1441,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1213,7 +1470,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1232,7 +1489,7 @@ public class Talk : MonoBehaviour
                                     case 7:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1249,8 +1506,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1269,7 +1535,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1288,7 +1554,7 @@ public class Talk : MonoBehaviour
                                     case 8:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1305,8 +1571,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1325,7 +1600,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1344,7 +1619,7 @@ public class Talk : MonoBehaviour
                                     case 9:
                                         switch (randans)
                                         {
-                                            case >= 150 and <= 200:
+                                            case > 150 and <= 200:
                                                 if (srangeAnswer < 2)
                                                 {
                                                     switch (randansNB)
@@ -1361,8 +1636,17 @@ public class Talk : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    randans = Random.Range(0, 149);
-                                                }
+													randans = Random.Range(76, 150);
+													switch (randansNB)
+													{
+														case 1:
+															humenSpeak.text = "...";
+															break;
+														case 2:
+															humenSpeak.text = "To kidnapp some children, of course.";
+															break;
+													}
+												}
 
                                                 break;
 
@@ -1381,7 +1665,7 @@ public class Talk : MonoBehaviour
 												}
 
                                                 break;
-                                            case >= 75 and <= 150:
+                                            case > 75 and <= 150:
                                                 switch (randansNB)
                                                 {
 													case 1:
@@ -1416,6 +1700,7 @@ public class Talk : MonoBehaviour
 				srangeAnswer = 0;
                 normalAnswer = 0;
                 switcher = true;
+                smert = true;
                 BadRandom2 = Random.Range(1, 5);
                 BadRandom1 = Random.Range(1, 5);
                 List<string> tempList = new List<string>(possibleQuestOld);
@@ -1455,5 +1740,4 @@ public class Talk : MonoBehaviour
             canvas.SetActive(false);
         }
     }
-        
 }

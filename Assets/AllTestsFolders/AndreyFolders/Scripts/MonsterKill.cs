@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class MonsterKill : MonoBehaviour
 {
 	private int currentPointIndex = 0;
-	private bool MonsterSpawned = false;
+	public bool MonsterSpawned = false;
 	private bool IsdoorBroken = false;
 	private bool HasMonsterSequenceStarted = false;
 	[SerializeField] private OpenCloseObject openClose;
@@ -66,16 +66,18 @@ public class MonsterKill : MonoBehaviour
 			door.transform.DOLocalRotate(new Vector3(-90, 0, 13), 0.1f);
 			openClose.inputEvailable = false;
 			IsdoorBroken = true;
-			cameraMove.cameraPos.transform.DORotate(new Vector3(0, 0 ,0), 1f);
+			cameraMove.cameraPos.transform.DORotate(new Vector3(0, 0 ,0), 0.5f);
+			cameraMove.cameraPos.GetComponent<Camera>().DOFieldOfView(30, 0.5f);
+			ghostCHoir.Stop();
 			yield return new WaitForSeconds(5);
 			monster.GetComponent<Animator>().SetBool("IsRunning", true);
 			Stinger.Play();
-			yield return new WaitForSeconds(0.6f);
-			ghostCHoir.Stop();
+			yield return new WaitForSeconds(0.4f);
 			endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().color = Color.black;
-			endingController.IsEndingStarting = true;
+			cameraMove.cameraPos.GetComponent<Camera>().DOFieldOfView(50, 0.5f);
 			Destroy(monster);
 			MonsterSpawned = false;
+			endingController.IsEndingStarting = true;
 		}
 	}
 

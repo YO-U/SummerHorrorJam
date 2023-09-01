@@ -11,11 +11,13 @@ public class Menu : MonoBehaviour
     public TextMeshProUGUI guide;
     public TextMeshProUGUI credits;
     public TextMeshProUGUI quit;
-    public TextMeshProUGUI start;
+	public TextMeshProUGUI toggleScreen;
+	public TextMeshProUGUI start;
     public GameObject canvaseMenu;
     public GameObject canvaseGuide;
     public GameObject canvaseCredits;
     public CanvasGroup canvasStartGame;
+    private Screen fullscreen;
     public float fadeInDuration = 1.0f;
     public int speedScrolStartText = 2;
     private int switcher=0;
@@ -33,7 +35,7 @@ public class Menu : MonoBehaviour
         {
             switcher++;
 
-            if (switcher == 4)
+            if (switcher == 5)
             {
                 switcher = 0;
             }     
@@ -45,7 +47,7 @@ public class Menu : MonoBehaviour
 
 			if (switcher == -1)
 			{
-				switcher = 3;
+				switcher = 4;
 			}
 		}
         if (switcher == 0)
@@ -53,8 +55,9 @@ public class Menu : MonoBehaviour
             play.text = "   >Play";
             guide.text = "Guide";
             credits.text = "Credits";
-            quit.text = "Quit";
-            if (Input.GetKeyDown(KeyCode.E))
+			toggleScreen.text = "Toggle Fullscreen";
+			quit.text = "Quit";
+            if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
             {
                 canvaseMenu.SetActive(false);
                 canvasStartGame.gameObject.SetActive(true);
@@ -70,11 +73,12 @@ public class Menu : MonoBehaviour
             play.text = "Play";
             guide.text = "   >Guide";
             credits.text = "Credits";
-            quit.text = "Quit";
+			toggleScreen.text = "Toggle Fullscreen";
+			quit.text = "Quit";
             
             
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+            if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
+			{
                 chekerCanvase = false;
                 canvaseMenu.SetActive(false);
                 canvaseGuide.SetActive(true);
@@ -93,9 +97,10 @@ public class Menu : MonoBehaviour
             play.text = "Play";
             guide.text = "Guide";
             credits.text = "   >Credits";
-            quit.text = "Quit";
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+			toggleScreen.text = "Toggle Fullscreen";
+			quit.text = "Quit";
+            if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
+			{
                 chekerCanvase = false;
                 canvaseMenu.SetActive(false);
                 canvaseCredits.SetActive(true);
@@ -112,13 +117,27 @@ public class Menu : MonoBehaviour
             play.text = "Play";
             guide.text = "Guide";
             credits.text = "Credits";
-            quit.text = "   >Quit";
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Application.Quit();
-            }
+            quit.text = "   >Toggle Fullscreen";
+			quit.text = "Quit";
+			if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
+			{
+				if (fullscreen) Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+				else Screen.fullScreenMode = FullScreenMode.Windowed;
+			}
         }
-    }
+		if (switcher == 4)
+		{
+			play.text = "Play";
+			guide.text = "Guide";
+			credits.text = "Credits";
+			toggleScreen.text = "Toggle Fullscreen";
+			quit.text = "   >Quit";
+			if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
+			{
+				Application.Quit();
+			}
+		}
+	}
     private IEnumerator FadeInCanvas()
     {
         float elapsedTime = 0f;
