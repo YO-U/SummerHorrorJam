@@ -20,7 +20,8 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && ch1)
         {
             SceneManager.LoadScene(0);
-        }
+			SceneManager.UnloadSceneAsync(1);
+		}
     }
 
     private IEnumerator StartEnding()

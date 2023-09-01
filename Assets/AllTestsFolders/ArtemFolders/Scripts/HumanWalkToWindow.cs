@@ -37,6 +37,7 @@ public class HumanWalkToWindow : MonoBehaviour
 	[SerializeField] private OpenCloseObject openCloseObject;
 	public Transform cameraPosition;
     [SerializeField] private AudioSource carSoundOpen;
+	[SerializeField] private AudioSource windowBonk;
 	[SerializeField] private AudioSource carSoundClose;
 	[SerializeField] private int currentPointIndex = 0;
     [SerializeField] private Animator humanAnimator;
@@ -48,7 +49,7 @@ public class HumanWalkToWindow : MonoBehaviour
     public TextMeshProUGUI NewsTxt;
     private bool PoshelNaherClosedWindow=false;
     private float timer;
-    public float timerMax = 20f;
+    public float timerMax = 30f;
 
     private void Start()
     {
@@ -90,13 +91,17 @@ public class HumanWalkToWindow : MonoBehaviour
 	    {
 		    timer -= Time.deltaTime;
 	    }
-		else if (timer <= 0  && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false) 
+		else if (timer <= 0  && window.windowOpened == false && hCreatedCh && PoshelNaherClosedWindow ==false && !(currentHuman == imposter)) 
 	    {
 		    StartCoroutine(HumanNahuiPoshel());
 		    beenRejected = true;
 		    PoshelNaherClosedWindow = true;
 		    timer = timerMax;
 	    }
+		else if (timer <= 15 && !(currentHuman == imposter) && hCreatedCh)
+		{
+			windowBonk.Play();
+		}
 		else if (timer <= 0 && hCreatedCh && currentHuman == imposter && cameraMove.currentState != "mid" && !endingController.IsEndingStart)
 		{
 			endingController.endingNumber = 7;
@@ -107,7 +112,6 @@ public class HumanWalkToWindow : MonoBehaviour
 	    {
 		    timer = timerMax;
 	    }
-	   
     }
 
     public IEnumerator HumanNahuiPoshel()
@@ -135,6 +139,8 @@ public class HumanWalkToWindow : MonoBehaviour
 			if (!openCloseObject.tvAvtivated) openCloseObject.GetAndActivateCurrentInteractable();
 			yield return new WaitForSeconds(1);
 			openCloseObject.videoPlayer.Pause();
+			openCloseObject.currentChannel = 2;
+			openCloseObject.CurrentChannelCheck();
 			openCloseObject.currentChannel = 1;
 			openCloseObject.CurrentChannelCheck();
 			openCloseObject.videoPlayer.Play();
@@ -159,15 +165,15 @@ public class HumanWalkToWindow : MonoBehaviour
 					break;
 				
 				case "man":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of young male. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of middle-age man. Other characteristics are unknown.";
 					break;
 				
 				case "asianwoman":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of young female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young woman. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairblack":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of young female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young woman. Other characteristics are unknown.";
 					break;
 				
 				case "womanhairwhite":
@@ -175,11 +181,11 @@ public class HumanWalkToWindow : MonoBehaviour
 					break;
 				
 				case "womanblueshirt":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of female. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of middle-age woman. Other characteristics are unknown.";
 					break;
 				
 				case "manyoung":
-					NewsTxt.text = "It seems like creature 'transformed' to the form of male. Other characteristics are unknown.";
+					NewsTxt.text = "It seems like creature 'transformed' to the form of young man. Other characteristics are unknown.";
 					break;
 			}
 			yield return new WaitForSeconds(8);
@@ -214,6 +220,7 @@ public class HumanWalkToWindow : MonoBehaviour
 		humanAnimator.SetBool("IsWalking", false);
 		hCreatedCh = true;
         human.transform.rotation = Quaternion.Euler(0,1,0);
+		if (!openCloseObject.windowOpened) windowBonk.Play();
 	}
     
     private IEnumerator MoveHumanToCar()
@@ -246,7 +253,6 @@ public class HumanWalkToWindow : MonoBehaviour
 		human = Instantiate(humansArray[currentHuman], pointsArray[0].position, Quaternion.identity) as GameObject;
 		if (currentHuman == imposter)
 		{
-			human.transform.DOScale(new Vector3(0.3f,0.3f,0.3f), 1);
 			wasImposterEncountered = true;
 		}
 		else if (wasImposterEncountered)

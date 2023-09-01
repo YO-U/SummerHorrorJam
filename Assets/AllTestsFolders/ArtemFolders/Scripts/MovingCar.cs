@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Range = UnityEngine.SocialPlatforms.Range;
 
@@ -31,7 +32,8 @@ public class MovingCar : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartDelay());
+        endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().color = Color.black;
+		StartCoroutine(StartDelay());
         isBoostReady = false;
     }
 
@@ -39,7 +41,7 @@ public class MovingCar : MonoBehaviour
     {
         SpawnCar();
 
-        MoveCar();
+        StartCoroutine(MoveCar());
 
         StartCoroutine(MoveCarIntoCamp());
 
@@ -59,7 +61,7 @@ public class MovingCar : MonoBehaviour
         //}
     }
 
-    private void MoveCar()
+    private IEnumerator MoveCar()
     {
         if (isBoostReady && spawnSiren && endingController.endingNumber <= 2)
         {
@@ -69,9 +71,19 @@ public class MovingCar : MonoBehaviour
 		}
         else if (isBoostReady && !spawnSiren)
         {
-			currentDestination -= moveChange/2;
+			currentDestination -= moveChange/3;
 			gm.transform.DOLocalMoveX(currentDestination, 5f);
 			isBoostReady = false;
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 0, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 0, 0), 1f);
+			yield return new WaitForSeconds(1);
+			gm.transform.DOLocalRotate(new Vector3(0, 181, 0), 1f);
+            policeLights.GetComponent<AudioSource>().Stop();
 		}
 	}
 
@@ -102,7 +114,6 @@ public class MovingCar : MonoBehaviour
 			}
 			else if (humanWalk.didImposterGotIn)
 			{
-				endingController.IsEndingStarting = true;
 				endingController.endingNumber = 4;
                 StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
 			}
@@ -123,7 +134,7 @@ public class MovingCar : MonoBehaviour
 			currentDestination -= moveChange*3;
 			gm.transform.DOLocalMoveX(currentDestination, 12f);
             readyToDepart = false;
-			int rng = Random.Range(30, 61);
+			int rng = Random.Range(20, 31);
 			yield return new WaitForSeconds(rng);
             Destroy(gm);
             currentDestination = 4.4f;
@@ -139,7 +150,7 @@ public class MovingCar : MonoBehaviour
             gm.transform.DOPath(carDepartPath, 10f, PathType.CatmullRom, PathMode.Full3D, 5, Color.green);
             gm.transform.DORotate(new Vector3(0, 180, 0), 4f, RotateMode.LocalAxisAdd);
 			readyToDepart = false;
-            int rng = Random.Range(30, 61);
+            int rng = Random.Range(20, 31);
 			yield return new WaitForSeconds(rng);
 			Destroy(gm);
             humanWalk.beenRejected = false;
@@ -151,7 +162,8 @@ public class MovingCar : MonoBehaviour
 
     private IEnumerator StartDelay()
     {
-        yield return new WaitForSeconds(20);
+        endingController.blackScreen.GetComponent<UnityEngine.UI.Image>().DOColor(Color.clear, 3);
+		yield return new WaitForSeconds(20);
         isBoostReady = true;
     }
 }

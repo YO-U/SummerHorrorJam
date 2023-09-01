@@ -38,6 +38,7 @@ public class OpenCloseObject : MonoBehaviour
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private KeyCode interact;
 	[SerializeField] private KeyCode interactSecondary;
+	[SerializeField] private MonsterKill monsterKill;
 
 	// Start is called before the first frame update
 	void Start()
@@ -101,7 +102,7 @@ public class OpenCloseObject : MonoBehaviour
 
     private void TvChannelSwitch()
     {
-        if (Input.GetKeyDown(interactSecondary) && (cameraMove.currentState == "left") && tvAvtivated)
+        if ((Input.GetKeyDown(interactSecondary) || Input.GetKeyDown(KeyCode.RightArrow)) && (cameraMove.currentState == "left") && tvAvtivated)
         {
 			videoPlayer.Stop();
 			if (currentChannel != 5)
@@ -113,13 +114,25 @@ public class OpenCloseObject : MonoBehaviour
 			CurrentChannelCheck();
 			videoPlayer.Play();
 		}
-    }
+		if (Input.GetKeyDown(KeyCode.LeftArrow) && (cameraMove.currentState == "left") && tvAvtivated)
+		{
+			videoPlayer.Stop();
+			if (currentChannel != 1)
+			{
+				currentChannel--;
+			}
+			else
+				currentChannel = 5;
+			CurrentChannelCheck();
+			videoPlayer.Play();
+		}
+	}
 
 	//Меняет страницу книги.
 
 	private void BookPageChange()
 	{
-		if (Input.GetKeyDown(interactSecondary) && (cameraMove.currentState == "down") && bookOpened)
+		if ((Input.GetKeyDown(interactSecondary) || Input.GetKeyDown(KeyCode.RightArrow)) && (cameraMove.currentState == "down") && bookOpened)
 		{
 			if (currentPage != 7)
 			{
@@ -127,6 +140,16 @@ public class OpenCloseObject : MonoBehaviour
 			}
 			else
 				currentPage = 1;
+			PageContentChange();
+		}
+		if (Input.GetKeyDown(KeyCode.LeftArrow) && (cameraMove.currentState == "down") && bookOpened)
+		{
+			if (currentPage != 1)
+			{
+				currentPage -= 2;
+			}
+			else
+				currentPage = 7;
 			PageContentChange();
 		}
 	}
@@ -201,7 +224,7 @@ public class OpenCloseObject : MonoBehaviour
 
             case "left":
 				currentInteractible = GameObject.Find("TVScreen");
-                if (!tvAvtivated)
+                if (!tvAvtivated && !monsterKill.MonsterSpawned)
                 {
 					tvScreen.GetComponent<Renderer>().material = activated;
 					videoPlayer.Play();
