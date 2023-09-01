@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour
     public GameObject canvaseGuide;
     public GameObject canvaseCredits;
     public CanvasGroup canvasStartGame;
-    private Screen fullscreen;
+    public bool isFullscreen = true;
     public float fadeInDuration = 1.0f;
     public int speedScrolStartText = 2;
     private int switcher=0;
@@ -117,12 +117,16 @@ public class Menu : MonoBehaviour
             play.text = "Play";
             guide.text = "Guide";
             credits.text = "Credits";
-            quit.text = "   >Toggle Fullscreen";
+            toggleScreen.text = "   >Toggle Fullscreen";
 			quit.text = "Quit";
 			if (Input.GetKeyDown(KeyCode.E) && canvaseMenu.active)
 			{
-				if (fullscreen) Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-				else Screen.fullScreenMode = FullScreenMode.Windowed;
+                if (isFullscreen)
+                {
+                    isFullscreen = false;
+                }
+                else isFullscreen = true;
+                setFullscreen(isFullscreen);
 			}
         }
 		if (switcher == 4)
@@ -169,4 +173,10 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
 		SceneManager.UnloadSceneAsync(0);
     }
+
+	public void setFullscreen(bool fullscreen)
+	{
+		if (fullscreen) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+		else Screen.fullScreenMode = FullScreenMode.Windowed;
+	}
 }

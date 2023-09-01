@@ -90,7 +90,7 @@ public class MovingCar : MonoBehaviour
     private void SpawnCar()
     {
 
-        if ((humanWalk.humansSincePoliceCall > 2 || humanWalk.currentHuman == 6) && spawnSiren && isNextCarReady && (humanWalk.wasPoliceCalled || humanWalk.wasPoliceCalledEarly || humanWalk.wasPoliceCalledInTime) && !endingController.IsEndingStart)
+        if ((humanWalk.humansSincePoliceCall >= 2 || humanWalk.currentHuman == 6) && spawnSiren && isNextCarReady && (humanWalk.wasPoliceCalled || humanWalk.wasPoliceCalledEarly || humanWalk.wasPoliceCalledInTime) && !endingController.IsEndingStart)
         {
             spawnSiren = false;
 			gm = Instantiate(policeLights, new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
@@ -118,7 +118,7 @@ public class MovingCar : MonoBehaviour
                 StartCoroutine(monsterKill.SpawnMonsterRemoveHuman());
 			}
 		}
-		else if (isNextCarReady && humanWalk.currentHuman != 6 && humanWalk.humansSincePoliceCall <= 2 && !endingController.IsEndingStart)
+		else if (isNextCarReady && humanWalk.currentHuman != 6 && humanWalk.humansSincePoliceCall < 2 && !endingController.IsEndingStart)
 		{
 			gm = Instantiate(array[Random.Range(0, 9)], new Vector3(_startPoint.position.x, _startPoint.position.y, _startPoint.position.z), Quaternion.identity) as GameObject;
 			gm.transform.Rotate(0, -90, 0);
