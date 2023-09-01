@@ -11078,7 +11078,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d3518e8dab1194b49aa9c0014986b102, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
@@ -27067,7 +27067,7 @@ MonoBehaviour:
   activated: {fileID: 2100000, guid: 30a6f8faa1d54a34cbafcd9d25b3eb54, type: 2}
   moveDistance: 0.16
   cameraMove: {fileID: 1156071072}
-  interact: 101
+  interact: 102
   interactSecondary: 113
   monsterKill: {fileID: 1156071082}
 --- !u!114 &1156071076
@@ -27086,7 +27086,7 @@ MonoBehaviour:
   humanWalk: {fileID: 1156071077}
   gateSound: {fileID: 170235044}
   cameraMove: {fileID: 1156071072}
-  buttonInteract: 32
+  buttonInteract: 101
   Gate: {fileID: 470989051}
   button: {fileID: 1156851182}
 --- !u!114 &1156071077
@@ -27293,6 +27293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0303a8b1aedb4143b8fab2807ec9d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screamer: {fileID: 477798774}
   _monsterInForest: {fileID: 350750647}
   _monsterInWindow: {fileID: 779044919}
   _monsterInWindowPhone: {fileID: 6006656}
