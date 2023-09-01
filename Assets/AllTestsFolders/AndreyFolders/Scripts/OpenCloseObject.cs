@@ -39,6 +39,7 @@ public class OpenCloseObject : MonoBehaviour
     [SerializeField] private KeyCode interact;
 	[SerializeField] private KeyCode interactSecondary;
 	[SerializeField] private MonsterKill monsterKill;
+	private bool shift=false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -50,12 +51,24 @@ public class OpenCloseObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (inputEvailable)
-		{
-			InteractibleActivete();
-			TvChannelSwitch();
-			BookPageChange();
+	    if (shift)
+	    {
+		    if (inputEvailable) 
+		    { 
+			    InteractibleActivete(); 
+			    TvChannelSwitch(); 
+			    BookPageChange(); 
+		    } 
+	    }
+	    if (Input.GetKeyDown(KeyCode.LeftShift)) 
+	    {
+			shift = true;
 		}
+		if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			shift = false;
+		}
+		
     }
 
 	//Меняет видос.
@@ -253,7 +266,7 @@ public class OpenCloseObject : MonoBehaviour
 
 	public void InteractibleActivete()
 	{
-		if (Input.GetKeyDown(interact)) 
+		if (Input.GetKeyDown(interact) || Input.GetKeyDown(KeyCode.Space)) 
         {
             GetAndActivateCurrentInteractable();
         }

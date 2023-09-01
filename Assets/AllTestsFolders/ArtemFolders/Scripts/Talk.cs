@@ -152,7 +152,7 @@ public class Talk : MonoBehaviour
             canvas.SetActive(true);
             if ((smert && eBtn.isGateOpened==false)  || (smert==false && eBtn.isGateOpened))
             {
-                if ((Input.GetKeyUp(KeyCode.F)||Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.S))  && switcher)
+                if ((Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.S))  && switcher)
 				{
                     if (switcher)
                     {
