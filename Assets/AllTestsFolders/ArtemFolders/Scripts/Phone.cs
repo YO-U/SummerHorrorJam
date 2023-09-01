@@ -39,11 +39,11 @@ public class Phone : MonoBehaviour
     {
 		if (call == false)
 		{
-			if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.E))
+			if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.Space))
 			{
 				StartCoroutine(FadeInOutText());
 			}
-			if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+			if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
 			{
 				currentButtonIndex = 1 - currentButtonIndex; // Меняем индекс на противоположный
 
@@ -60,7 +60,7 @@ public class Phone : MonoBehaviour
 			}
 
 			// Выбор текущей кнопки
-			if (Input.GetKeyDown(KeyCode.Space) && cm.right && btnsEmp.active)
+			if (Input.GetKeyDown(KeyCode.E) && cm.right && btnsEmp.active)
 			{
 				if (currentButtonIndex == 0 && humans.wasImposterEncountered)
 				{
@@ -111,7 +111,7 @@ public class Phone : MonoBehaviour
 					btnsEmp.SetActive(false);
 				}
 			}
-			if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.E))
+			if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.Space))
 			{
 				btnsEmp.SetActive(true);
 			}

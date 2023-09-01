@@ -152,7 +152,7 @@ public class Talk : MonoBehaviour
             canvas.SetActive(true);
             if ((smert && eBtn.isGateOpened==false)  || (smert==false && eBtn.isGateOpened))
             {
-                if ((Input.GetKeyDown(KeyCode.Q)  && switcher))
+                if ((Input.GetKeyUp(KeyCode.F)||Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.S))  && switcher)
 				{
                     if (switcher)
                     {
@@ -178,7 +178,7 @@ public class Talk : MonoBehaviour
                 {
                     humenSpeak.gameObject.SetActive(false); //выкл текст
                     objBtns.SetActive(true); //вкл кнопки 
-                    if ((Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetKeyDown(KeyCode.UpArrow)) && switcher == false)))
+                    if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) && switcher == false)
                     {
                         if (possibleQuestNew.Length != 0)
                         {
@@ -220,7 +220,7 @@ public class Talk : MonoBehaviour
                             textQuest.text = "";
                         }
 
-                        if (Input.GetKeyDown(KeyCode.Space))
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             deletedFirstChar = false;
                             switcher = true;
@@ -273,7 +273,7 @@ public class Talk : MonoBehaviour
 
 
 
-                        if (Input.GetKeyDown(KeyCode.Space))
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             deletedFirstChar = false;
                             List<string> tempAnswers = new List<string>(possibleQuestNew);

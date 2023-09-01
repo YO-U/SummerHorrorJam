@@ -12,6 +12,7 @@ public class CameraMove : MonoBehaviour
 	[SerializeField] private OpenCloseObject openCloseObject; 
 	public AudioSource tvAudioSource;
 	public Transform cameraPos;
+	private bool shift = false;
 
 	private void Start()
 	{
@@ -25,6 +26,15 @@ public class CameraMove : MonoBehaviour
 		{
 			InputCheck();
 		}
+
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			shift = true;
+		}
+		if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			shift = false;
+		}
 	}
 
 	private void InputCheck()
@@ -33,21 +43,21 @@ public class CameraMove : MonoBehaviour
 		switch (currentState)
 		{
 			case "down":
-				if (Input.GetKeyDown(KeyCode.W) && down == true)
+				if (((Input.GetKeyDown(KeyCode.W) && shift)||Input.GetKeyDown(KeyCode.UpArrow)) == true && down)
 				{
 					CameraDirectionChange(new Vector3(0, 180, 0), 0.05f, 0.5f, "mid");
 					down = false;
 					mid = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.A) && down == true)
+				if (((Input.GetKeyDown(KeyCode.A)&& shift)||Input.GetKeyDown(KeyCode.LeftArrow)) && down == true)
 				{
 					CameraDirectionChange(new Vector3(15, 110, 0), 0.2f, 0.5f, "left");
 					down = false;
 					left = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.D) && down == true)
+				if (((Input.GetKeyDown(KeyCode.D)&& shift)||Input.GetKeyDown(KeyCode.RightArrow)) && down == true)
 				{
 					CameraDirectionChange(new Vector3(0, 250, 0), 0.01f, 0.5f, "right");
 					down = false;
@@ -55,21 +65,21 @@ public class CameraMove : MonoBehaviour
 				}
 				break;
 			case "mid":
-				if (Input.GetKeyDown(KeyCode.A) && mid == true)
+				if (((Input.GetKeyDown(KeyCode.A)&& shift)||Input.GetKeyDown(KeyCode.LeftArrow)) && mid == true)
 				{
 					CameraDirectionChange(new Vector3(15, 110, 0), 0.2f, 0.5f, "left");
 					mid = false;
 					left = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.D) && mid == true)
+				if (((Input.GetKeyDown(KeyCode.D)&& shift)||Input.GetKeyDown(KeyCode.RightArrow)) && mid == true)
 				{
 					CameraDirectionChange(new Vector3(0, 250, 0), 0.01f, 0.5f, "right");
 					mid = false;
 					right = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.S) && mid == true)
+				if (((Input.GetKeyDown(KeyCode.S)&& shift)||Input.GetKeyDown(KeyCode.DownArrow)) && mid == true)
 				{
 					CameraDirectionChange(new Vector3(55, 180, 0), 0.05f, 0.5f, "down");
 					mid = false;
@@ -77,14 +87,14 @@ public class CameraMove : MonoBehaviour
 				}
 				break;
 			case "right":
-				if (Input.GetKeyDown(KeyCode.A) && right == true)
+				if (((Input.GetKeyDown(KeyCode.A)&& shift)||Input.GetKeyDown(KeyCode.LeftArrow)) && right == true)
 				{
 					CameraDirectionChange(new Vector3(0, 180, 0), 0.05f, 0.5f, "mid");
 					right = false;
 					mid = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.S) && right == true)
+				if (((Input.GetKeyDown(KeyCode.S)&& shift)||Input.GetKeyDown(KeyCode.DownArrow)) && right == true)
 				{
 					CameraDirectionChange(new Vector3(55, 180, 0), 0.05f, 0.5f, "down");
 					right = false;
@@ -92,14 +102,14 @@ public class CameraMove : MonoBehaviour
 				}
 				break;
 			case "left":
-				if (Input.GetKeyDown(KeyCode.D) && left == true)
+				if (((Input.GetKeyDown(KeyCode.D)&& shift)||Input.GetKeyDown(KeyCode.RightArrow)) && left == true)
 				{
 					CameraDirectionChange(new Vector3(0, 180, 0), 0.05f, 0.5f, "mid");
 					left = false;
 					mid = true;
 				}
 
-				if (Input.GetKeyDown(KeyCode.S) && left == true)
+				if (((Input.GetKeyDown(KeyCode.S)&& shift)||Input.GetKeyDown(KeyCode.DownArrow)) && left == true)
 				{
 					CameraDirectionChange(new Vector3(55, 180, 0), 0.05f, 0.5f, "down");
 					left = false;
