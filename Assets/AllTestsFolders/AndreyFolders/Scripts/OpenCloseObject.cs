@@ -102,7 +102,7 @@ public class OpenCloseObject : MonoBehaviour
 
     private void TvChannelSwitch()
     {
-        if ((Input.GetKeyDown(interactSecondary) || Input.GetKeyDown(KeyCode.RightArrow)) && (cameraMove.currentState == "left") && tvAvtivated)
+        if (Input.GetKeyDown(KeyCode.D) && (cameraMove.currentState == "left") && tvAvtivated)
         {
 			videoPlayer.Stop();
 			if (currentChannel != 5)
@@ -114,7 +114,7 @@ public class OpenCloseObject : MonoBehaviour
 			CurrentChannelCheck();
 			videoPlayer.Play();
 		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow) && (cameraMove.currentState == "left") && tvAvtivated)
+		if (Input.GetKeyDown(KeyCode.A) && (cameraMove.currentState == "left") && tvAvtivated)
 		{
 			videoPlayer.Stop();
 			if (currentChannel != 1)
@@ -132,7 +132,7 @@ public class OpenCloseObject : MonoBehaviour
 
 	private void BookPageChange()
 	{
-		if ((Input.GetKeyDown(interactSecondary) || Input.GetKeyDown(KeyCode.RightArrow)) && (cameraMove.currentState == "down") && bookOpened)
+		if (Input.GetKeyDown(KeyCode.D) && (cameraMove.currentState == "down") && bookOpened)
 		{
 			if (currentPage != 7)
 			{
@@ -142,7 +142,7 @@ public class OpenCloseObject : MonoBehaviour
 				currentPage = 1;
 			PageContentChange();
 		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow) && (cameraMove.currentState == "down") && bookOpened)
+		if (Input.GetKeyDown(KeyCode.A) && (cameraMove.currentState == "down") && bookOpened)
 		{
 			if (currentPage != 1)
 			{

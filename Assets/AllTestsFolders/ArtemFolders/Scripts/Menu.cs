@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour
 
     public void Update()
     {
-        if (((Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.DownArrow)))&&chekerCanvase))
+        if (Input.GetKeyDown(KeyCode.S)&&chekerCanvase)
         {
             switcher++;
 
@@ -41,7 +41,7 @@ public class Menu : MonoBehaviour
             }     
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && chekerCanvase)
+        if (Input.GetKeyDown(KeyCode.W) && chekerCanvase)
         {
 			switcher--;
 
