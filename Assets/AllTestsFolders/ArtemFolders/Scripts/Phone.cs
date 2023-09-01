@@ -39,7 +39,7 @@ public class Phone : MonoBehaviour
     {
 		if (call == false)
 		{
-			if (cm.right && humans.hCreatedCh == false && Input.GetKeyDown(KeyCode.Space))
+			if (cm.right && humans.hCreatedCh == false && (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.F)))
 			{
 				StartCoroutine(FadeInOutText());
 			}
@@ -111,7 +111,7 @@ public class Phone : MonoBehaviour
 					btnsEmp.SetActive(false);
 				}
 			}
-			if (cm.right && humans.hCreatedCh && Input.GetKeyDown(KeyCode.Space))
+			if (cm.right && humans.hCreatedCh && (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.F)))
 			{
 				btnsEmp.SetActive(true);
 			}
