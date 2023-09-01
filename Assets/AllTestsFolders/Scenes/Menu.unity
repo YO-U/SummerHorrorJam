@@ -10408,6 +10408,7 @@ MonoBehaviour:
   canvaseGuide: {fileID: 1479448136}
   canvaseCredits: {fileID: 1305725931}
   canvasStartGame: {fileID: 246759812}
+  isFullscreen: 1
   fadeInDuration: 1
   speedScrolStartText: 4
 --- !u!4 &510302180
@@ -19346,7 +19347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 47.4}
+  m_AnchoredPosition: {x: 0, y: 34.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &994185920
@@ -23834,7 +23835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -53.6}
+  m_AnchoredPosition: {x: 0, y: -66.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1212989591
@@ -27745,7 +27746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -21.1}
+  m_AnchoredPosition: {x: 0, y: -33.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401773958
@@ -32210,62 +32211,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e1ea6517af704e4c94e36b414b4ed60, type: 3}
   m_PrefabInstance: {fileID: 1500260818}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1557774622
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1557774624}
-  - component: {fileID: 1557774623}
-  m_Layer: 0
-  m_Name: Scripts (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1557774623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557774622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27aec2f7cb06d4b44b34b6ae9873718a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  play: {fileID: 1910331318}
-  guide: {fileID: 994185921}
-  credits: {fileID: 1912922967}
-  quit: {fileID: 1211553121}
-  toggleScreen: {fileID: 1401773958}
-  start: {fileID: 1843432553}
-  canvaseMenu: {fileID: 1526025677}
-  canvaseGuide: {fileID: 1479448136}
-  canvaseCredits: {fileID: 1305725931}
-  canvasStartGame: {fileID: 246759812}
-  fadeInDuration: 1
-  speedScrolStartText: 4
---- !u!4 &1557774624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557774622}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 158.11998, y: 120.633385, z: -20.453249}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1562591625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1424881017177680019, guid: 840cd890a84be8a41845e319606ec6ab, type: 3}
@@ -38079,7 +38024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 82.9}
+  m_AnchoredPosition: {x: 0, y: 70.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1910331317
@@ -38377,7 +38322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 12.299999}
+  m_AnchoredPosition: {x: 0, y: -0.20000076}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1912922966
@@ -42458,7 +42403,6 @@ SceneRoots:
   - {fileID: 1526025678}
   - {fileID: 255721792}
   - {fileID: 510302180}
-  - {fileID: 1557774624}
   - {fileID: 1479448140}
   - {fileID: 1305725935}
   - {fileID: 246759811}
