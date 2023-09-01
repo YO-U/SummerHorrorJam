@@ -8,6 +8,7 @@ public class SCrimers : MonoBehaviour
     private OpenCloseObject window;
     private HumanWalkToWindow monsterChecker;
     private CameraMove camera;
+    [SerializeField] private AudioSource screamer;
     
     //В лесу
     public GameObject _monsterInForest;
@@ -36,12 +37,12 @@ public class SCrimers : MonoBehaviour
     {
         if (monsterChecker.currentHuman > 2)
         { 
-            if (monsterChecker.currentHuman >= 3 && camera.mid && spawnInForestCheck ==false)
+            if (monsterChecker.currentHuman >= 3 && camera.mid && spawnInForestCheck == false)
             {
                 StartCoroutine(SpawnMonsterInForest());
             }
 
-            if (window.windowOpened == false && monsterChecker.currentHuman >= 4 &&spawnInWindowCheck == false && camera.mid)
+            if (monsterChecker.currentHuman >= 4 &&spawnInWindowCheck == false && camera.mid && !monsterChecker.hCreatedCh)
             {
                 StartCoroutine(SpawnMonsterInWindow());
             }
@@ -56,6 +57,10 @@ public class SCrimers : MonoBehaviour
     public IEnumerator SpawnMonsterInForest()
     {
         _monsterInForest.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+		screamer.pitch = 0.8f;
+		screamer.volume = 0.2f;
+        screamer.Play();
         yield return new WaitForSeconds(7);
         _monsterInForest.SetActive(false);
         spawnInForestCheck = true;
@@ -64,15 +69,23 @@ public class SCrimers : MonoBehaviour
     public IEnumerator SpawnMonsterInWindow()
     {
         _monsterInWindow.SetActive(true);
-        yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.5f);
+		screamer.pitch = 1.2f;
+		screamer.volume = 0.4f;
+		screamer.Play();
+		yield return new WaitForSeconds(1);
         _monsterInWindow.SetActive(false);
         spawnInWindowCheck = true;
     }
     
     public IEnumerator SpawnMonsterInWindowPhone()
     {
-        _monsterInWindowPhone.SetActive(true);
-        yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.5f);
+        screamer.pitch = 1f;
+		screamer.volume = 0.4f;
+		screamer.Play();
+		_monsterInWindowPhone.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         _monsterInWindowPhone.transform.position = _monsterInWindowPhone.transform.position + new Vector3(0.0f, 0.0f, 0.1f)*Time.deltaTime;
         yield return new WaitForSeconds(1);
         _monsterInWindowPhone.SetActive(false);
